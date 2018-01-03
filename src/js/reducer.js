@@ -20,7 +20,18 @@ export const category = (state={restaurants: []}, action) => {
   }
 }
 
+export const restaurant = (state={categories: []}, action) => {
+  const {type, data} = action
+  switch (type) {
+    case 'FETCH_RESTAURANT_SUCCESS':
+      return data
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   categories,
-  category
+  category,
+  restaurant
 })

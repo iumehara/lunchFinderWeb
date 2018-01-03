@@ -6,11 +6,12 @@ describe('Category', () => {
   it('displays title', () => {
     const props = {
       fetchCategory: ()=>{},
-      category: {name: 'Sushi', restaurants: [{name: 'Pintokona'}]}
+      category: {name: 'Sushi', restaurants: [{id: 1, name: 'Pintokona'}]}
     }
-    const app = shallow(<Category {...props}/>)
+    const category = shallow(<Category {...props}/>)
 
-    expect(app.text()).toContain('Sushi')
-    expect(app.text()).toContain('Pintokona')
+    expect(category.find('.title').text()).toContain('Sushi')
+    expect(category.find('ul').find('Link').at(0).props().to).toEqual('/restaurants/1')
+    expect(category.find('ul').find('Link').at(0).props().children).toEqual('Pintokona')
   })
 })

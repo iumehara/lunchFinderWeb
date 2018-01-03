@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Category extends React.Component {
   componentWillMount() {
@@ -13,7 +14,11 @@ class Category extends React.Component {
         <ul>
           {
             category.restaurants.map((restaurant, i) => {
-              return <li key={i}>{restaurant.name}</li>
+              return (
+                <li key={i}>
+                  <Link to={`/restaurants/${restaurant.id}`}>{restaurant.name}</Link>
+                </li>
+              )
             })
           }
         </ul>

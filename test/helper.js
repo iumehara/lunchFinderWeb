@@ -5,12 +5,12 @@ import reducer from '../src/js/reducer'
 import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 
-export const mountContainer = Container => {
+export const mountContainer = (Container, params) => {
   const store = createStore(reducer)
   return mount(
     <Provider store={store}>
       <HashRouter>
-        <Container/>
+        <Container match={{params: params}}/>
       </HashRouter>
     </Provider>
   )

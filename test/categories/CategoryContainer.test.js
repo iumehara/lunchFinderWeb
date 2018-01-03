@@ -1,8 +1,6 @@
 import React from 'react'
-import { mount } from 'enzyme'
 import CategoryContainer from '../../src/js/categories/CategoryContainer'
-import { createStore } from 'redux'
-import reducer from '../../src/js/reducer'
+import { mountContainer } from '../helper'
 import * as httpGet from '../../src/js/httpGet'
 
 describe('CategoryContainer', () => {
@@ -14,8 +12,7 @@ describe('CategoryContainer', () => {
         return {then: callbackFunc => callbackFunc(mockCategory)}
       })
 
-    const store = createStore(reducer)
-    const categoryContainer = mount(<CategoryContainer match={{params: {id: '3'}}}/>, { context: { store } })
+    const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
 
     const category = categoryContainer.find('Category')
 
