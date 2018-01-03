@@ -26,9 +26,9 @@ export default function App() {
           <hr/>
 
           <Route exact path="/" component={CategoriesContainer}/>
-          <Route path="/categories/:id" component={CategoryContainer}/>
-          <Route path="/categories" component={CategoriesContainer}/>
-          <Route path="/restaurants" component={Restaurants}/>
+          <Route exact path="/categories/:id" component={CategoryContainer}/>
+          <Route exact path="/categories" component={CategoriesContainer}/>
+          <Route exact path="/restaurants" component={Restaurants}/>
         </div>
       </Router>
     </Provider>

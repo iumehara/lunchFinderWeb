@@ -1,9 +1,7 @@
 import React from 'react'
-import { mount } from 'enzyme'
 import CategoriesContainer from '../../src/js/categories/CategoriesContainer'
-import { createStore } from 'redux'
-import reducer from '../../src/js/reducer'
 import * as httpGet from '../../src/js/httpGet'
+import { mountContainer } from '../helper'
 
 describe('CategoriesContainer', () => {
   it('displays categories list from request', () => {
@@ -14,8 +12,7 @@ describe('CategoriesContainer', () => {
         return {then: callbackFunc => callbackFunc(mockCategories)}
       })
 
-    const store = createStore(reducer)
-    const categoriesContainer = mount(<CategoriesContainer/>, { context: { store} })
+    const categoriesContainer = mountContainer(CategoriesContainer)
 
     const categoriesList = categoriesContainer.find('Categories').find('ul').text()
 
