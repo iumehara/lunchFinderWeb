@@ -5,6 +5,7 @@ import {
   Link
 } from 'react-router-dom'
 import CategoriesContainer from './categories/CategoriesContainer'
+import CategoryContainer from './categories/CategoryContainer'
 import Restaurants from './restaurants/Restaurants'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
@@ -25,6 +26,7 @@ export default function App() {
           <hr/>
 
           <Route exact path="/" component={CategoriesContainer}/>
+          <Route path="/categories/:id" component={CategoryContainer}/>
           <Route path="/categories" component={CategoriesContainer}/>
           <Route path="/restaurants" component={Restaurants}/>
         </div>
