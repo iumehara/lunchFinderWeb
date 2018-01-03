@@ -4,25 +4,31 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import App from './App'
-import Categories from './Categories'
-import Restaurants from './Restaurants'
+import CategoriesContainer from './categories/CategoriesContainer'
+import Restaurants from './restaurants/Restaurants'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './reducer'
 
-const AppRouter = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/categories">Categories</Link></li>
-        <li><Link to="/restaurants">Restaurants</Link></li>
-      </ul>
+export default function App() {
+  const store = createStore(reducer)
 
-      <hr/>
+  return (
+    <Provider store={store}>
+      <Router>
+        <div>
+          <ul>
+            <li><Link to="/categories">Categories</Link></li>
+            <li><Link to="/restaurants">Restaurants</Link></li>
+          </ul>
 
-      <Route exact path="/" component={Categories}/>
-      <Route path="/categories" component={Categories}/>
-      <Route path="/restaurants" component={Restaurants}/>
-    </div>
-  </Router>
-)
+          <hr/>
 
-export default AppRouter
+          <Route exact path="/" component={CategoriesContainer}/>
+          <Route path="/categories" component={CategoriesContainer}/>
+          <Route path="/restaurants" component={Restaurants}/>
+        </div>
+      </Router>
+    </Provider>
+  )
+}

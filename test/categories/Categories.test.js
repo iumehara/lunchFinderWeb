@@ -4,7 +4,8 @@ import Categories from '../../src/js/categories/Categories'
 
 describe('Categories', () => {
   it('displays title', () => {
-    const app = shallow(<Categories/>)
+    const props = {fetchCategories: ()=>{}, categories: []}
+    const app = shallow(<Categories {...props}/>)
 
     expect(app.text()).toEqual('Categories')
   })
