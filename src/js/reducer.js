@@ -30,8 +30,19 @@ export const restaurant = (state={categories: []}, action) => {
   }
 }
 
+export const newRestaurant = (state={categories: []}, action) => {
+  const {type, data} = action
+  switch (type) {
+    case 'SET_NEW_RESTAURANT_SUCCESS':
+      return data
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   categories,
   category,
-  restaurant
+  restaurant,
+  newRestaurant
 })

@@ -10,8 +10,12 @@ export const mountContainer = (Container, params) => {
   return mount(
     <Provider store={store}>
       <HashRouter>
-        <Container match={{params: params}}/>
+        <Container match={{params: params}} history={[]}/>
       </HashRouter>
     </Provider>
   )
+}
+
+export const mountedContainerHistory = (mountedContainer) => {
+  return mountedContainer.find('Connect').props().history
 }

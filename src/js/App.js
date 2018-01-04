@@ -1,11 +1,13 @@
 import React from 'react'
 import {
   HashRouter as Router,
+  Switch,
   Route,
   Link
 } from 'react-router-dom'
 import CategoriesContainer from './categories/CategoriesContainer'
 import CategoryContainer from './categories/CategoryContainer'
+import NewRestaurantContainer from './restaurants/NewRestaurantContainer'
 import Restaurants from './restaurants/Restaurants'
 import RestaurantContainer from './restaurants/RestaurantContainer'
 import { Provider } from 'react-redux'
@@ -25,12 +27,14 @@ export default function App() {
           </ul>
 
           <hr/>
-
-          <Route exact path="/" component={CategoriesContainer}/>
-          <Route exact path="/categories" component={CategoriesContainer}/>
-          <Route exact path="/categories/:id" component={CategoryContainer}/>
-          <Route exact path="/restaurants" component={Restaurants}/>
-          <Route exact path="/restaurants/:id" component={RestaurantContainer}/>
+          <Switch>
+            <Route exact path="/" component={CategoriesContainer}/>
+            <Route exact path="/categories" component={CategoriesContainer}/>
+            <Route exact path="/categories/:id" component={CategoryContainer}/>
+            <Route exact path="/restaurants" component={Restaurants}/>
+            <Route exact path="/restaurants/new" component={NewRestaurantContainer}/>
+            <Route exact path="/restaurants/:id" component={RestaurantContainer}/>
+          </Switch>
         </div>
       </Router>
     </Provider>
