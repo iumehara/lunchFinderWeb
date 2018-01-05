@@ -11,16 +11,24 @@ export const mapStateToProps = (state, ownProps) => ({
   createNewRestaurant: () => {
     const url = 'http://localhost:8080/restaurants/'
     httpPost(url, state.newRestaurant)
-      .then(id => {
-        ownProps.history.push(`/restaurants/${id}`)
-      })
-  }
+      .then(id => ownProps.history.push(`/restaurants/${id}`))
+  },
+  categories: state.categories
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   onNameChange: (event) => {
-    const newRestaurant = {name: event.target.value}
-    setDispatch(newRestaurant, 'SET_NEW_RESTAURANT', dispatch)
+    setDispatch(event.target.value, 'SET_NEW_RESTAURANT_NAME', dispatch)
+  },
+  onCategoryChange: event => {
+    setDispatch(event.target.value, 'SET_NEW_RESTAURANT_CATEGORY_ID', dispatch)
+  },
+  onRemoveCategory: event => {
+    setDispatch(event.target.value, 'REMOVE_NEW_RESTAURANT_CATEGORY_ID', dispatch)
+  },
+  fetchCategories: () => {
+    const url = 'http://localhost:8080/categories'
+    fetchThenDispatch(url, 'FETCH_CATEGORIES', dispatch)
   }
 })
 

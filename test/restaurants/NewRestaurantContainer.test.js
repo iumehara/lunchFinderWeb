@@ -5,6 +5,13 @@ import { mountContainer, mountedContainerHistory } from '../helper'
 
 describe('NewRestaurantContainer', () => {
   it('displays newRestaurant list from request', () => {
+    const mockCategories = [{id: 1, name: 'Sushi'}, {id: 2, name: 'Pizza'}, {id: 3, name: 'Spicy'}]
+
+    jest.spyOn(httpGet, 'httpGet')
+      .mockImplementation(() => {
+        return {then: callbackFunc => callbackFunc(mockCategories)}
+      })
+
     const httpPostSpy = jest.spyOn(httpGet, 'httpPost')
       .mockImplementation(() => {
         return {then: callbackFunc => callbackFunc(25)}
@@ -12,11 +19,17 @@ describe('NewRestaurantContainer', () => {
 
     const newRestaurantContainer = mountContainer(NewRestaurantContainer)
 
-    const event = {target: {value: 'Pintokona'}}
-    newRestaurantContainer.find('input').simulate('change', event)
-    newRestaurantContainer.find('button').simulate('click')
+    newRestaurantContainer.find('.name input').simulate('change', {target: {value: 'Pintokona'}})
+    newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '1'}})
+    newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '2'}})
+    newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '3'}})
+    newRestaurantContainer.find('.category2 button.remove').simulate('click')
+    newRestaurantContainer.find('button.save').simulate('click')
 
-    expect(httpPostSpy).toHaveBeenCalledWith("http://localhost:8080/restaurants/", {name: 'Pintokona'})
+    expect(httpPostSpy).toHaveBeenCalledWith(
+      "http://localhost:8080/restaurants/",
+      {name: 'Pintokona', categoryIds: [1, 3]}
+    )
     expect(mountedContainerHistory(newRestaurantContainer)).toContain('/restaurants/25')
   })
 })
