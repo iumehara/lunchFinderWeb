@@ -17,10 +17,18 @@ class Categories extends React.Component {
 
     return (
       <div>
-        <h1>Categories</h1>
+        <h1 className='title'>Categories</h1>
         <ul>
           {categories}
         </ul>
+        <div className='form'>
+          <h1 className='title'>New Category</h1>
+          <div className='name'>
+            <label>name</label>
+            <input onChange={this.props.onNameChange}/>
+          </div>
+          <button className='save' onClick={this.props.createNewCategory}>create</button>
+        </div>
       </div>
     )
   }

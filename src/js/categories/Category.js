@@ -8,6 +8,7 @@ class Category extends React.Component {
 
   render() {
     const category = this.props.category
+
     return (
       <div>
         <h1 className='title'>{category.name}</h1>

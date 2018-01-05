@@ -17,7 +17,7 @@ export const mapStateToProps = (state, ownProps) => ({
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  onNameChange: (event) => {
+  onNameChange: event => {
     setDispatch(event.target.value, 'SET_NEW_RESTAURANT_NAME', dispatch)
   },
   onCategoryChange: event => {
