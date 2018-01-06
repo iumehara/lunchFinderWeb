@@ -46,6 +46,8 @@ export const newRestaurant = (state={categoryIds: []}, action) => {
   switch (type) {
     case 'SET_NEW_RESTAURANT_NAME_SUCCESS':
       return Object.assign({}, state, {name: data})
+    case 'SET_NEW_RESTAURANT_NAME_JP_SUCCESS':
+      return Object.assign({}, state, {nameJp: data})
     case 'SET_NEW_RESTAURANT_CATEGORY_ID_SUCCESS':
       categoryIds = Array.from(new Set([...state.categoryIds, Number(data)]))
       return Object.assign({}, state, {categoryIds})

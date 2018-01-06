@@ -20,6 +20,7 @@ describe('NewRestaurantContainer', () => {
     const newRestaurantContainer = mountContainer(NewRestaurantContainer)
 
     newRestaurantContainer.find('.name input').simulate('change', {target: {value: 'Pintokona'}})
+    newRestaurantContainer.find('.name-jp input').simulate('change', {target: {value: 'ぴんとこな'}})
     newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '1'}})
     newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '2'}})
     newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '3'}})
@@ -28,7 +29,7 @@ describe('NewRestaurantContainer', () => {
 
     expect(httpPostSpy).toHaveBeenCalledWith(
       "http://localhost:8080/restaurants/",
-      {name: 'Pintokona', categoryIds: [1, 3]}
+      {name: 'Pintokona', nameJp: 'ぴんとこな', categoryIds: [1, 3]}
     )
     expect(mountedContainerHistory(newRestaurantContainer)).toContain('/restaurants/25')
   })

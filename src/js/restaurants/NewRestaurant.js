@@ -26,8 +26,12 @@ class NewRestaurant extends React.Component {
       <div>
         <h1 className='title'>New Restaurant</h1>
         <div className='name'>
-          <label>name</label>
+          <label>Name (English)</label>
           <input onChange={this.props.onNameChange}/>
+        </div>
+        <div className='name-jp'>
+          <label>店名 (日本語)</label>
+          <input onChange={this.props.onNameJpChange}/>
         </div>
         <div className='categories'>
           <label>categories</label>
