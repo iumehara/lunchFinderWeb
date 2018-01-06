@@ -10,7 +10,9 @@ class Restaurant extends React.Component {
     const restaurant = this.props.restaurant
     return (
       <div>
-        <h1 className='title'>{restaurant.name}</h1>
+        <div className='title'>
+          <h1>{restaurant.nameJp}</h1>({restaurant.name})
+        </div>
         <ul>
           {
             restaurant.categories.map((category, i) => {
