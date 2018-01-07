@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import CategoryLink from '../categories/CategoryLink'
 
 class Restaurant extends React.Component {
   componentWillMount() {
@@ -16,11 +17,7 @@ class Restaurant extends React.Component {
         <ul>
           {
             restaurant.categories.map((category, i) => {
-              return (
-                <li key={i}>
-                  <Link to={`/categories/${category.id}`}>{category.name}</Link>
-                </li>
-              )
+              return <CategoryLink key={i} category={category}/>
             })
           }
         </ul>

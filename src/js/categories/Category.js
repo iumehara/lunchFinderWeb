@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CategoryLink from './CategoryLink'
+import RestaurantCard from '../restaurants/RestaurantCard'
 
 class Category extends React.Component {
   componentWillReceiveProps(nextProps) {
@@ -19,18 +19,11 @@ class Category extends React.Component {
     return (
       <div>
         <h1 className='title'>{category.name}</h1>
-        <ul>
-          {
-            category.restaurants.map((restaurant, i) => {
-              return (
-                <li key={i}>
-                  <Link to={`/restaurants/${restaurant.id}`}>{restaurant.name}</Link>
-                  ({restaurant.categories.map((category, i) => <CategoryLink key={i} category={category}/>)})
-                </li>
-              )
-            })
-          }
-        </ul>
+        {
+          category.restaurants.map((restaurant, i) => {
+            return <RestaurantCard key={i} restaurant={restaurant}/>
+          })
+        }
       </div>
     )
   }
