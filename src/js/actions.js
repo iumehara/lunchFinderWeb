@@ -1,4 +1,18 @@
-import { httpGet } from './httpGet'
+import {
+  httpGet,
+  getCategories,
+  getRestaurant
+} from './httpGet'
+
+export const fetchCategoriesThenDispatch = dispatch => {
+  getCategories()
+    .then(data => dispatch({type: 'FETCH_CATEGORIES_SUCCESS', data}))
+}
+
+export const fetchNewRestaurantThenDispatch = (id, dispatch) => {
+  getRestaurant(id)
+    .then(data => dispatch({type: 'FETCH_NEW_RESTAURANT_SUCCESS', data}))
+}
 
 export const fetchThenDispatch = (url, type, dispatch) => {
   httpGet(url)

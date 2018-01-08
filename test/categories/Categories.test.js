@@ -7,9 +7,9 @@ describe('Categories', () => {
     const props = {fetchCategories: ()=>{}, categories: [{name: 'Sushi'}, {name: 'Ramen'}]}
     const app = shallow(<Categories {...props}/>)
 
-    expect(app.find('ul Link').length).toBe(2)
-    expect(app.find('ul Link').at(0).props().children).toBe('Sushi')
-    expect(app.find('ul Link').at(1).props().children).toBe('Ramen')
+    expect(app.find('CategoryLink').length).toBe(2)
+    expect(app.find('CategoryLink').at(0).props().category).toEqual({name: 'Sushi'})
+    expect(app.find('CategoryLink').at(1).props().category).toEqual({name: 'Ramen'})
   })
 
   it('displays form', () => {

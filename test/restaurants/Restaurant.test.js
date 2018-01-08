@@ -11,7 +11,7 @@ describe('Restaurant', () => {
     const restaurant = shallow(<Restaurant {...props}/>)
 
     expect(restaurant.find('.title').text()).toContain('ぴんとこな(Pintokona)')
-    expect(restaurant.find('ul').find('Link').at(0).props().to).toEqual('/categories/1')
-    expect(restaurant.find('ul').find('Link').at(0).props().children).toEqual('Sushi')
+    expect(restaurant.find('CategoryLink').length).toBe(1)
+    expect(restaurant.find('CategoryLink').props().category).toEqual({id: 1, name: 'Sushi'})
   })
 })

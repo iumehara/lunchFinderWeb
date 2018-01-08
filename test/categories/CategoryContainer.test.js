@@ -5,7 +5,11 @@ import * as httpGet from '../../src/js/httpGet'
 
 describe('CategoryContainer', () => {
   it('displays category from request', () => {
-    const mockCategory = {name: 'Sushi', restaurants: [{name: 'Pintokona'}]}
+    const mockCategory = {
+      id: 3,
+      name: 'Pizza',
+      restaurants: [{name: 'Pizzakaya', categories: [{name: 'Pizza'},{name: 'Spicy'}]}]
+    }
 
     jest.spyOn(httpGet, 'httpGet')
       .mockImplementation(() => {
@@ -16,7 +20,9 @@ describe('CategoryContainer', () => {
 
     const category = categoryContainer.find('Category')
 
-    expect(category.find('.title').text()).toContain('Sushi')
-    expect(category.find('ul').text()).toContain('Pintokona')
+    expect(category.find('h1.title').text()).toContain('Pizza')
+    expect(category.find('.restaurant-card').text()).toContain('Pizzakaya')
+    expect(category.find('.restaurant-card .categories').text()).toContain('Spicy')
+    expect(category.find('.restaurant-card .categories').text()).toContain('Pizza')
   })
 })

@@ -44,6 +44,8 @@ export const newRestaurant = (state={categoryIds: []}, action) => {
   const {type, data} = action
   let categoryIds
   switch (type) {
+    case 'FETCH_NEW_RESTAURANT_SUCCESS':
+      return Object.assign({}, data, {categoryIds: data.categories.map(category => category.id)})
     case 'SET_NEW_RESTAURANT_NAME_SUCCESS':
       return Object.assign({}, state, {name: data})
     case 'SET_NEW_RESTAURANT_NAME_JP_SUCCESS':

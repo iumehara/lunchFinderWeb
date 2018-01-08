@@ -1,18 +1,20 @@
 import { connect } from 'react-redux'
-import NewRestaurant from './NewRestaurant'
+import EditRestaurant from './EditRestaurant'
 import {
   fetchThenDispatch,
+  fetchCategoriesThenDispatch,
+  fetchNewRestaurantThenDispatch,
   setDispatch
 } from '../actions'
-import { httpPost } from '../httpGet'
+import { httpPut } from '../httpGet'
 
 export const mapStateToProps = (state, ownProps) => ({
   newRestaurant: state.newRestaurant,
   categories: state.categories,
-  createNewRestaurant: () => {
-    const url = 'http://localhost:8080/restaurants/'
-    httpPost(url, state.newRestaurant)
-      .then(id => ownProps.history.push(`/restaurants/${id}`))
+  updateNewRestaurant: () => {
+    const url = `http://localhost:8080/restaurants/${state.newRestaurant.id}`
+    httpPut(url, state.newRestaurant)
+      .then(() => ownProps.history.push(`/restaurants/${state.newRestaurant.id}`))
   }
 })
 
@@ -30,14 +32,16 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     setDispatch(event.target.value, 'REMOVE_NEW_RESTAURANT_CATEGORY_ID', dispatch)
   },
   fetchCategories: () => {
-    const url = 'http://localhost:8080/categories'
-    fetchThenDispatch(url, 'FETCH_CATEGORIES', dispatch)
+    fetchCategoriesThenDispatch(dispatch)
+  },
+  fetchRestaurant: () => {
+    fetchNewRestaurantThenDispatch(ownProps.match.params.id, dispatch)
   }
 })
 
-const NewRestaurantContainer = connect(
+const EditRestaurantContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewRestaurant)
+)(EditRestaurant)
 
-export default NewRestaurantContainer
+export default EditRestaurantContainer

@@ -11,7 +11,7 @@ describe('Category', () => {
     const category = shallow(<Category {...props}/>)
 
     expect(category.find('.title').text()).toContain('Sushi')
-    expect(category.find('ul').find('Link').at(0).props().to).toEqual('/restaurants/1')
-    expect(category.find('ul').find('Link').at(0).props().children).toEqual('Pintokona')
+    expect(category.find('RestaurantCard').length).toBe(1)
+    expect(category.find('RestaurantCard').props().restaurant).toEqual({id: 1, name: 'Pintokona'})
   })
 })
