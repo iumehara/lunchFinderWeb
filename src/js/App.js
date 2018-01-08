@@ -23,6 +23,7 @@ export default function App() {
         <div>
           <ul>
             <li><Link to="/categories">Categories</Link></li>
+            <li><Link to="/restaurants/new">Add Restaurant</Link></li>
           </ul>
 
           <hr/>
