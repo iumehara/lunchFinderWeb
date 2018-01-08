@@ -40,7 +40,7 @@ export const restaurant = (state={categories: []}, action) => {
   }
 }
 
-export const newRestaurant = (state={categoryIds: []}, action) => {
+export const newRestaurant = (state={name: '', nameJp: '', categoryIds: []}, action) => {
   const {type, data} = action
   let categoryIds
   switch (type) {

@@ -6,16 +6,13 @@ import { mountContainer, mountedContainerHistory } from '../helper'
 describe('NewRestaurantContainer', () => {
   it('displays newRestaurant list from request', () => {
     const mockCategories = [{id: 1, name: 'Sushi'}, {id: 2, name: 'Pizza'}, {id: 3, name: 'Spicy'}]
+    jest.spyOn(httpGet, 'getCategories').mockImplementation(() => {
+      return {then: callbackFunc => callbackFunc(mockCategories)}
+    })
 
-    jest.spyOn(httpGet, 'httpGet')
-      .mockImplementation(() => {
-        return {then: callbackFunc => callbackFunc(mockCategories)}
-      })
-
-    const httpPostSpy = jest.spyOn(httpGet, 'httpPost')
-      .mockImplementation(() => {
-        return {then: callbackFunc => callbackFunc(25)}
-      })
+    const httpPostSpy = jest.spyOn(httpGet, 'httpPost').mockImplementation(() => {
+      return {then: callbackFunc => callbackFunc(25)}
+    })
 
     const newRestaurantContainer = mountContainer(NewRestaurantContainer)
 

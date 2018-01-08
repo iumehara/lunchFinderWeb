@@ -17,5 +17,5 @@ export const mountContainer = (Container, params) => {
 }
 
 export const mountedContainerHistory = (mountedContainer) => {
-  return mountedContainer.find('Connect').props().history
+  return mountedContainer.find('Connect').at(0).props().history
 }
