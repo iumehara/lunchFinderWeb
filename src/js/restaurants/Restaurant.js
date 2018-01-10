@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import CategoryLink from '../categories/CategoryLink'
+import {Link} from 'react-router-dom'
 
 class Restaurant extends React.Component {
   componentWillMount() {
@@ -9,18 +9,17 @@ class Restaurant extends React.Component {
 
   render() {
     const restaurant = this.props.restaurant
+    const categories = restaurant.categories.map((category, i) => <CategoryLink key={i} category={category}/>)
+
     return (
       <div>
         <div className='title'>
           <h1>{restaurant.nameJp}</h1>({restaurant.name})
         </div>
         <ul>
-          {
-            restaurant.categories.map((category, i) => {
-              return <CategoryLink key={i} category={category}/>
-            })
-          }
+          {categories}
         </ul>
+        <Link to={`/restaurants/${restaurant.id}/edit`}>Edit</Link>
       </div>
     )
   }

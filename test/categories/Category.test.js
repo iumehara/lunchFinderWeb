@@ -9,7 +9,8 @@ describe('Category', () => {
       fetchRestaurants: () => {},
       category: {name: 'Sushi', restaurants: [{id: 1, name: 'Pintokona'}]},
       restaurants: [],
-      restaurant: {}
+      restaurant: {},
+      match: {params: {id: 1}}
     }
     const category = shallow(<Category {...props}/>)
 

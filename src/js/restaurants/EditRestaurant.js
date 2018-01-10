@@ -1,5 +1,6 @@
 import React from 'react'
 import RestaurantFormContainer from './RestaurantFormContainer'
+import {Link} from 'react-router-dom'
 
 export default class EditRestaurant extends React.Component {
   componentWillMount() {
@@ -11,6 +12,7 @@ export default class EditRestaurant extends React.Component {
       <div>
         <div>edit restaurant</div>
         <RestaurantFormContainer saveButtonWasClicked={this.props.updateNewRestaurant}/>
+        <Link to={`/restaurants/${this.props.newRestaurant.id}`}>Cancel</Link>
       </div>
     )
   }
