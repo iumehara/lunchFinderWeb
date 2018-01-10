@@ -1,12 +1,15 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import {shallow} from 'enzyme'
 import Category from '../../src/js/categories/Category'
 
 describe('Category', () => {
   it('displays title', () => {
     const props = {
       fetchCategory: ()=>{},
-      category: {name: 'Sushi', restaurants: [{id: 1, name: 'Pintokona'}]}
+      fetchRestaurants: () => {},
+      category: {name: 'Sushi', restaurants: [{id: 1, name: 'Pintokona'}]},
+      restaurants: [],
+      restaurant: {}
     }
     const category = shallow(<Category {...props}/>)
 
