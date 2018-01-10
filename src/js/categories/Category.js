@@ -4,16 +4,16 @@ import RestaurantCard from '../restaurants/RestaurantCard'
 class Category extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.fetchData()
+      this.fetchData(nextProps.match.params.id)
     }
   }
 
   componentWillMount() {
-    this.fetchData()
+    this.fetchData(this.props.match.params.id)
   }
 
-  fetchData() {
-    this.props.fetchCategory()
+  fetchData(id) {
+    this.props.fetchCategory(id)
     this.props.fetchRestaurants()
   }
 

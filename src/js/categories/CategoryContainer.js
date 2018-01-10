@@ -17,8 +17,8 @@ export const mapStateToProps = state => ({
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchCategory: () => {
-    getCategory(ownProps.match.params.id)
+  fetchCategory: id => {
+    getCategory(id)
       .then(data => setDispatch(data, 'FETCH_CATEGORY', dispatch))
   },
   fetchRestaurants: () => {
