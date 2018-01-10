@@ -1,6 +1,6 @@
 import React from 'react'
 import CategoriesContainer from '../../src/js/categories/CategoriesContainer'
-import * as httpGet from '../../src/js/httpGet'
+import * as httpGet from '../../src/js/httpFetcher'
 import { mountContainer } from '../helper'
 
 describe('CategoriesContainer', () => {

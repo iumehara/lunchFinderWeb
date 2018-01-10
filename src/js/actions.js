@@ -2,7 +2,7 @@ import {
   httpGet,
   getCategories,
   getRestaurant
-} from './httpGet'
+} from './httpFetcher'
 
 export const fetchCategoriesThenDispatch = dispatch => {
   getCategories()

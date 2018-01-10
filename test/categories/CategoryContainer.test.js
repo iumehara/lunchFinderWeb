@@ -1,7 +1,7 @@
 import React from 'react'
 import CategoryContainer from '../../src/js/categories/CategoryContainer'
 import { mountContainer } from '../helper'
-import * as httpGet from '../../src/js/httpGet'
+import * as httpGet from '../../src/js/httpFetcher'
 
 describe('CategoryContainer', () => {
   beforeEach(() => jest.restoreAllMocks())

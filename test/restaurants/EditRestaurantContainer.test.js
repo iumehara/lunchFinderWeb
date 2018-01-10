@@ -1,7 +1,7 @@
 import React from 'react'
 import EditRestaurantContainer from '../../src/js/restaurants/EditRestaurantContainer'
 import * as actions from '../../src/js/actions'
-import * as httpGet from '../../src/js/httpGet'
+import * as httpGet from '../../src/js/httpFetcher'
 import { mountContainer, mountedContainerHistory } from '../helper'
 
 describe('EditRestaurantContainer', () => {

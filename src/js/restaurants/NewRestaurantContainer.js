@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import NewRestaurant from './NewRestaurant'
-import { httpPost } from '../httpGet'
+import { httpPost } from '../httpFetcher'
 
 export const mapStateToProps = (state, ownProps) => ({
   newRestaurant: state.newRestaurant,
