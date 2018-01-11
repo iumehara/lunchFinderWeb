@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Restaurants from '../../src/js/Restaurants/Restaurants'
+import Restaurants from '../../src/js/restaurants/Restaurants'
 
 describe('Restaurants', () => {
   it('displays title', () => {
