@@ -17,6 +17,10 @@ class Category extends React.Component {
     this.props.fetchRestaurants()
   }
 
+  addCategory() {
+    this.props.addCategory(this.props.restaurant.id, this.props.category.id)
+  }
+
   render() {
     const category = this.props.category
     const categories = category.restaurants.map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant}/>)
@@ -34,7 +38,7 @@ class Category extends React.Component {
         <select className='restaurants' name="text" value={this.props.restaurant.id} onChange={this.props.setRestaurantId}>
           {restaurantOptions}
         </select>
-        <button className='add-category' onClick={this.props.addCategory}>Add</button>
+        <button className='add-category' onClick={this.addCategory.bind(this)}>Add</button>
       </div>
     )
   }

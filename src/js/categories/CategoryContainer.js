@@ -6,14 +6,7 @@ import {getCategory, getRestaurants, httpPut} from '../httpFetcher'
 export const mapStateToProps = state => ({
   category: state.category,
   restaurants: state.restaurants,
-  restaurant: state.restaurant,
-  addCategory: () => {
-    if (state.restaurant.id > 0) {
-      const url = `http://localhost:8080/restaurants/${state.restaurant.id}/categories/${state.category.id}`
-      httpPut(url)
-        .then(() => {console.log('hello')})
-    }
-  }
+  restaurant: state.restaurant
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -27,6 +20,14 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   setRestaurantId: event => {
     setDispatch(event.target.value, 'SET_RESTAURANT_ID', dispatch)
+  },
+  addCategory: (restaurantId, categoryId) => {
+    if (restaurantId > 0) {
+      const url = `http://localhost:8080/restaurants/${restaurantId}/categories/${categoryId}`
+      httpPut(url)
+        .then(() => getCategory(categoryId))
+        .then(data => setDispatch(data, 'FETCH_CATEGORY', dispatch))
+    }
   }
 })
 
