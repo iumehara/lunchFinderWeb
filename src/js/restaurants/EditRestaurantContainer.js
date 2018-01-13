@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import EditRestaurant from './EditRestaurant'
 import { fetchNewRestaurantThenDispatch } from '../actions'
-import { httpPut } from '../httpFetcher'
+import { httpPut, httpDelete } from '../httpFetcher'
 
 export const mapStateToProps = (state, ownProps) => ({
   newRestaurant: state.newRestaurant,
@@ -9,6 +9,11 @@ export const mapStateToProps = (state, ownProps) => ({
     const url = `http://localhost:8080/restaurants/${state.newRestaurant.id}`
     httpPut(url, state.newRestaurant)
       .then(() => ownProps.history.push(`/restaurants/${state.newRestaurant.id}`))
+  },
+  destroyRestaurant: () => {
+    const url = `http://localhost:8080/restaurants/${ownProps.match.params.id}`
+    httpDelete(url)
+      .then(() => ownProps.history.push('/'))
   }
 })
 

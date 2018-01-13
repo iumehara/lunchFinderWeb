@@ -43,12 +43,15 @@ export const httpPost = (url, data) => {
 }
 
 export const httpPut = (url, data) => {
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
+  const headers = {'Content-Type': 'application/json'}
   const method = 'PUT'
   const body = JSON.stringify(data)
 
   return fetchWrapper(url, {headers, method, body})
+}
+
+export const httpDelete = (url) => {
+  const method = 'DELETE'
+
+  return fetchWrapper(url, {method})
 }
