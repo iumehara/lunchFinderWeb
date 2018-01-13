@@ -28,8 +28,7 @@ class Category extends React.Component {
     const restaurantOptions = this.props.restaurants
       .filter(restaurant => !category.restaurants.map(r => r.id ).includes(restaurant.id))
       .map((restaurant, i) => <option key={i + 1} value={restaurant.id}>{restaurant.name}</option>)
-
-    restaurantOptions.unshift(<option key={0} value={0}>select category</option>)
+    restaurantOptions.unshift(<option key={0} value={0}>Select Restaurant</option>)
 
     return (
       <div>

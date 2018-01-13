@@ -7,8 +7,9 @@ export default class RestaurantForm extends React.Component {
 
   render() {
     const categoryOptions = this.props.categories.map((category, i) => {
-      return <option key={i} value={category.id}>{category.name}</option>
+      return <option key={i + 1} value={category.id}>{category.name}</option>
     })
+    categoryOptions.unshift(<option key={0}>Select Category</option>)
 
     const selectedCategories = this.props.newRestaurant.categoryIds.map(id => {
       const categories = this.props.categories.filter(category => category.id == id)

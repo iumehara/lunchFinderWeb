@@ -19,7 +19,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     setDispatch(event.target.value, 'SET_NEW_RESTAURANT_NAME_JP', dispatch)
   },
   onCategoryChange: event => {
-    setDispatch(event.target.value, 'SET_NEW_RESTAURANT_CATEGORY_ID', dispatch)
+    if (event.target.value && event.target.value > 0) {
+      setDispatch(event.target.value, 'SET_NEW_RESTAURANT_CATEGORY_ID', dispatch)
+    }
   },
   onRemoveCategory: event => {
     setDispatch(event.target.value, 'REMOVE_NEW_RESTAURANT_CATEGORY_ID', dispatch)
