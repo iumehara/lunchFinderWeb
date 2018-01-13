@@ -1,7 +1,8 @@
 import {connect} from 'react-redux'
 import Category from './Category'
 import {setDispatch} from '../actions'
-import {getCategory, getRestaurants, httpPut} from '../httpFetcher'
+import {httpPut} from '../fetchers/httpFetcher'
+import {getCategory, getRestaurants} from '../fetchers/resourceFetcher'
 
 export const mapStateToProps = state => ({
   category: state.category,

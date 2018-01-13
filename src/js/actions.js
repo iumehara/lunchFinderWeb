@@ -1,8 +1,5 @@
-import {
-  httpGet,
-  getCategories,
-  getRestaurant
-} from './httpFetcher'
+import { httpGet } from './fetchers/httpFetcher'
+import { getCategories, getRestaurant } from './fetchers/resourceFetcher'
 
 export const fetchCategoriesThenDispatch = dispatch => {
   getCategories()

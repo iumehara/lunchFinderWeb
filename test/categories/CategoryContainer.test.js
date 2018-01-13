@@ -1,7 +1,8 @@
 import React from 'react'
 import CategoryContainer from '../../src/js/categories/CategoryContainer'
 import { mountContainer } from '../helper'
-import * as httpGet from '../../src/js/httpFetcher'
+import * as httpFetcher from '../../src/js/fetchers/httpFetcher'
+import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 
 describe('CategoryContainer', () => {
   beforeEach(() => jest.restoreAllMocks())
@@ -12,7 +13,7 @@ describe('CategoryContainer', () => {
       name: 'Pizza',
       restaurants: [{id: 1, name: 'Pizzakaya', categories: [{name: 'Pizza'},{name: 'Spicy'}]}]
     }
-    jest.spyOn(httpGet, 'getCategory').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getCategory').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(mockCategory)}
     })
 
@@ -20,7 +21,7 @@ describe('CategoryContainer', () => {
       {id: 1, name: 'Pizzakaya', categories: [{id: 3, name: 'Pizza'},{id: 4, name: 'Spicy'}]},
       {id: 2, name: 'Moti', categories: [{id: 5, name: 'Curry'},{id: 4, name: 'Spicy'}]}
     ]
-    jest.spyOn(httpGet, 'getRestaurants').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getRestaurants').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(mockRestaurants)}
     })
 
@@ -40,7 +41,7 @@ describe('CategoryContainer', () => {
       name: 'Pizza',
       restaurants: [{id: 1, name: 'Pizzakaya', categories: [{name: 'Pizza'},{name: 'Spicy'}]}]
     }
-    const getCategorySpy = jest.spyOn(httpGet, 'getCategory').mockImplementation(() => {
+    const getCategorySpy = jest.spyOn(resourceFetcher, 'getCategory').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(mockCategory)}
     })
 
@@ -48,11 +49,11 @@ describe('CategoryContainer', () => {
       {id: 1, name: 'Pizzakaya', categories: [{id: 3, name: 'Pizza'},{id: 4, name: 'Spicy'}]},
       {id: 2, name: 'Moti', categories: [{id: 5, name: 'Curry'},{id: 4, name: 'Spicy'}]}
     ]
-    jest.spyOn(httpGet, 'getRestaurants').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getRestaurants').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(mockRestaurants)}
     })
 
-    const httpPutSpy = jest.spyOn(httpGet, 'httpPut').mockImplementation(() => {
+    const httpPutSpy = jest.spyOn(httpFetcher, 'httpPut').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc({})}
     })
 

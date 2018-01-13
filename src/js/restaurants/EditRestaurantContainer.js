@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import EditRestaurant from './EditRestaurant'
 import { fetchNewRestaurantThenDispatch } from '../actions'
-import { httpPut, httpDelete } from '../httpFetcher'
+import { httpPut, httpDelete } from '../fetchers/httpFetcher'
 
 export const mapStateToProps = (state, ownProps) => ({
   newRestaurant: state.newRestaurant,

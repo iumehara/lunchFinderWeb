@@ -4,7 +4,7 @@ import {
   fetchThenDispatch,
   setDispatch
 } from '../actions'
-import { httpPost } from '../httpFetcher'
+import { httpPost } from '../fetchers/httpFetcher'
 
 export const mapStateToProps = (state, ownProps) => ({
   newCategory: state.newCategory,

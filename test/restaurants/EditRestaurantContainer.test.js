@@ -1,7 +1,8 @@
 import React from 'react'
 import EditRestaurantContainer from '../../src/js/restaurants/EditRestaurantContainer'
 import * as actions from '../../src/js/actions'
-import * as httpFetcher from '../../src/js/httpFetcher'
+import * as httpFetcher from '../../src/js/fetchers/httpFetcher'
+import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 import * as windowWrapper from '../../src/js/wrappers/windowWrapper'
 import { mountContainer, mountedContainerHistory } from '../helper'
 
@@ -9,12 +10,12 @@ describe('EditRestaurantContainer', () => {
   beforeEach(() => jest.restoreAllMocks())
 
   it('submits update with no changes', () => {
-    jest.spyOn(httpFetcher, 'getCategories').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getCategories').mockImplementation(() => {
         return {then: callbackFunc => callbackFunc([])}
       })
 
     const mockRestaurant = {id: 25, name: 'Pintokona', nameJp: 'ぴんとこな', categories: [{id: 1, name: 'Sushi'}]}
-    jest.spyOn(httpFetcher, 'getRestaurant').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getRestaurant').mockImplementation(() => {
         return {then: callbackFunc => callbackFunc(mockRestaurant)}
       })
 
@@ -35,12 +36,12 @@ describe('EditRestaurantContainer', () => {
 
   it('submits update with updated restaurant', () => {
     const mockCategories = [{id: 1, name: 'Sushi'}, {id: 2, name: 'Pizza'}, {id: 3, name: 'Spicy'}]
-    jest.spyOn(httpFetcher, 'getCategories').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getCategories').mockImplementation(() => {
         return {then: callbackFunc => callbackFunc(mockCategories)}
       })
 
     const mockRestaurant = {id: 25, name: 'Pintokona', nameJp: 'ぴんとこな', categories: [{id: 1, name: 'Sushi'}]}
-    jest.spyOn(httpFetcher, 'getRestaurant').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getRestaurant').mockImplementation(() => {
         return {then: callbackFunc => callbackFunc(mockRestaurant)}
       })
 
@@ -64,11 +65,11 @@ describe('EditRestaurantContainer', () => {
   })
 
   it('submits delete to correct route', () => {
-    jest.spyOn(httpFetcher, 'getCategories').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getCategories').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc([])}
     })
 
-    jest.spyOn(httpFetcher, 'getRestaurant').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getRestaurant').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc({categories: []})}
     })
 

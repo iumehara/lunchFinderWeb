@@ -1,16 +1,17 @@
 import React from 'react'
 import NewRestaurantContainer from '../../src/js/restaurants/NewRestaurantContainer'
-import * as httpGet from '../../src/js/httpFetcher'
+import * as httpFetcher from '../../src/js/fetchers/httpFetcher'
+import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 import { mountContainer, mountedContainerHistory } from '../helper'
 
 describe('NewRestaurantContainer', () => {
   it('displays newRestaurant list from request', () => {
     const mockCategories = [{id: 1, name: 'Sushi'}, {id: 2, name: 'Pizza'}, {id: 3, name: 'Spicy'}]
-    jest.spyOn(httpGet, 'getCategories').mockImplementation(() => {
+    jest.spyOn(resourceFetcher, 'getCategories').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(mockCategories)}
     })
 
-    const httpPostSpy = jest.spyOn(httpGet, 'httpPost').mockImplementation(() => {
+    const httpPostSpy = jest.spyOn(httpFetcher, 'httpPost').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(25)}
     })
 

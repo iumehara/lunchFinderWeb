@@ -1,13 +1,13 @@
 import React from 'react'
 import CategoriesContainer from '../../src/js/categories/CategoriesContainer'
-import * as httpGet from '../../src/js/httpFetcher'
+import * as httpFetcher from '../../src/js/fetchers/httpFetcher'
 import { mountContainer } from '../helper'
 
 describe('CategoriesContainer', () => {
   it('displays categories list from request', () => {
     const mockCategories = [{name: 'Sushi'}, {name: 'Pizza'}]
 
-    jest.spyOn(httpGet, 'httpGet')
+    jest.spyOn(httpFetcher, 'httpGet')
       .mockImplementation(() => {
         return {then: callbackFunc => callbackFunc(mockCategories)}
       })
