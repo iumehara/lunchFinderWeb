@@ -26,8 +26,10 @@ export default class RestaurantForm extends React.Component {
     })
 
     const inputIfValueExists = (name, onChange) => {
-      if (name != null) {
+      if (name && name.length > 0) {
         return <input onChange={onChange} defaultValue={name}/>
+      } else {
+        return <input onChange={onChange}/>
       }
     }
 
