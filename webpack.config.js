@@ -1,5 +1,6 @@
 const path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: ['./src/js/index.js'],
@@ -8,9 +9,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+    new HtmlWebpackPlugin({template: './src/index.html'}),
+    new webpack.EnvironmentPlugin(['GOOGLE_API_KEY'])
   ],
   module: {
     rules: [
@@ -20,13 +20,13 @@ module.exports = {
         use: {loader: "babel-loader"}
       },
       {
-          test: /\.scss$/,
-          use: [
-            {loader: "style-loader"},
-            {loader: "css-loader"},
-            {loader: "sass-loader"}
-          ]
+        test: /\.scss$/,
+        use: [
+          {loader: 'style-loader'},
+          {loader: 'css-loader'},
+          {loader: 'sass-loader'}
+        ]
       }
     ]
   }
-};
+}
