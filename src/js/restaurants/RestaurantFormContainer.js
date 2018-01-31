@@ -8,7 +8,8 @@ import {
 export const mapStateToProps = (state, ownProps) => ({
   newRestaurant: state.newRestaurant,
   categories: state.categories,
-  saveButtonWasClicked: ownProps.saveButtonWasClicked
+  saveButtonWasClicked: ownProps.saveButtonWasClicked,
+  editMode: ownProps.editMode
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
