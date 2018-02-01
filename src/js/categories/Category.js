@@ -1,8 +1,22 @@
+// @flow
 import React from 'react'
 import RestaurantCard from '../restaurants/RestaurantCard'
+import type { CategoryType } from './CategoryTypes'
+import type { RestaurantType } from '../restaurants/RestaurantTypes'
 
-class Category extends React.Component {
-  componentWillReceiveProps(nextProps) {
+type Props = {
+  match: {params: {id: string}},
+  category: CategoryType,
+  restaurant: RestaurantType,
+  restaurants: [RestaurantType],
+  fetchCategory: (id: string) => {},
+  fetchRestaurants: () => {},
+  setRestaurantId: () => {},
+  addCategory: (restaurantId: string, categoryId: string) => {}
+}
+
+class Category extends React.Component<Props> {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
       this.fetchData(nextProps.match.params.id)
     }
@@ -12,7 +26,7 @@ class Category extends React.Component {
     this.fetchData(this.props.match.params.id)
   }
 
-  fetchData(id) {
+  fetchData(id: string) {
     this.props.fetchCategory(id)
     this.props.fetchRestaurants()
   }

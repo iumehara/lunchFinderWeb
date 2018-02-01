@@ -1,8 +1,17 @@
+// @flow
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CategoryLink from './CategoryLink'
+import type { CategoryType } from './CategoryTypes'
 
-class Categories extends React.Component {
+type Props = {
+  fetchCategories: () => {},
+  categories: [CategoryType],
+  onNameChange: () => {},
+  createNewCategory: () => {}
+}
+
+class Categories extends React.Component<Props> {
   componentWillMount() {
     this.props.fetchCategories()
   }
