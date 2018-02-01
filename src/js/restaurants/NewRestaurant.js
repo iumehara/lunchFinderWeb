@@ -1,7 +1,13 @@
+// @flow
 import React from 'react'
 import RestaurantFormContainer from './RestaurantFormContainer'
+import type { NewRestaurantType } from './RestaurantTypes'
 
-export default class NewRestaurant extends React.Component {
+type Props = {
+  createNewRestaurant: () => {}
+}
+
+export default class NewRestaurant extends React.Component<Props> {
   render() {
     return (
       <div>

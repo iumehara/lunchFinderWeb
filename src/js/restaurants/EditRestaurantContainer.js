@@ -4,11 +4,12 @@ import { fetchNewRestaurantThenDispatch } from '../actions'
 import { httpPut, httpDelete } from '../fetchers/httpFetcher'
 
 export const mapStateToProps = (state, ownProps) => ({
+  id: ownProps.match.params.id,
   newRestaurant: state.newRestaurant,
   updateNewRestaurant: () => {
-    const url = `http://localhost:8080/restaurants/${state.newRestaurant.id}`
+    const url = `http://localhost:8080/restaurants/${ownProps.match.params.id}`
     httpPut(url, state.newRestaurant)
-      .then(() => ownProps.history.push(`/restaurants/${state.newRestaurant.id}`))
+      .then(() => ownProps.history.push(`/restaurants/${ownProps.match.params.id}`))
   },
   destroyRestaurant: () => {
     const url = `http://localhost:8080/restaurants/${ownProps.match.params.id}`

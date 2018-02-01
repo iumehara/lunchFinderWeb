@@ -1,6 +1,20 @@
+// @flow
 import React from 'react'
+import type { NewRestaurantType } from './RestaurantTypes'
 
-export default class RestaurantForm extends React.Component {
+type Props = {
+  categories: [],
+  newRestaurant: NewRestaurantType,
+  editMode: boolean,
+  fetchCategories: () => {},
+  onRemoveCategory: () => {},
+  onNameChange: () => {},
+  onNameJpChange: () => {},
+  onCategoryChange: () => {},
+  saveButtonWasClicked: () => {}
+}
+
+export default class RestaurantForm extends React.Component<Props> {
   componentWillMount() {
     this.props.fetchCategories()
   }

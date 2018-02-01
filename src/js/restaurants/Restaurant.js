@@ -1,9 +1,16 @@
+// @flow
 import React from 'react'
 import CategoryLink from '../categories/CategoryLink'
 import {Link} from 'react-router-dom'
 import Map from '../maps/Map'
+import type {RestaurantType} from './RestaurantTypes'
 
-class Restaurant extends React.Component {
+type Props = {
+  restaurant: RestaurantType,
+  fetchRestaurant: () => {}
+}
+
+class Restaurant extends React.Component<Props> {
   componentWillMount() {
     this.props.fetchRestaurant()
   }

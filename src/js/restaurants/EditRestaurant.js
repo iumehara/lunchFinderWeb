@@ -1,9 +1,19 @@
+// @flow
 import React from 'react'
 import RestaurantFormContainer from './RestaurantFormContainer'
 import { Link } from 'react-router-dom'
 import { confirm } from '../wrappers/windowWrapper'
+import type { NewRestaurantType } from './RestaurantTypes'
 
-export default class EditRestaurant extends React.Component {
+type Props = {
+  id: string,
+  newRestaurant: NewRestaurantType,
+  fetchRestaurant: () => {},
+  updateNewRestaurant: () => {},
+  destroyRestaurant: () => {}
+}
+
+export default class EditRestaurant extends React.Component<Props> {
   componentWillMount() {
     this.props.fetchRestaurant()
   }
@@ -20,7 +30,7 @@ export default class EditRestaurant extends React.Component {
         <div>edit restaurant</div>
         <RestaurantFormContainer saveButtonWasClicked={this.props.updateNewRestaurant} editMode={true}/>
         <button className='delete' onClick={this.destroyIfConfirmed.bind(this)}>Delete</button>
-        <Link to={`/restaurants/${this.props.newRestaurant.id}`}>Cancel</Link>
+        <Link to={`/restaurants/${this.props.id}`}>Cancel</Link>
       </div>
     )
   }
