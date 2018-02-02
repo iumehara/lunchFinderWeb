@@ -84,8 +84,8 @@ export const newRestaurant = (
     case 'SET_NEW_RESTAURANT_FIELD_SUCCESS':
       return Object.assign({}, state, data)
     case 'SET_NEW_RESTAURANT_GEOLOCATION_SUCCESS':
-      const geoLocation = Object.assign({}, state.geoLocation, data)
-      return Object.assign({}, state, {geoLocation})
+      const geolocation = Object.assign({}, state.geolocation, data)
+      return Object.assign({}, state, {geolocation})
     case 'SET_NEW_RESTAURANT_CATEGORY_ID_SUCCESS':
       categoryIds = Array.from(new Set([...state.categoryIds, Number(data)]))
       return Object.assign({}, state, {categoryIds})

@@ -16,8 +16,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   onInputChange: fieldObject => {
     setDispatch(fieldObject, 'SET_NEW_RESTAURANT_FIELD', dispatch)
   },
-  onGeolocationChange: geoLocation => {
-    setDispatch(geoLocation, 'SET_NEW_RESTAURANT_GEOLOCATION', dispatch)
+  onGeolocationChange: geolocation => {
+    setDispatch(geolocation, 'SET_NEW_RESTAURANT_GEOLOCATION', dispatch)
   },
   onCategoryChange: event => {
     if (event.target.value && event.target.value > 0) {

@@ -6,9 +6,9 @@ export default class Map extends React.Component {
   componentWillReceiveProps(nextProps) {
     loadGoogleMaps()
       .then(() => {
-        if (nextProps.restaurant && nextProps.restaurant.geoLocation) {
-          const geoLocation = nextProps.restaurant.geoLocation
-          const position = {lat: geoLocation.lat, lng: geoLocation.long}
+        if (nextProps.restaurant && nextProps.restaurant.geolocation) {
+          const geolocation = nextProps.restaurant.geolocation
+          const position = {lat: geolocation.lat, lng: geolocation.long}
           const map = initCenteredGoogleMap(position)
           initGoogleMapsMarker(position, map)
         }

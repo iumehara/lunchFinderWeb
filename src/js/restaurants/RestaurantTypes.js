@@ -11,7 +11,7 @@ export type NewRestaurantType = {
   name: string,
   nameJp: string,
   website?: string,
-  geoLocation?: {
+  geolocation?: {
     lat?: number,
     long?: number
   },

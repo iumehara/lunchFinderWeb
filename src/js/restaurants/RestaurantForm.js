@@ -9,7 +9,7 @@ type Props = {
   fetchCategories: () => {},
   onRemoveCategory: () => {},
   onInputChange: (fieldObject: Object) => {},
-  onGeolocationChange: (geoLocation: Object) => {},
+  onGeolocationChange: (geolocation: Object) => {},
   onCategoryChange: () => {},
   saveButtonWasClicked: () => {}
 }
@@ -79,14 +79,14 @@ export default class RestaurantForm extends React.Component<Props> {
           {inputIfValueExists(newRestaurant.website, onWebsiteChange)}
         </div>
         <div className='geolocation'>
-          <label>Geolocation </label>
+          <label>geolocation </label>
           <span className='lat'>
             <label>Lat</label>
-            {inputIfValueExists(newRestaurant.geoLocation ? newRestaurant.geoLocation.lat : null, onGeolocationLatChange)}
+            {inputIfValueExists(newRestaurant.geolocation ? newRestaurant.geolocation.lat : null, onGeolocationLatChange)}
           </span>
           <span className='long'>
             <label>Long</label>
-            {inputIfValueExists(newRestaurant.geoLocation ? newRestaurant.geoLocation.long : null, onGeolocationLongChange)}
+            {inputIfValueExists(newRestaurant.geolocation ? newRestaurant.geolocation.long : null, onGeolocationLongChange)}
           </span>
         </div>
         <div className='categories'>

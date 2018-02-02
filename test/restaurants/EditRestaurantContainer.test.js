@@ -83,7 +83,7 @@ describe('EditRestaurantContainer', () => {
       name: 'Pintokona',
       nameJp: 'ぴんとこな',
       website: 'www.default.example.com',
-      geoLocation: {
+      geolocation: {
         lat: 1.0,
         long: 2.0
       },

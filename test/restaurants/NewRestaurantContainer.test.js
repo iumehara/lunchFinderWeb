@@ -34,7 +34,7 @@ describe('NewRestaurantContainer', () => {
         name: 'Pintokona',
         nameJp: 'ぴんとこな',
         website: 'www.pintokona.example.com',
-        geoLocation: {
+        geolocation: {
           lat: 123.456,
           long: 987.654
         },

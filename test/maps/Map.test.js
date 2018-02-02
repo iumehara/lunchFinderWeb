@@ -21,7 +21,7 @@ describe('Map', () => {
 
 
     const map = shallow(<Map/>)
-    map.setProps({restaurant: {geoLocation: {lat: 33, long: 11}}})
+    map.setProps({restaurant: {geolocation: {lat: 33, long: 11}}})
 
 
     expect(initGoogleMapsMarkerSpy.mock.calls[0][0]).toEqual({lat: 33, lng: 11})
@@ -49,7 +49,7 @@ describe('Map', () => {
 
 
     const map = shallow(<Map/>)
-    map.setProps({restaurant: {notGeoLocation: ''}})
+    map.setProps({restaurant: {notgeolocation: ''}})
 
 
     expect(initCenteredGoogleMapSpy).not.toHaveBeenCalled()
