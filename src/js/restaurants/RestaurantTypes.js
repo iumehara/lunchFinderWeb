@@ -4,6 +4,11 @@ export type RestaurantType = {
   id: string,
   name: string,
   nameJp: string,
+  website?: string,
+  geolocation?: {
+    lat?: number,
+    long?: number
+  },
   categories: []
 }
 
