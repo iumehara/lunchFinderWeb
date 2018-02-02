@@ -13,11 +13,11 @@ export const mapStateToProps = (state, ownProps) => ({
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  onNameChange: event => {
-    setDispatch(event.target.value, 'SET_NEW_RESTAURANT_NAME', dispatch)
+  onInputChange: fieldObject => {
+    setDispatch(fieldObject, 'SET_NEW_RESTAURANT_FIELD', dispatch)
   },
-  onNameJpChange: event => {
-    setDispatch(event.target.value, 'SET_NEW_RESTAURANT_NAME_JP', dispatch)
+  onGeolocationChange: geoLocation => {
+    setDispatch(geoLocation, 'SET_NEW_RESTAURANT_GEOLOCATION', dispatch)
   },
   onCategoryChange: event => {
     if (event.target.value && event.target.value > 0) {

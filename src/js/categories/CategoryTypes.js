@@ -5,3 +5,9 @@ export type CategoryType = {
   name: string,
   restaurants: []
 }
+
+export const defaultCategory = {
+  id: '',
+  name: '',
+  restaurants: []
+}

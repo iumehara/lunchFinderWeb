@@ -8,8 +8,8 @@ type Props = {
   editMode: boolean,
   fetchCategories: () => {},
   onRemoveCategory: () => {},
-  onNameChange: () => {},
-  onNameJpChange: () => {},
+  onInputChange: (fieldObject: Object) => {},
+  onGeolocationChange: (geoLocation: Object) => {},
   onCategoryChange: () => {},
   saveButtonWasClicked: () => {}
 }
@@ -40,23 +40,54 @@ export default class RestaurantForm extends React.Component<Props> {
       )
     })
 
-    const inputIfValueExists = (value, onChange) => {
-      if(!this.props.editMode) {
-        return <input onChange={onChange}/>
-      } else if (value && value.length > 0) {
-        return <input onChange={onChange} defaultValue={value}/>
+    const isValidInput = value => {
+      if (value && typeof(value) == 'number') {
+        return value > 0
+      } else {
+        return value && value.length > 0
       }
     }
+
+    const inputIfValueExists = (value, onChange) => {
+      if(this.props.editMode && isValidInput(value)) {
+        return <input onChange={onChange} defaultValue={value}/>
+      } else {
+        return <input onChange={onChange}/>
+      }
+    }
+
+    const onNameChange = e => this.props.onInputChange({name: e.target.value})
+    const onNameJpChange = e => this.props.onInputChange({nameJp: e.target.value})
+    const onWebsiteChange = e => this.props.onInputChange({website: e.target.value})
+    const onGeolocationLatChange = e => this.props.onGeolocationChange({lat: e.target.value})
+    const onGeolocationLongChange = e => this.props.onGeolocationChange({long: e.target.value})
+
+    const newRestaurant = this.props.newRestaurant
 
     return (
       <div>
         <div className='name'>
           <label>Name (English)</label>
-          {inputIfValueExists(this.props.newRestaurant.name, this.props.onNameChange)}
+          {inputIfValueExists(newRestaurant.name, onNameChange)}
         </div>
         <div className='name-jp'>
           <label>店名 (日本語)</label>
-          {inputIfValueExists(this.props.newRestaurant.nameJp, this.props.onNameJpChange)}
+          {inputIfValueExists(newRestaurant.nameJp, onNameJpChange)}
+        </div>
+        <div className='website'>
+          <label>Website</label>
+          {inputIfValueExists(newRestaurant.website, onWebsiteChange)}
+        </div>
+        <div className='geolocation'>
+          <label>Geolocation </label>
+          <span className='lat'>
+            <label>Lat</label>
+            {inputIfValueExists(newRestaurant.geoLocation ? newRestaurant.geoLocation.lat : null, onGeolocationLatChange)}
+          </span>
+          <span className='long'>
+            <label>Long</label>
+            {inputIfValueExists(newRestaurant.geoLocation ? newRestaurant.geoLocation.long : null, onGeolocationLongChange)}
+          </span>
         </div>
         <div className='categories'>
           <label>categories</label>

@@ -1,6 +1,14 @@
+// @flow
 import { combineReducers } from 'redux'
+import type { CategoryType } from './categories/CategoryTypes'
+import { defaultCategory } from './categories/CategoryTypes'
+import type { RestaurantType, NewRestaurantType } from './restaurants/RestaurantTypes'
+import { defaultRestaurant, defaultNewRestaurant } from './restaurants/RestaurantTypes'
 
-export const categories = (state=[], action) => {
+export const categories = (
+  state: Array<CategoryType> = [],
+  action: Object
+) => {
   const {type, data} = action
   switch (type) {
     case 'FETCH_CATEGORIES_SUCCESS':
@@ -10,7 +18,10 @@ export const categories = (state=[], action) => {
   }
 }
 
-export const category = (state={restaurants: []}, action) => {
+export const category = (
+  state: CategoryType = defaultCategory,
+  action: Object
+) => {
   const {type, data} = action
   switch (type) {
     case 'FETCH_CATEGORY_SUCCESS':
@@ -20,7 +31,10 @@ export const category = (state={restaurants: []}, action) => {
   }
 }
 
-export const newCategory = (state={}, action) => {
+export const newCategory = (
+  state: CategoryType = defaultCategory,
+  action: Object
+) => {
   const {type, data} = action
   switch (type) {
     case 'SET_NEW_CATEGORY_NAME_SUCCESS':
@@ -30,7 +44,10 @@ export const newCategory = (state={}, action) => {
   }
 }
 
-export const restaurants = (state=[], action) => {
+export const restaurants = (
+  state: Array<RestaurantType> = [],
+  action: Object
+) => {
   const {type, data} = action
   switch (type) {
     case 'FETCH_RESTAURANTS_SUCCESS':
@@ -40,7 +57,10 @@ export const restaurants = (state=[], action) => {
   }
 }
 
-export const restaurant = (state={id: 0, categories: []}, action) => {
+export const restaurant = (
+  state: RestaurantType = defaultRestaurant,
+  action: Object
+) => {
   const {type, data} = action
   switch (type) {
     case 'FETCH_RESTAURANT_SUCCESS':
@@ -52,16 +72,20 @@ export const restaurant = (state={id: 0, categories: []}, action) => {
   }
 }
 
-export const newRestaurant = (state={name: '', nameJp: '', categoryIds: []}, action) => {
+export const newRestaurant = (
+  state: NewRestaurantType = defaultNewRestaurant,
+  action: Object
+) => {
   const {type, data} = action
   let categoryIds
   switch (type) {
     case 'FETCH_NEW_RESTAURANT_SUCCESS':
       return Object.assign({}, data, {categoryIds: data.categories.map(category => category.id)})
-    case 'SET_NEW_RESTAURANT_NAME_SUCCESS':
-      return Object.assign({}, state, {name: data})
-    case 'SET_NEW_RESTAURANT_NAME_JP_SUCCESS':
-      return Object.assign({}, state, {nameJp: data})
+    case 'SET_NEW_RESTAURANT_FIELD_SUCCESS':
+      return Object.assign({}, state, data)
+    case 'SET_NEW_RESTAURANT_GEOLOCATION_SUCCESS':
+      const geoLocation = Object.assign({}, state.geoLocation, data)
+      return Object.assign({}, state, {geoLocation})
     case 'SET_NEW_RESTAURANT_CATEGORY_ID_SUCCESS':
       categoryIds = Array.from(new Set([...state.categoryIds, Number(data)]))
       return Object.assign({}, state, {categoryIds})
