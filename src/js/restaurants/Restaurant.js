@@ -11,7 +11,7 @@ type Props = {
 }
 
 class Restaurant extends React.Component<Props> {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchRestaurant()
   }
 

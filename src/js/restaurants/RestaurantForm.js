@@ -15,7 +15,7 @@ type Props = {
 }
 
 export default class RestaurantForm extends React.Component<Props> {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchCategories()
   }
 

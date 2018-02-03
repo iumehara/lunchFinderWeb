@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default class EditRestaurant extends React.Component<Props> {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchRestaurant()
   }
 

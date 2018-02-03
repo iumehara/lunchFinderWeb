@@ -22,7 +22,7 @@ class Category extends React.Component<Props> {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchData(this.props.match.params.id)
   }
 

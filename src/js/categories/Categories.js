@@ -12,7 +12,7 @@ type Props = {
 }
 
 class Categories extends React.Component<Props> {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchCategories()
   }
 
