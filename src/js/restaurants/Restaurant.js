@@ -6,6 +6,7 @@ import SingleMarkerMap from '../maps/SingleMarkerMap'
 import type {RestaurantType} from './RestaurantTypes'
 
 type Props = {
+  id: string,
   restaurant: RestaurantType,
   fetchRestaurant: () => {}
 }
@@ -13,6 +14,12 @@ type Props = {
 class Restaurant extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchRestaurant()
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    if (this.props.id != nextProps.id) {
+      nextProps.fetchRestaurant()
+    }
   }
 
   render() {

@@ -1,9 +1,9 @@
-
 import { connect } from 'react-redux'
 import Restaurant from './Restaurant'
 import {fetchThenDispatch} from '../actions'
 
-export const mapStateToProps = state => ({
+export const mapStateToProps = (state, ownProps) => ({
+  id: ownProps.match.params.id,
   restaurant: state.restaurant
 })
 
