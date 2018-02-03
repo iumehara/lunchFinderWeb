@@ -2,7 +2,7 @@
 import React from 'react'
 import CategoryLink from '../categories/CategoryLink'
 import {Link} from 'react-router-dom'
-import Map from '../maps/Map'
+import SingleMarkerMap from '../maps/SingleMarkerMap'
 import type {RestaurantType} from './RestaurantTypes'
 
 type Props = {
@@ -24,7 +24,7 @@ class Restaurant extends React.Component<Props> {
         <div className='title'>
           <h1>{restaurant.nameJp}</h1>({restaurant.name})
         </div>
-        <Map restaurant={restaurant}/>
+        <SingleMarkerMap restaurant={restaurant}/>
         <ul>
           {categories}
         </ul>

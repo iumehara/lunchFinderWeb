@@ -8,7 +8,7 @@ type Props = {
   restaurant: RestaurantType
 }
 
-export default class Map extends React.Component<Props> {
+export default class SingleMarkerMap extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
     loadGoogleMaps()
       .then(() => {

@@ -1,10 +1,10 @@
 import React from 'react'
-import Map from '../../src/js/maps/Map'
+import SingleMarkerMap from '../../src/js/maps/SingleMarkerMap'
 import {shallow} from 'enzyme'
 import * as libraryLoader from '../../src/js/fetchers/libraryLoader'
 import * as googleMapsWrapper from '../../src/js/wrappers/googleMapsWrapper'
 
-describe('Map', () => {
+describe('SingleMarkerMap', () => {
   beforeEach(() => jest.restoreAllMocks())
 
   it('initializes google map with correct arguments', () => {
@@ -20,7 +20,7 @@ describe('Map', () => {
       .mockImplementation(() => {})
 
 
-    const map = shallow(<Map/>)
+    const map = shallow(<SingleMarkerMap/>)
     map.setProps({restaurant: {geolocation: {lat: 33, long: 11}}})
 
 
@@ -32,7 +32,7 @@ describe('Map', () => {
     const loadGoogleMapsSpy = jest.spyOn(libraryLoader, 'loadGoogleMaps')
 
 
-    const map = shallow(<Map/>)
+    const map = shallow(<SingleMarkerMap/>)
 
 
     expect(loadGoogleMapsSpy).not.toHaveBeenCalled()
@@ -48,7 +48,7 @@ describe('Map', () => {
     const initGoogleMapsMarkerSpy = jest.spyOn(googleMapsWrapper, 'initGoogleMapsMarker')
 
 
-    const map = shallow(<Map/>)
+    const map = shallow(<SingleMarkerMap/>)
     map.setProps({restaurant: {notgeolocation: ''}})
 
 
