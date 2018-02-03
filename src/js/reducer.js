@@ -97,11 +97,22 @@ export const newRestaurant = (
   }
 }
 
+export const formDataLoaded = (state: boolean=false, action: Object) => {
+  const {type, data} = action
+  switch (type) {
+    case 'FETCH_NEW_RESTAURANT_SUCCESS':
+      return true
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   categories,
   category,
   newCategory,
   restaurants,
   restaurant,
-  newRestaurant
+  newRestaurant,
+  formDataLoaded
 })

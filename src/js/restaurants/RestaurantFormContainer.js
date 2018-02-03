@@ -9,7 +9,8 @@ export const mapStateToProps = (state, ownProps) => ({
   newRestaurant: state.newRestaurant,
   categories: state.categories,
   saveButtonWasClicked: ownProps.saveButtonWasClicked,
-  editMode: ownProps.editMode
+  editMode: ownProps.editMode,
+  formDataLoaded: state.formDataLoaded
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -40,17 +40,11 @@ export default class RestaurantForm extends React.Component<Props> {
       )
     })
 
-    const isValidInput = value => {
-      if (value && typeof(value) == 'number') {
-        return value > 0
-      } else {
-        return value && value.length > 0
-      }
-    }
-
     const inputIfValueExists = (value, onChange) => {
-      if(this.props.editMode && isValidInput(value)) {
-        return <input onChange={onChange} defaultValue={value}/>
+      if(this.props.editMode) {
+        if (this.props.formDataLoaded) {
+          return <input onChange={onChange} defaultValue={value}/>
+        }
       } else {
         return <input onChange={onChange}/>
       }
