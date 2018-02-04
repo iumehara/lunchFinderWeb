@@ -9,8 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
-    new HtmlWebpackPlugin({template: './src/index.html'}),
-    new webpack.EnvironmentPlugin(['GOOGLE_API_KEY'])
+    new HtmlWebpackPlugin({template: './src/index.html'})
   ],
   module: {
     rules: [

@@ -1,8 +1,11 @@
 import {connect} from 'react-redux'
 import Category from './Category'
 import {setDispatch} from '../actions'
-import {httpPut} from '../fetchers/httpFetcher'
-import {getCategory, getRestaurants} from '../fetchers/resourceFetcher'
+import {
+  getCategory,
+  getRestaurants,
+  addRestaurantCategory
+} from '../fetchers/resourceFetcher'
 
 export const mapStateToProps = state => ({
   category: state.category,
@@ -24,8 +27,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   addCategory: (restaurantId, categoryId) => {
     if (restaurantId > 0) {
-      const url = `http://localhost:8080/restaurants/${restaurantId}/categories/${categoryId}`
-      httpPut(url)
+      addRestaurantCategory(restaurantId, categoryId)
         .then(() => getCategory(categoryId))
         .then(data => setDispatch(data, 'FETCH_CATEGORY', dispatch))
     }

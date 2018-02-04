@@ -4,14 +4,12 @@ import {
   fetchCategoriesThenDispatch,
   setDispatch
 } from '../actions'
-import { httpPost } from '../fetchers/httpFetcher'
 
 export const mapStateToProps = (state, ownProps) => ({
   newCategory: state.newCategory,
   categories: state.categories,
   createNewCategory: () => {
-    const url = 'http://localhost:8080/categories/'
-    httpPost(url, state.newCategory)
+    createCategory(state.newCategory)
       .then(id => ownProps.history.push(`/categories/${id}`))
   }
 })
