@@ -14,12 +14,12 @@ export const loadGoogleMaps = () => {
       const googleApiUrl = 'https://maps.googleapis.com/maps/api/js'
       const googleApiKey = process.env.GOOGLE_API_KEY
 
-      script.src = `${googleApiUrl}?key=${googleApiKey}`
+      appendElementToHead(script)
       script.onload = () => resolve()
+      script.src = `${googleApiUrl}?key=${googleApiKey}`
       script.onerror = () => reject(new Error('Script load error: ' + script.src))
 
       setFlag('mapLoaded')
-      appendElementToHead(script)
     }
   })
 }

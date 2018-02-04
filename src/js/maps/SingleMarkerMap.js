@@ -10,13 +10,19 @@ type Props = {
 
 export default class SingleMarkerMap extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.restaurant.id != this.props.restaurant.id) {
+      this.loadMap(nextProps.restaurant)
+    }
+  }
+
+  loadMap(restaurant: RestaurantType) {
     loadGoogleMaps()
       .then(() => {
-        if (nextProps.restaurant.geolocation) {
-          const geolocation = nextProps.restaurant.geolocation
+        if (restaurant.geolocation) {
+          const geolocation = restaurant.geolocation
           const position = {lat: geolocation.lat, lng: geolocation.long}
           const map = initCenteredGoogleMap(position)
-          initGoogleMapsMarker(position, map)
+          initGoogleMapsMarker({position, map})
         }
       })
   }

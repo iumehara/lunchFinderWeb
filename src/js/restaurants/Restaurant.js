@@ -25,7 +25,6 @@ class Restaurant extends React.Component<Props> {
   render() {
     const restaurant = this.props.restaurant
     const categories = restaurant.categories.map((category, i) => <CategoryLink key={i} category={category}/>)
-
     return (
       <div>
         <div className='title'>

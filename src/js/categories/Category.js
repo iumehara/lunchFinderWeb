@@ -3,12 +3,13 @@ import React from 'react'
 import RestaurantCard from '../restaurants/RestaurantCard'
 import type { CategoryType } from './CategoryTypes'
 import type { RestaurantType } from '../restaurants/RestaurantTypes'
+import MultipleMarkerMap from '../maps/MultipleMarkerMap'
 
 type Props = {
   match: {params: {id: string}},
   category: CategoryType,
   restaurant: RestaurantType,
-  restaurants: [RestaurantType],
+  restaurants: Array<RestaurantType>,
   fetchCategory: (id: string) => {},
   fetchRestaurants: () => {},
   setRestaurantId: () => {},
@@ -47,6 +48,7 @@ class Category extends React.Component<Props> {
     return (
       <div>
         <h1 className='title'>{category.name}</h1>
+        <MultipleMarkerMap id={this.props.category.id} restaurants={this.props.category.restaurants}/>
         {categories}
         <select className='restaurants' name="text" value={this.props.restaurant.id} onChange={this.props.setRestaurantId}>
           {restaurantOptions}

@@ -20,12 +20,12 @@ describe('SingleMarkerMap', () => {
       .mockImplementation(() => {})
 
 
-    const map = shallow(<SingleMarkerMap/>)
-    map.setProps({restaurant: {geolocation: {lat: 33, long: 11}}})
+    const map = shallow(<SingleMarkerMap restaurant={{}}/>)
+    map.setProps({restaurant: {id: 1, geolocation: {lat: 33, long: 11}}})
 
 
-    expect(initGoogleMapsMarkerSpy.mock.calls[0][0]).toEqual({lat: 33, lng: 11})
-    expect(initGoogleMapsMarkerSpy.mock.calls[0][1]).toEqual('fake-map')
+    expect(initGoogleMapsMarkerSpy.mock.calls[0][0])
+      .toEqual({position: {lat: 33, lng: 11},map: 'fake-map'})
   })
 
   it('does not load google map if props are not updated', () => {
@@ -38,7 +38,7 @@ describe('SingleMarkerMap', () => {
     expect(loadGoogleMapsSpy).not.toHaveBeenCalled()
   })
 
-  it('does not initialize google map or marker if new props does not include gooLocation', () => {
+  it('does not initialize google map or marker if new props does not include geoLocation', () => {
     jest.spyOn(libraryLoader, 'loadGoogleMaps')
       .mockImplementation(() => {
         return {then: callbackFunc => callbackFunc()}
@@ -48,8 +48,8 @@ describe('SingleMarkerMap', () => {
     const initGoogleMapsMarkerSpy = jest.spyOn(googleMapsWrapper, 'initGoogleMapsMarker')
 
 
-    const map = shallow(<SingleMarkerMap/>)
-    map.setProps({restaurant: {notgeolocation: ''}})
+    const map = shallow(<SingleMarkerMap restaurant={{}}/>)
+    map.setProps({restaurant: {id: 1, notgeolocation: ''}})
 
 
     expect(initCenteredGoogleMapSpy).not.toHaveBeenCalled()

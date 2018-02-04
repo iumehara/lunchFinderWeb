@@ -1,9 +1,17 @@
 import {getElementById} from './documentWrapper'
 
-export const initGoogleMapsMarker = (position, map) => {
-  return new google.maps.Marker({position, map})
+export const initGoogleMap = center => {
+  return new google.maps.Map(getElementById('map'))
 }
 
 export const initCenteredGoogleMap = center => {
   return new google.maps.Map(getElementById('map'), {zoom: 18, center})
+}
+
+export const initGoogleMapsMarker = options => {
+  return new google.maps.Marker(options)
+}
+
+export const initGoogleMapsBounds = () => {
+  return new google.maps.LatLngBounds()
 }
