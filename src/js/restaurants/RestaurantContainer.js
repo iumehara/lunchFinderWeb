@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import Restaurant from './Restaurant'
-import {fetchThenDispatch} from '../actions'
 
 export const mapStateToProps = (state, ownProps) => ({
   id: ownProps.match.params.id,
@@ -8,10 +7,7 @@ export const mapStateToProps = (state, ownProps) => ({
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchRestaurant: () => {
-    const url = 'http://localhost:8080/restaurants/' + ownProps.match.params.id
-    fetchThenDispatch(url, 'FETCH_RESTAURANT', dispatch)
-  }
+  fetchRestaurant: () => fetchRestaurantThenDispatch(ownProps.match.params.id)
 })
 
 const RestaurantContainer = connect(

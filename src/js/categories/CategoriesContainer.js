@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Categories from './Categories'
 import {
-  fetchThenDispatch,
+  fetchCategoriesThenDispatch,
   setDispatch
 } from '../actions'
 import { httpPost } from '../fetchers/httpFetcher'
@@ -17,10 +17,7 @@ export const mapStateToProps = (state, ownProps) => ({
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchCategories: () => {
-    const url = 'http://localhost:8080/categories'
-    fetchThenDispatch(url, 'FETCH_CATEGORIES', dispatch)
-  },
+  fetchCategories: () => fetchCategoriesThenDispatch(dispatch),
   onNameChange: event => {
     setDispatch(event.target.value, 'SET_NEW_CATEGORY_NAME', dispatch)
   }
