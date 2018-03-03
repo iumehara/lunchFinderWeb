@@ -4,13 +4,14 @@ import {
   fetchCategoriesThenDispatch,
   setDispatch
 } from '../actions'
+import { createCategory } from '../fetchers/resourceFetcher'
 
 export const mapStateToProps = (state, ownProps) => ({
   newCategory: state.newCategory,
   categories: state.categories,
   createNewCategory: () => {
     createCategory(state.newCategory)
-      .then(id => ownProps.history.push(`/categories/${id}`))
+      .then(idObject => ownProps.history.push(`/categories/${idObject.id}`))
   }
 })
 

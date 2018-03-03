@@ -6,7 +6,7 @@ export const mapStateToProps = (state, ownProps) => ({
   newRestaurant: state.newRestaurant,
   createNewRestaurant: () => {
     createRestaurant(state.newRestaurant)
-      .then(id => ownProps.history.push(`/restaurants/${id}`))
+      .then(idObject => ownProps.history.push(`/restaurants/${idObject.id}`))
   }
 })
 

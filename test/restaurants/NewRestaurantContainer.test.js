@@ -12,7 +12,7 @@ describe('NewRestaurantContainer', () => {
     })
 
     const httpPostSpy = jest.spyOn(httpFetcher, 'httpPost').mockImplementation(() => {
-      return {then: callbackFunc => callbackFunc(25)}
+      return {then: callbackFunc => callbackFunc({id: 25})}
     })
 
     const newRestaurantContainer = mountContainer(NewRestaurantContainer)
