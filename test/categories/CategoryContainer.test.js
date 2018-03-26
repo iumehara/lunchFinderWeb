@@ -11,7 +11,7 @@ describe('CategoryContainer', () => {
     const mockCategory = {
       id: 3,
       name: 'Pizza',
-      restaurants: [{id: 1, name: 'Pizzakaya', categories: [{name: 'Pizza'},{name: 'Spicy'}]}]
+      restaurants: [{id: 1, name: 'Pizzakaya', categoryIds: [1, 2]}]
     }
     jest.spyOn(resourceFetcher, 'getCategory').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(mockCategory)}
@@ -31,15 +31,14 @@ describe('CategoryContainer', () => {
 
     expect(category.find('h1.title').text()).toContain('Pizza')
     expect(category.find('.restaurant-card').text()).toContain('Pizzakaya')
-    expect(category.find('.restaurant-card .categories').text()).toContain('Spicy')
-    expect(category.find('.restaurant-card .categories').text()).toContain('Pizza')
+    expect(category.find('.restaurant-card .categories').text()).toEqual('2 categories')
   })
 
   it('adds restaurant to category', () => {
     const mockCategory = {
       id: 3,
       name: 'Pizza',
-      restaurants: [{id: 1, name: 'Pizzakaya', categories: [{name: 'Pizza'},{name: 'Spicy'}]}]
+      restaurants: [{id: 1, name: 'Pizzakaya', categoryIds: [1, 2]}]
     }
     const getCategorySpy = jest.spyOn(resourceFetcher, 'getCategory').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(mockCategory)}

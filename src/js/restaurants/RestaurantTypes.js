@@ -23,6 +23,18 @@ export type NewRestaurantType = {
   categoryIds: []
 }
 
+export type BasicRestaurantType = {
+    id: string,
+    name: string,
+    nameJp: string,
+    website?: string,
+    geolocation?: {
+        lat?: number,
+        long?: number
+    },
+    categoryIds: []
+}
+
 export const defaultRestaurant = {
   id: '',
   name: '',

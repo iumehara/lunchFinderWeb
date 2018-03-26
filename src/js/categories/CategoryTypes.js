@@ -1,10 +1,10 @@
 // @flow
-import type { RestaurantType } from '../restaurants/RestaurantTypes'
+import type {BasicRestaurantType} from "../restaurants/RestaurantTypes";
 
 export type CategoryType = {
   id: string,
   name: string,
-  restaurants: Array<RestaurantType>
+  restaurants: Array<BasicRestaurantType>
 }
 
 export const defaultCategory = {

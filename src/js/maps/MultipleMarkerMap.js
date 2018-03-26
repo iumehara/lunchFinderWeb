@@ -1,17 +1,13 @@
 // @flow
 import React from 'react'
-import {
-  initGoogleMap,
-  initGoogleMapsMarker,
-  initGoogleMapsBounds
-} from '../wrappers/googleMapsWrapper'
-import { loadGoogleMaps } from '../fetchers/libraryLoader'
-import type { RestaurantType } from '../restaurants/RestaurantTypes'
+import {initGoogleMap, initGoogleMapsBounds, initGoogleMapsMarker} from '../wrappers/googleMapsWrapper'
+import {loadGoogleMaps} from '../fetchers/libraryLoader'
+import type {BasicRestaurantType} from '../restaurants/RestaurantTypes'
 import {StartingPointMarker} from './StartingPointMarker'
 
 type Props = {
   id: string,
-  restaurants: Array<RestaurantType>
+  restaurants: Array<BasicRestaurantType>
 }
 
 export default class MultipleMarkerMap extends React.Component<Props> {
@@ -21,7 +17,7 @@ export default class MultipleMarkerMap extends React.Component<Props> {
     }
   }
 
-  loadMap(restaurants: Array<RestaurantType>) {
+  loadMap(restaurants: Array<BasicRestaurantType>) {
     loadGoogleMaps()
       .then(() => {
         const map = initGoogleMap()
