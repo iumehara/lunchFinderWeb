@@ -1,5 +1,7 @@
 # Lunch Finder Web
 
+[![Build Status](https://travis-ci.org/iumehara/lunchFinderWeb.svg?branch=master)](https://travis-ci.org/iumehara/lunchFinderWeb)
+
 Web app that interacts with [Lunch Finder Server API](https://github.com/iumehara/lunchFinderServer)
 
 ### Dependencies
