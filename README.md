@@ -1,6 +1,6 @@
 # Lunch Finder Web
 
-Web app that displays data from Lunch Finder Server API
+Web app that interacts with [Lunch Finder Server API](https://github.com/iumehara/lunchFinderServer)
 
 ### Dependencies
 - Node
