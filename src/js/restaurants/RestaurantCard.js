@@ -4,18 +4,23 @@ import {Link} from 'react-router-dom'
 import type {BasicRestaurantType} from "./RestaurantTypes";
 
 type Props = {
-  restaurant: BasicRestaurantType
+  restaurant: BasicRestaurantType,
+  selected: boolean
 }
 
-const RestaurantCard = (props: Props) => (
-  <div className='restaurant-card'>
-    <Link to={`/restaurants/${props.restaurant.id}`}>
-      <div className='title'>{props.restaurant.name} ({props.restaurant.nameJp})</div>
+const RestaurantCard = (props: Props) => {
+  const categoryCount = props.restaurant.categoryIds ? props.restaurant.categoryIds.length : props.restaurant.categories.length
+  const selected = props.selected ? 'selected' : ''
+  return (
+    <Link to={`/restaurants/${props.restaurant.id}`} className='restaurant-card'>
+      <div className={`card-details ${selected}`}>
+        <div className='title'>{props.restaurant.name} ({props.restaurant.nameJp})</div>
+        <div className='categories'>
+          <div>{categoryCount} categories</div>
+        </div>
+      </div>
     </Link>
-    <div className='categories'>
-        <div>{props.restaurant.categoryIds.length} categories</div>
-    </div>
-  </div>
-)
+  )
+}
 
 export default RestaurantCard

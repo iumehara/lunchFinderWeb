@@ -1,36 +1,16 @@
 import {connect} from 'react-redux'
 import Category from './Category'
 import {setDispatch} from '../actions'
-import {
-  getCategory,
-  getRestaurants,
-  addRestaurantCategory
-} from '../fetchers/resourceFetcher'
+import {getCategory} from '../fetchers/resourceFetcher'
 
 export const mapStateToProps = state => ({
-  category: state.category,
-  restaurants: state.restaurants,
-  restaurant: state.restaurant
+  category: state.category
 })
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = (dispatch) => ({
   fetchCategory: id => {
     getCategory(id)
       .then(data => setDispatch(data, 'FETCH_CATEGORY', dispatch))
-  },
-  fetchRestaurants: () => {
-    getRestaurants()
-      .then(data => setDispatch(data, 'FETCH_RESTAURANTS', dispatch))
-  },
-  setRestaurantId: event => {
-    setDispatch(event.target.value, 'SET_RESTAURANT_ID', dispatch)
-  },
-  addCategory: (restaurantId, categoryId) => {
-    if (restaurantId > 0) {
-      addRestaurantCategory(restaurantId, categoryId)
-        .then(() => getCategory(categoryId))
-        .then(data => setDispatch(data, 'FETCH_CATEGORY', dispatch))
-    }
   }
 })
 

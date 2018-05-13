@@ -1,11 +1,41 @@
-.restaurant-card {
-  border: 1px solid black;
-  margin: 10px 0;
-  padding: 10px;
-  .title {
-    font-size: 40px;
+.restaurant {
+  height: 100%;
+  .main {
+    height: 100%;
+    display: flex;
+    .restaurant-list {
+      border-right: 1px solid gray;
+      width: 600px;
+      .title {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .details {
+      width: 100%;
+    }
   }
-  .categories {
-    padding: 10px 0;
+}
+
+a.restaurant-card {
+  text-decoration: none;
+  .card-details {
+    border: 1px solid #C4C4C4;
+    padding: 10px;
+    color: black;
+    .title {
+      font-size: 32px;
+    }
+    .categories {
+      padding: 10px 0;
+    }
+
+    &.selected {
+      background-color: #F2F2F2;
+    }
+
+    &:hover {
+      background-color: #C4C4C4;
+    }
   }
 }

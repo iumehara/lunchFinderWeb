@@ -1,13 +1,12 @@
 import React from 'react'
 import CategoryContainer from '../../src/js/categories/CategoryContainer'
-import { mountContainer } from '../helper'
-import * as httpFetcher from '../../src/js/fetchers/httpFetcher'
+import {mountContainer} from '../helper'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 
 describe('CategoryContainer', () => {
-  beforeEach(() => jest.restoreAllMocks())
+  beforeEach(() => {
+    jest.restoreAllMocks()
 
-  it('displays category from request', () => {
     const mockCategory = {
       id: 3,
       name: 'Pizza',
@@ -16,53 +15,35 @@ describe('CategoryContainer', () => {
     jest.spyOn(resourceFetcher, 'getCategory').mockImplementation(() => {
       return {then: callbackFunc => callbackFunc(mockCategory)}
     })
-
-    const mockRestaurants = [
-      {id: 1, name: 'Pizzakaya', categories: [{id: 3, name: 'Pizza'},{id: 4, name: 'Spicy'}]},
-      {id: 2, name: 'Moti', categories: [{id: 5, name: 'Curry'},{id: 4, name: 'Spicy'}]}
-    ]
-    jest.spyOn(resourceFetcher, 'getRestaurants').mockImplementation(() => {
-      return {then: callbackFunc => callbackFunc(mockRestaurants)}
-    })
-
-    const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
-
-    const category = categoryContainer.find('Category')
-
-    expect(category.find('h1.title').text()).toContain('Pizza')
-    expect(category.find('.restaurant-card').text()).toContain('Pizzakaya')
-    expect(category.find('.restaurant-card .categories').text()).toEqual('2 categories')
   })
 
-  it('adds restaurant to category', () => {
-    const mockCategory = {
-      id: 3,
-      name: 'Pizza',
-      restaurants: [{id: 1, name: 'Pizzakaya', categoryIds: [1, 2]}]
-    }
-    const getCategorySpy = jest.spyOn(resourceFetcher, 'getCategory').mockImplementation(() => {
-      return {then: callbackFunc => callbackFunc(mockCategory)}
+  describe('restaurant list', () => {
+    it('displays title', () => {
+      const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
+
+
+      expect(categoryContainer.find('.restaurant-list').text()).toContain('Pizza')
+      expect(categoryContainer.find('.restaurant-list').text()).toContain('Restaurants')
     })
 
-    const mockRestaurants = [
-      {id: 1, name: 'Pizzakaya', categories: [{id: 3, name: 'Pizza'},{id: 4, name: 'Spicy'}]},
-      {id: 2, name: 'Moti', categories: [{id: 5, name: 'Curry'},{id: 4, name: 'Spicy'}]}
-    ]
-    jest.spyOn(resourceFetcher, 'getRestaurants').mockImplementation(() => {
-      return {then: callbackFunc => callbackFunc(mockRestaurants)}
+    it('displays restaurants', () => {
+      const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
+
+
+      expect(categoryContainer.find('.restaurant-list').text()).toContain('Pizzakaya')
+      expect(categoryContainer.find('.restaurant-list').text()).toContain('2 categories')
     })
+  })
 
-    const httpPutSpy = jest.spyOn(httpFetcher, 'httpPut').mockImplementation(() => {
-      return {then: callbackFunc => callbackFunc({})}
+  describe('map', () => {
+    it('renders map with correct props', () => {
+      const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
+
+
+      expect(categoryContainer.find('MultipleMarkerMap').length).toEqual(1)
+      expect(categoryContainer.find('MultipleMarkerMap').props().id).toEqual(3)
+      expect(categoryContainer.find('MultipleMarkerMap').props().restaurants)
+        .toEqual([{id: 1, name: 'Pizzakaya', categoryIds: [1, 2]}])
     })
-
-    const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
-
-    const category = categoryContainer.find('Category')
-
-    category.find('select.restaurants').simulate('change', {target: {value: 2}})
-    category.find('button.add-category').simulate('click')
-    expect(httpPutSpy.mock.calls[0][0]).toEqual('http://localhost:8080/restaurants/2/categories/3')
-    expect(getCategorySpy.mock.calls.length).toBe(2)
   })
 })

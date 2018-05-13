@@ -4,6 +4,7 @@ import { fetchRestaurantThenDispatch } from '../actions'
 
 export const mapStateToProps = (state, ownProps) => ({
   id: ownProps.match.params.id,
+  category: state.category,
   restaurant: state.restaurant
 })
 

@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import CategoriesContainer from './categories/CategoriesContainer'
 import CategoryContainer from './categories/CategoryContainer'
+import EditCategoryContainer from './categories/EditCategoryContainer'
 import NewRestaurantContainer from './restaurants/NewRestaurantContainer'
 import RestaurantContainer from './restaurants/RestaurantContainer'
 import EditRestaurantContainer from './restaurants/EditRestaurantContainer'
@@ -20,7 +21,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div>
+        <div className='app'>
           <ul>
             <li><Link to="/categories">Categories</Link></li>
             <li><Link to="/restaurants/new">Add Restaurant</Link></li>
@@ -31,6 +32,7 @@ export default function App() {
             <Route exact path="/" component={CategoriesContainer}/>
             <Route exact path="/categories" component={CategoriesContainer}/>
             <Route exact path="/categories/:id" component={CategoryContainer}/>
+            <Route exact path="/categories/:id/edit" component={EditCategoryContainer}/>
             <Route exact path="/restaurants/new" component={NewRestaurantContainer}/>
             <Route exact path="/restaurants/:id" component={RestaurantContainer}/>
             <Route exact path="/restaurants/:id/edit" component={EditRestaurantContainer}/>

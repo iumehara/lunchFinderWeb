@@ -12,7 +12,7 @@ type Props = {
 
 export default class MultipleMarkerMap extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.id != this.props.id) {
+    if (nextProps.id !== this.props.id) {
       this.loadMap(nextProps.restaurants)
     }
   }
@@ -39,6 +39,6 @@ export default class MultipleMarkerMap extends React.Component<Props> {
   }
 
   render() {
-    return <div id="map"></div>
+    return <div id="map"/>
   }
 }

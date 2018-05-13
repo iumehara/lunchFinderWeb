@@ -2,6 +2,7 @@
 import React from 'react'
 import RestaurantCard from '../restaurants/RestaurantCard'
 import type {CategoryType} from './CategoryTypes'
+import type {RestaurantType} from '../restaurants/RestaurantTypes'
 import MultipleMarkerMap from '../maps/MultipleMarkerMap'
 import CategoryLink from './CategoryLink'
 import {Link} from 'react-router-dom'
@@ -9,10 +10,15 @@ import {Link} from 'react-router-dom'
 type Props = {
   match: {params: {id: string}},
   category: CategoryType,
-  fetchCategory: (id: string) => {}
+  restaurant: RestaurantType,
+  restaurants: Array<RestaurantType>,
+  fetchCategory: (id: string) => {},
+  fetchRestaurants: () => {},
+  setRestaurantId: () => {},
+  addCategory: (restaurantId: string, categoryId: string) => {}
 }
 
-class Category extends React.Component<Props> {
+class EditCategory extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
       this.fetchData(nextProps.match.params.id)
@@ -25,6 +31,11 @@ class Category extends React.Component<Props> {
 
   fetchData(id: string) {
     this.props.fetchCategory(id)
+    this.props.fetchRestaurants()
+  }
+
+  addCategory() {
+    this.props.addCategory(this.props.restaurant.id, this.props.category.id)
   }
 
   render() {
@@ -32,6 +43,11 @@ class Category extends React.Component<Props> {
     const categoryRestaurants = category.restaurants.map((restaurant, i) => {
       return <RestaurantCard key={i} restaurant={restaurant} selected={false}/>
     })
+
+    const restaurantOptions = this.props.restaurants
+      .filter(restaurant => !category.restaurants.map(r => r.id ).includes(restaurant.id))
+      .map((restaurant, i) => <option key={i + 1} value={restaurant.id}>{restaurant.name}</option>)
+    restaurantOptions.unshift(<option key={0} value={0}>Select Restaurant</option>)
 
     return (
       <div className='category'>
@@ -44,14 +60,18 @@ class Category extends React.Component<Props> {
             <div>
               {categoryRestaurants}
             </div>
+            <select className='restaurants' name="text" value={this.props.restaurant.id} onChange={this.props.setRestaurantId}>
+              {restaurantOptions}
+            </select>
+            <button className='add-category' onClick={this.addCategory.bind(this)}>Add</button>
             <br/>
-            <Link to={`/categories/${category.id}/edit`}>Edit</Link>
+            <Link to={`/categories/${this.props.match.params.id}/`}>Back</Link>
           </div>
           <div className='details'>
             <div className='title'>
               <h1>All {category.name} Restaurants</h1>
             </div>
-            <MultipleMarkerMap id={category.id} restaurants={category.restaurants}/>
+            <MultipleMarkerMap id={this.props.category.id} restaurants={this.props.category.restaurants}/>
           </div>
         </div>
       </div>
@@ -59,4 +79,4 @@ class Category extends React.Component<Props> {
   }
 }
 
-export default Category
+export default EditCategory

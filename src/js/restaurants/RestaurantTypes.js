@@ -47,3 +47,22 @@ export const defaultNewRestaurant = {
   nameJp: '',
   categoryIds: []
 }
+
+export const defaultBasicRestaurant = {
+  id: '',
+  name: '',
+  nameJp: '',
+  categoryIds: []
+}
+
+export const basicRestaurantBuilder = (restaurant: RestaurantType) => {
+  const basicRestaurant = defaultBasicRestaurant
+  Object.keys(defaultBasicRestaurant).forEach(key => {
+    if (key === 'categoryIds') {
+      basicRestaurant['categoryIds'] = restaurant.categories.map(category => category.id)
+    } else {
+      basicRestaurant[key] = restaurant[key]
+    }
+  })
+  return basicRestaurant
+}

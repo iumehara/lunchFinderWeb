@@ -1,8 +1,8 @@
 // @flow
 import React from 'react'
-import { initCenteredGoogleMap, initGoogleMapsMarker } from '../wrappers/googleMapsWrapper'
-import { loadGoogleMaps } from '../fetchers/libraryLoader'
-import type { RestaurantType } from '../restaurants/RestaurantTypes'
+import {initCenteredGoogleMap, initGoogleMapsMarker} from '../wrappers/googleMapsWrapper'
+import {loadGoogleMaps} from '../fetchers/libraryLoader'
+import type {RestaurantType} from '../restaurants/RestaurantTypes'
 
 type Props = {
   restaurant: RestaurantType
@@ -10,7 +10,7 @@ type Props = {
 
 export default class SingleMarkerMap extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.restaurant.id != this.props.restaurant.id) {
+    if (nextProps.restaurant.id !== this.props.restaurant.id) {
       this.loadMap(nextProps.restaurant)
     }
   }
@@ -28,6 +28,6 @@ export default class SingleMarkerMap extends React.Component<Props> {
   }
 
   render() {
-    return <div id="map"></div>
+    return <div id="map"/>
   }
 }
