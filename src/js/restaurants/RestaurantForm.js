@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
-import type { NewRestaurantType } from './RestaurantTypes'
+import type {NewRestaurantType} from './RestaurantTypes'
+import MarkableMap from '../maps/MarkableMap'
 
 type Props = {
   categories: [],
@@ -8,7 +9,7 @@ type Props = {
   editMode: boolean,
   fetchCategories: () => {},
   onRemoveCategory: () => {},
-  onInputChange: (fieldObject: Object) => {},
+  onInputChange: (fieldObject: Object) => {},/**/
   onGeolocationChange: (geolocation: Object) => {},
   onCategoryChange: () => {},
   saveButtonWasClicked: () => {}
@@ -53,10 +54,17 @@ export default class RestaurantForm extends React.Component<Props> {
     const onNameChange = e => this.props.onInputChange({name: e.target.value})
     const onNameJpChange = e => this.props.onInputChange({nameJp: e.target.value})
     const onWebsiteChange = e => this.props.onInputChange({website: e.target.value})
-    const onGeolocationLatChange = e => this.props.onGeolocationChange({lat: e.target.value})
-    const onGeolocationLongChange = e => this.props.onGeolocationChange({long: e.target.value})
+    const onMapChange = geolocation => this.props.onGeolocationChange(geolocation)
 
     const newRestaurant = this.props.newRestaurant
+
+    const map = () => {
+      let geolocation
+      if (newRestaurant.geolocation && newRestaurant.geolocation.lat && newRestaurant.geolocation.long) {
+        geolocation = {lat: newRestaurant.geolocation.lat, long: newRestaurant.geolocation.long}
+      }
+      return <MarkableMap geolocation={geolocation} onMapChange={onMapChange}/>
+    }
 
     return (
       <div>
@@ -72,17 +80,6 @@ export default class RestaurantForm extends React.Component<Props> {
           <label>Website</label>
           {inputIfValueExists(newRestaurant.website, onWebsiteChange)}
         </div>
-        <div className='geolocation'>
-          <label>geolocation </label>
-          <span className='lat'>
-            <label>Lat</label>
-            {inputIfValueExists(newRestaurant.geolocation ? newRestaurant.geolocation.lat : null, onGeolocationLatChange)}
-          </span>
-          <span className='long'>
-            <label>Long</label>
-            {inputIfValueExists(newRestaurant.geolocation ? newRestaurant.geolocation.long : null, onGeolocationLongChange)}
-          </span>
-        </div>
         <div className='categories'>
           <label>categories</label>
           <select name="text" onChange={this.props.onCategoryChange}>{categoryOptions}</select>
@@ -90,7 +87,9 @@ export default class RestaurantForm extends React.Component<Props> {
             {selectedCategories}
           </ul>
         </div>
-        <button className='save' onClick={this.props.saveButtonWasClicked}>update</button>
+        {map()}
+
+        <button className='save' onClick={this.props.saveButtonWasClicked}>save</button>
       </div>
     )
   }

@@ -1,10 +1,9 @@
 import React from 'react'
 import EditRestaurantContainer from '../../src/js/restaurants/EditRestaurantContainer'
-import * as actions from '../../src/js/actions'
 import * as httpFetcher from '../../src/js/fetchers/httpFetcher'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 import * as windowWrapper from '../../src/js/wrappers/windowWrapper'
-import { mountContainer, mountedContainerHistory } from '../helper'
+import {mountContainer} from '../helper'
 
 describe('EditRestaurantContainer', () => {
   beforeEach(() => jest.restoreAllMocks())
@@ -71,10 +70,6 @@ describe('EditRestaurantContainer', () => {
 
       editRestaurantContainer.find('.name input').simulate('change', {target: {value: 'Pintokona!'}})
       editRestaurantContainer.find('.name-jp input').simulate('change', {target: {value: 'ぴんとこな!'}})
-      editRestaurantContainer.find('.website input').simulate('change', {target: {value: 'www.pintokona.example.com'}})
-      editRestaurantContainer.find('.geolocation .lat input').simulate('change', {target: {value: 123.456}})
-      editRestaurantContainer.find('.geolocation .long input').simulate('change', {target: {value: 987.654}})
-      editRestaurantContainer.find('.categories select').simulate('change', {target: {value: '2'}})
       editRestaurantContainer.find('button.save').simulate('click')
 
 
@@ -83,7 +78,7 @@ describe('EditRestaurantContainer', () => {
       expect(httpPutSpy.mock.calls[0][1].id).toEqual(25)
       expect(httpPutSpy.mock.calls[0][1].name).toEqual('Pintokona!')
       expect(httpPutSpy.mock.calls[0][1].nameJp).toEqual('ぴんとこな!')
-      expect(httpPutSpy.mock.calls[0][1].categoryIds).toEqual([2])
+      expect(httpPutSpy.mock.calls[0][1].categoryIds).toEqual([])
     })
 
     it('submits update on restaurant with all fields', () => {
@@ -108,8 +103,6 @@ describe('EditRestaurantContainer', () => {
       editRestaurantContainer.find('.name input').simulate('change', {target: {value: 'Pintokona!'}})
       editRestaurantContainer.find('.name-jp input').simulate('change', {target: {value: 'ぴんとこな!'}})
       editRestaurantContainer.find('.website input').simulate('change', {target: {value: 'www.pintokona.example.com'}})
-      editRestaurantContainer.find('.geolocation .lat input').simulate('change', {target: {value: 123.456}})
-      editRestaurantContainer.find('.geolocation .long input').simulate('change', {target: {value: 987.654}})
       editRestaurantContainer.find('.categories select').simulate('change', {target: {value: '2'}})
       editRestaurantContainer.find('button.save').simulate('click')
 

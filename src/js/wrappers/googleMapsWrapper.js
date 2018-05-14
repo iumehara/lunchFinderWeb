@@ -15,3 +15,7 @@ export const initGoogleMapsMarker = options => {
 export const initGoogleMapsBounds = () => {
   return new google.maps.LatLngBounds()
 }
+
+export const addGoogleClickListener = (map, callback) => {
+  return google.maps.event.addListener(map, 'click', callback)
+}
