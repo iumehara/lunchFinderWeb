@@ -17,7 +17,7 @@
   }
 }
 
-a.restaurant-card {
+.restaurant-card {
   text-decoration: none;
   .card-details {
     border: 1px solid #C4C4C4;
@@ -33,9 +33,11 @@ a.restaurant-card {
     &.selected {
       background-color: #F2F2F2;
     }
+  }
+}
 
-    &:hover {
-      background-color: #C4C4C4;
-    }
+a.restaurant-card .card-details {
+  &:hover {
+    background-color: #C4C4C4;
   }
 }

@@ -46,3 +46,8 @@ export const addRestaurantCategory = (restaurantId, categoryId) => {
   const url = `${SERVER_URL}restaurants/${restaurantId}/categories/${categoryId}`
   return httpPut(url)
 }
+
+export const removeRestaurantCategory = (restaurantId, categoryId) => {
+  const url = `${SERVER_URL}restaurants/${restaurantId}/categories/${categoryId}`
+  return httpDelete(url)
+}

@@ -89,7 +89,7 @@ export default class RestaurantForm extends React.Component<Props> {
         </div>
         {map()}
 
-        <button className='save' onClick={this.props.saveButtonWasClicked}>save</button>
+        <button className='action save' onClick={this.props.saveButtonWasClicked}>save</button>
       </div>
     )
   }

@@ -1,25 +1,26 @@
 // @flow
 import React from 'react'
+import {Link} from 'react-router-dom'
 import type {BasicRestaurantType} from "./RestaurantTypes";
 
 type Props = {
   restaurant: BasicRestaurantType,
-  remove: () => {}
+  selected: boolean
 }
 
-const RestaurantCard = (props: Props) => {
+const RestaurantCardLink = (props: Props) => {
   const categoryCount = props.restaurant.categoryIds ? props.restaurant.categoryIds.length : props.restaurant.categories.length
+  const selected = props.selected ? 'selected' : ''
   return (
-    <div className='restaurant-card'>
-      <div className='card-details'>
+    <Link to={`/restaurants/${props.restaurant.id}`} className='restaurant-card'>
+      <div className={`card-details ${selected}`}>
         <div className='title'>{props.restaurant.name} ({props.restaurant.nameJp})</div>
         <div className='categories'>
           <div>{categoryCount} categories</div>
         </div>
-        <button className='danger' onClick={props.remove}>Remove Restaurant</button>
       </div>
-    </div>
+    </Link>
   )
 }
 
-export default RestaurantCard
+export default RestaurantCardLink

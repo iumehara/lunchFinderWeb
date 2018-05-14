@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {setDispatch} from '../actions'
-import {addRestaurantCategory, getCategory, getRestaurants} from '../fetchers/resourceFetcher'
+import {addRestaurantCategory, getCategory, getRestaurants, removeRestaurantCategory} from '../fetchers/resourceFetcher'
 import EditCategory from './EditCategory'
 
 export const mapStateToProps = state => ({
@@ -24,6 +24,13 @@ export const mapDispatchToProps = (dispatch) => ({
   addCategory: (restaurantId, categoryId) => {
     if (restaurantId > 0) {
       addRestaurantCategory(restaurantId, categoryId)
+        .then(() => getCategory(categoryId))
+        .then(data => setDispatch(data, 'FETCH_CATEGORY', dispatch))
+    }
+  },
+  removeCategory: (restaurantId, categoryId) => {
+    if (restaurantId > 0) {
+      removeRestaurantCategory(restaurantId, categoryId)
         .then(() => getCategory(categoryId))
         .then(data => setDispatch(data, 'FETCH_CATEGORY', dispatch))
     }

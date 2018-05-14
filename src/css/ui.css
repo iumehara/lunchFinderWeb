@@ -1,0 +1,9 @@
+button.danger {
+  background-color: red;
+  color: white;
+}
+
+button.action {
+    background-color: dodgerblue;
+    color: white
+}

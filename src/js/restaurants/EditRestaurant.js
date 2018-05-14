@@ -29,8 +29,12 @@ export default class EditRestaurant extends React.Component<Props> {
       <div>
         <div>edit restaurant</div>
         <RestaurantFormContainer saveButtonWasClicked={this.props.updateNewRestaurant} editMode={true}/>
-        <button className='delete' onClick={this.destroyIfConfirmed.bind(this)}>Delete</button>
+        <br/>
         <Link to={`/restaurants/${this.props.id}`}>Cancel</Link>
+        <br/>
+        <br/>
+        <br/>
+        <button className='danger delete' onClick={this.destroyIfConfirmed.bind(this)}>Delete</button>
       </div>
     )
   }

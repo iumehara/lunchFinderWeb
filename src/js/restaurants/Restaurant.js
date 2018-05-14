@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import SingleMarkerMap from '../maps/SingleMarkerMap'
 import type {RestaurantType} from './RestaurantTypes'
 import {basicRestaurantBuilder} from './RestaurantTypes'
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCardLink from "./RestaurantCardLink";
 import type {CategoryType} from '../categories/CategoryTypes'
 
 type Props = {
@@ -34,12 +34,12 @@ class Restaurant extends React.Component<Props> {
     if (category.restaurants.length > 0) {
       categoryRestaurants = category.restaurants.map((restaurant, i) => {
         const selected = restaurant.id === this.props.restaurant.id
-        return <RestaurantCard key={i} restaurant={restaurant} selected={selected}/>
+        return <RestaurantCardLink key={i} restaurant={restaurant} selected={selected}/>
       })
       categoryLink = <CategoryLink category={category}/>
     } else {
       const basicRestaurant = basicRestaurantBuilder(this.props.restaurant)
-      categoryRestaurants = <RestaurantCard restaurant={basicRestaurant} selected={true}/>
+      categoryRestaurants = <RestaurantCardLink restaurant={basicRestaurant} selected={true}/>
     }
 
     const restaurant = this.props.restaurant

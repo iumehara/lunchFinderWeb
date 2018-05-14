@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import RestaurantCard from '../restaurants/RestaurantCard'
+import RestaurantCardLink from '../restaurants/RestaurantCardLink'
 import type {CategoryType} from './CategoryTypes'
 import MultipleMarkerMap from '../maps/MultipleMarkerMap'
 import CategoryLink from './CategoryLink'
@@ -30,7 +30,7 @@ class Category extends React.Component<Props> {
   render() {
     const category = this.props.category
     const categoryRestaurants = category.restaurants.map((restaurant, i) => {
-      return <RestaurantCard key={i} restaurant={restaurant} selected={false}/>
+      return <RestaurantCardLink key={i} restaurant={restaurant} selected={false}/>
     })
 
     return (

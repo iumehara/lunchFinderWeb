@@ -31,7 +31,6 @@ export default class MarkableMap extends React.Component<Props, State> {
         this.setState({marker})
 
         addGoogleClickListener(map, (event) => {
-          console.log('---- inside')
           const latLng = event.latLng
           addMarker(this.state.marker, latLng)
 

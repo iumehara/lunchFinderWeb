@@ -1,11 +1,11 @@
 // @flow
 import React from 'react'
-import RestaurantCard from '../restaurants/RestaurantCard'
 import type {CategoryType} from './CategoryTypes'
 import type {RestaurantType} from '../restaurants/RestaurantTypes'
 import MultipleMarkerMap from '../maps/MultipleMarkerMap'
 import CategoryLink from './CategoryLink'
 import {Link} from 'react-router-dom'
+import RestaurantCard from '../restaurants/RestaurantCard'
 
 type Props = {
   match: {params: {id: string}},
@@ -15,7 +15,8 @@ type Props = {
   fetchCategory: (id: string) => {},
   fetchRestaurants: () => {},
   setRestaurantId: () => {},
-  addCategory: (restaurantId: string, categoryId: string) => {}
+  addCategory: (restaurantId: string, categoryId: string) => {},
+  removeCategory: (restaurantId: string, categoryId: string) => {}
 }
 
 class EditCategory extends React.Component<Props> {
@@ -41,7 +42,11 @@ class EditCategory extends React.Component<Props> {
   render() {
     const category = this.props.category
     const categoryRestaurants = category.restaurants.map((restaurant, i) => {
-      return <RestaurantCard key={i} restaurant={restaurant} selected={false}/>
+      const removeCategory = () => {
+        return this.props.removeCategory(restaurant.id, this.props.category.id)
+      }
+
+      return <RestaurantCard key={i} restaurant={restaurant} remove={removeCategory.bind(this)}/>
     })
 
     const restaurantOptions = this.props.restaurants
@@ -63,7 +68,7 @@ class EditCategory extends React.Component<Props> {
             <select className='restaurants' name="text" value={this.props.restaurant.id} onChange={this.props.setRestaurantId}>
               {restaurantOptions}
             </select>
-            <button className='add-category' onClick={this.addCategory.bind(this)}>Add</button>
+            <button className='add-category action' onClick={this.addCategory.bind(this)}>Add</button>
             <br/>
             <Link to={`/categories/${this.props.match.params.id}/`}>Back</Link>
           </div>
