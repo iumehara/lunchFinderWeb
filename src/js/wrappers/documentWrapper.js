@@ -15,5 +15,5 @@ export const setFlag = flag => {
 }
 
 export const isFlagset = flag => {
-  return document[flag] == true
+  return document[flag] === true
 }

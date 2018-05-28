@@ -12,9 +12,7 @@ type Props = {
 
 export default class MultipleMarkerMap extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.id !== this.props.id) {
-      this.loadMap(nextProps.restaurants)
-    }
+    this.loadMap(nextProps.restaurants)
   }
 
   loadMap(restaurants: Array<BasicRestaurantType>) {

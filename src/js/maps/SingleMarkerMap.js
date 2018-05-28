@@ -10,9 +10,7 @@ type Props = {
 
 export default class SingleMarkerMap extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.restaurant.id !== this.props.restaurant.id) {
-      this.loadMap(nextProps.restaurant)
-    }
+    this.loadMap(nextProps.restaurant)
   }
 
   loadMap(restaurant: RestaurantType) {
