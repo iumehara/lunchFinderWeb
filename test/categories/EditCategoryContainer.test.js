@@ -33,7 +33,7 @@ describe('EditCategoryContainer', () => {
 
     editCategoryContainer.find('select.restaurants').simulate('change', {target: {value: 2}})
     editCategoryContainer.find('button.add-category').simulate('click')
-    expect(httpPutSpy.mock.calls[0][0]).toEqual('http://localhost:8080/restaurants/2/categories/3')
+    expect(httpPutSpy.mock.calls[0][0]).toContain('/restaurants/2/categories/3')
     expect(getCategorySpy.mock.calls.length).toBe(2)
   })
 })

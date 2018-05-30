@@ -26,8 +26,9 @@ describe('NewRestaurantContainer', () => {
     newRestaurantContainer.find('.category2 button.remove').simulate('click')
     newRestaurantContainer.find('button.save').simulate('click')
 
-    expect(httpPostSpy).toHaveBeenCalledWith(
-      "http://localhost:8080/restaurants/",
+
+    expect(httpPostSpy.mock.calls[0][0]).toContain('/restaurants/')
+    expect(httpPostSpy.mock.calls[0][1]).toEqual(
       {
         name: 'Pintokona',
         nameJp: 'ぴんとこな',
@@ -35,6 +36,7 @@ describe('NewRestaurantContainer', () => {
         categoryIds: [1, 3]
       }
     )
+
     expect(mountedContainerHistory(newRestaurantContainer)).toContain('/restaurants/25')
   })
 })

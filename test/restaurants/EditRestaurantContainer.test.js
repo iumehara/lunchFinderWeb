@@ -44,7 +44,7 @@ describe('EditRestaurantContainer', () => {
 
 
       expect(httpPutSpy.mock.calls.length).toBe(1)
-      expect(httpPutSpy.mock.calls[0][0]).toBe('http://localhost:8080/restaurants/25')
+      expect(httpPutSpy.mock.calls[0][0]).toContain('/restaurants/25')
       expect(httpPutSpy.mock.calls[0][1].id).toEqual(25)
       expect(httpPutSpy.mock.calls[0][1].name).toEqual('Pintokona')
       expect(httpPutSpy.mock.calls[0][1].nameJp).toEqual('ぴんとこな')
@@ -74,7 +74,7 @@ describe('EditRestaurantContainer', () => {
 
 
       expect(httpPutSpy.mock.calls.length).toBe(1)
-      expect(httpPutSpy.mock.calls[0][0]).toBe('http://localhost:8080/restaurants/25')
+      expect(httpPutSpy.mock.calls[0][0]).toContain('/restaurants/25')
       expect(httpPutSpy.mock.calls[0][1].id).toEqual(25)
       expect(httpPutSpy.mock.calls[0][1].name).toEqual('Pintokona!')
       expect(httpPutSpy.mock.calls[0][1].nameJp).toEqual('ぴんとこな!')
@@ -108,7 +108,7 @@ describe('EditRestaurantContainer', () => {
 
 
       expect(httpPutSpy.mock.calls.length).toBe(1)
-      expect(httpPutSpy.mock.calls[0][0]).toBe('http://localhost:8080/restaurants/25')
+      expect(httpPutSpy.mock.calls[0][0]).toContain('/restaurants/25')
       expect(httpPutSpy.mock.calls[0][1].id).toEqual(25)
       expect(httpPutSpy.mock.calls[0][1].name).toEqual('Pintokona!')
       expect(httpPutSpy.mock.calls[0][1].nameJp).toEqual('ぴんとこな!')
@@ -138,7 +138,7 @@ describe('EditRestaurantContainer', () => {
 
       expect(confirmSpy.mock.calls.length).toBe(1)
       expect(httpDeleteSpy.mock.calls.length).toBe(1)
-      expect(httpDeleteSpy.mock.calls[0][0]).toBe('http://localhost:8080/restaurants/25')
+      expect(httpDeleteSpy.mock.calls[0][0]).toContain('/restaurants/25')
     })
   })
 })
