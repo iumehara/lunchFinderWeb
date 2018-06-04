@@ -1,12 +1,21 @@
 import {connect} from 'react-redux'
 import {setDispatch} from '../actions'
-import {addRestaurantCategory, getCategory, getRestaurants, removeRestaurantCategory} from '../fetchers/resourceFetcher'
+import {
+  addRestaurantCategory, destroyCategory,
+  getCategory,
+  getRestaurants,
+  removeRestaurantCategory
+} from '../fetchers/resourceFetcher'
 import EditCategory from './EditCategory'
 
-export const mapStateToProps = state => ({
+export const mapStateToProps = (state, ownProps) => ({
   category: state.category,
   restaurants: state.restaurants,
-  restaurant: state.restaurant
+  restaurant: state.restaurant,
+  destroyCategory: () => {
+    destroyCategory(ownProps.match.params.id)
+      .then(() => ownProps.history.push('/'))
+  }
 })
 
 export const mapDispatchToProps = (dispatch) => ({

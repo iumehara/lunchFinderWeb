@@ -61,7 +61,9 @@ class Restaurant extends React.Component<Props> {
           </div>
           <div className='details'>
             <div className='title'>
-              <h1>{restaurant.nameJp}</h1>({restaurant.name})
+              <h1>{restaurant.nameJp}</h1>
+              <div>{restaurant.name}</div>
+              <div>{restaurant.website}</div>
             </div>
             <SingleMarkerMap restaurant={restaurant}/>
             <ul>

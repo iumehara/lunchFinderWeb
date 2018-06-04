@@ -16,7 +16,8 @@ type Props = {
   fetchRestaurants: () => {},
   setRestaurantId: () => {},
   addCategory: (restaurantId: string, categoryId: string) => {},
-  removeCategory: (restaurantId: string, categoryId: string) => {}
+  removeCategory: (restaurantId: string, categoryId: string) => {},
+  destroyCategory: () => {}
 }
 
 class EditCategory extends React.Component<Props> {
@@ -37,6 +38,12 @@ class EditCategory extends React.Component<Props> {
 
   addCategory() {
     this.props.addCategory(this.props.restaurant.id, this.props.category.id)
+  }
+
+  renderDeleteCategoryButton() {
+    if (this.props.category.restaurants.length === 0) {
+      return <button className='danger delete' onClick={this.props.destroyCategory}>delete</button>
+    }
   }
 
   render() {
@@ -69,6 +76,8 @@ class EditCategory extends React.Component<Props> {
               {restaurantOptions}
             </select>
             <button className='add-category action' onClick={this.addCategory.bind(this)}>Add</button>
+            <br/>
+            {this.renderDeleteCategoryButton()}
             <br/>
             <Link to={`/categories/${this.props.match.params.id}/`}>Back</Link>
           </div>
