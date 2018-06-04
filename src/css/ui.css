@@ -7,3 +7,7 @@ button.action {
     background-color: dodgerblue;
     color: white
 }
+
+.error {
+    color: red;
+}

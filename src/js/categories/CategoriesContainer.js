@@ -1,24 +1,30 @@
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import Categories from './Categories'
-import {
-  fetchCategoriesThenDispatch,
-  setDispatch
-} from '../actions'
-import { createCategory } from '../fetchers/resourceFetcher'
+import {fetchCategoriesThenDispatch, setDispatch} from '../actions'
+import {createCategory} from '../fetchers/resourceFetcher'
 
-export const mapStateToProps = (state, ownProps) => ({
+export const mapStateToProps = (state) => ({
   newCategory: state.newCategory,
-  categories: state.categories,
-  createNewCategory: () => {
-    createCategory(state.newCategory)
-      .then(idObject => ownProps.history.push(`/categories/${idObject.id}`))
-  }
+  formError: state.formError,
+  categories: state.categories
 })
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchCategories: () => fetchCategoriesThenDispatch(dispatch),
-  onNameChange: event => {
-    setDispatch(event.target.value, 'SET_NEW_CATEGORY_NAME', dispatch)
+
+  onNameChange: e => setDispatch(e.target.value, 'SET_NEW_CATEGORY_NAME', dispatch),
+
+  resetForm: () => dispatch({type: 'CREATE_CATEGORY_FAILURE', data: ''}),
+
+  createNewCategory: newCategory => {
+    createCategory(newCategory)
+      .then(response => {
+        if (response.id) {
+          ownProps.history.push(`/categories/${response.id}`)
+        } else if (response.error) {
+          dispatch({type: 'CREATE_CATEGORY_FAILURE', data: response.error})
+        }
+      })
   }
 })
 

@@ -1,9 +1,22 @@
 // @flow
-import { combineReducers } from 'redux'
-import type { CategoryType } from './categories/CategoryTypes'
-import { defaultCategory } from './categories/CategoryTypes'
-import type { RestaurantType, NewRestaurantType } from './restaurants/RestaurantTypes'
-import { defaultRestaurant, defaultNewRestaurant } from './restaurants/RestaurantTypes'
+import {combineReducers} from 'redux'
+import type {CategoryType} from './categories/CategoryTypes'
+import {defaultCategory} from './categories/CategoryTypes'
+import type {NewRestaurantType, RestaurantType} from './restaurants/RestaurantTypes'
+import {defaultNewRestaurant, defaultRestaurant} from './restaurants/RestaurantTypes'
+
+export const formError = (
+  state: Object = {},
+  action: Object
+) => {
+  const { type, data} = action
+  switch (type) {
+    case 'CREATE_CATEGORY_FAILURE':
+      return data
+    default:
+      return state
+  }
+}
 
 export const categories = (
   state: Array<CategoryType> = [],
@@ -108,6 +121,7 @@ export const formDataLoaded = (state: boolean=false, action: Object) => {
 }
 
 export default combineReducers({
+  formError,
   categories,
   category,
   newCategory,

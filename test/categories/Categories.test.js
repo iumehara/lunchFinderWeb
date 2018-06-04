@@ -4,7 +4,7 @@ import Categories from '../../src/js/categories/Categories'
 
 describe('Categories', () => {
   it('displays list', () => {
-    const props = {fetchCategories: ()=>{}, categories: [{name: 'Sushi'}, {name: 'Ramen'}]}
+    const props = {fetchCategories: ()=>{}, categories: [{name: 'Sushi'}, {name: 'Ramen'}], resetForm: () => {}}
     const app = shallow(<Categories {...props}/>)
 
     expect(app.find('CategoryLink').length).toBe(2)
@@ -13,7 +13,7 @@ describe('Categories', () => {
   })
 
   it('displays form', () => {
-    const props = {fetchCategories: ()=>{}, categories: [{name: 'Sushi'}, {name: 'Ramen'}]}
+    const props = {fetchCategories: ()=>{}, categories: [{name: 'Sushi'}, {name: 'Ramen'}], resetForm: () => {}}
     const app = shallow(<Categories {...props}/>)
 
     expect(app.find('.name label').length).toBe(1)
