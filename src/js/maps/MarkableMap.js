@@ -43,7 +43,12 @@ export default class MarkableMap extends React.Component<Props, State> {
   }
 
   render() {
-    return <div id="map"/>
+    return (
+      <div>
+        <div>click on the map the mark the restaurant</div>
+        <div id="map"/>
+      </div>
+    )
   }
 }
 

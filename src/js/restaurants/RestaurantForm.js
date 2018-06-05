@@ -65,10 +65,15 @@ export default class RestaurantForm extends React.Component<Props> {
 
     const map = () => {
       let geolocation
-      if (newRestaurant.geolocation && newRestaurant.geolocation.lat && newRestaurant.geolocation.long) {
-        geolocation = {lat: newRestaurant.geolocation.lat, long: newRestaurant.geolocation.long}
+      if (this.props.editMode) {
+        if (newRestaurant.geolocation && newRestaurant.geolocation.lat && newRestaurant.geolocation.long) {
+          geolocation = {lat: newRestaurant.geolocation.lat, long: newRestaurant.geolocation.long}
+          return <MarkableMap geolocation={geolocation} onMapChange={onMapChange}/>
+        }
+      } else {
+        return <MarkableMap onMapChange={onMapChange}/>
       }
-      return <MarkableMap geolocation={geolocation} onMapChange={onMapChange}/>
+
     }
 
     return (
