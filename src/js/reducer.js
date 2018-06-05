@@ -105,16 +105,20 @@ export const newRestaurant = (
     case 'REMOVE_NEW_RESTAURANT_CATEGORY_ID_SUCCESS':
       categoryIds = state.categoryIds.filter(id => id !== Number(data))
       return Object.assign({}, state, {categoryIds})
+    case 'RESET_NEW_RESTAURANT':
+      return {categoryIds: []}
     default:
       return state
   }
 }
 
 export const formDataLoaded = (state: boolean=false, action: Object) => {
-  const {type, data} = action
+  const {type} = action
   switch (type) {
     case 'FETCH_NEW_RESTAURANT_SUCCESS':
       return true
+    case 'RESET_FORM':
+      return false
     default:
       return state
   }

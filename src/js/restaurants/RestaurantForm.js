@@ -12,12 +12,17 @@ type Props = {
   onInputChange: (fieldObject: Object) => {},/**/
   onGeolocationChange: (geolocation: Object) => {},
   onCategoryChange: () => {},
-  saveButtonWasClicked: () => {}
+  saveButtonWasClicked: () => {},
+  resetForm: () => {}
 }
 
 export default class RestaurantForm extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchCategories()
+  }
+
+  componentWillUnmount() {
+    this.props.resetForm()
   }
 
   render() {
@@ -27,7 +32,7 @@ export default class RestaurantForm extends React.Component<Props> {
     categoryOptions.unshift(<option key={0}>Select Category</option>)
 
     const selectedCategories = this.props.newRestaurant.categoryIds.map(id => {
-      const categories = this.props.categories.filter(category => category.id == id)
+      const categories = this.props.categories.filter(category => category.id === id)
       let categoryName
       if (categories.length > 0) {
         categoryName = categories[0].name

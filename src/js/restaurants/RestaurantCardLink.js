@@ -1,10 +1,9 @@
 // @flow
 import React from 'react'
 import {Link} from 'react-router-dom'
-import type {BasicRestaurantType} from "./RestaurantTypes";
 
 type Props = {
-  restaurant: BasicRestaurantType,
+  restaurant: any,
   selected: boolean
 }
 

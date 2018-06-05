@@ -1,9 +1,6 @@
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import RestaurantForm from './RestaurantForm'
-import {
-  fetchCategoriesThenDispatch,
-  setDispatch
-} from '../actions'
+import {fetchCategoriesThenDispatch, setDispatch} from '../actions'
 
 export const mapStateToProps = (state, ownProps) => ({
   newRestaurant: state.newRestaurant,
@@ -13,7 +10,7 @@ export const mapStateToProps = (state, ownProps) => ({
   formDataLoaded: state.formDataLoaded
 })
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = (dispatch) => ({
   onInputChange: fieldObject => {
     setDispatch(fieldObject, 'SET_NEW_RESTAURANT_FIELD', dispatch)
   },
@@ -30,7 +27,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   fetchCategories: () => {
     fetchCategoriesThenDispatch(dispatch)
-  }
+  },
+  resetForm: () => dispatch({type: 'RESET_FORM'})
 })
 
 const RestaurantFormContainer = connect(

@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import NewRestaurant from './NewRestaurant'
-import { createRestaurant } from '../fetchers/resourceFetcher'
+import {createRestaurant} from '../fetchers/resourceFetcher'
 import {fetchRestaurantsThenDispatch} from '../actions'
 
 const mapStateToProps = (state, ownProps) => ({
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
   }
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   fetchRestaurants: () => fetchRestaurantsThenDispatch(dispatch)
 })
 

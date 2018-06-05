@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import RestaurantFormContainer from './RestaurantFormContainer'
-import type {NewRestaurantType, RestaurantType} from './RestaurantTypes'
+import type {RestaurantType} from './RestaurantTypes'
 import RestaurantCardLink from './RestaurantCardLink'
 
 type Props = {
@@ -17,7 +17,7 @@ export default class NewRestaurant extends React.Component<Props> {
 
   render() {
     const restaurants = this.props.restaurants.map((restaurant, i) => {
-      return <RestaurantCardLink key={i} restaurant={restaurant}/>
+      return <RestaurantCardLink key={i} restaurant={restaurant} selected={false}/>
     })
 
     return (
