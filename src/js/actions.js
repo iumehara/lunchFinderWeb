@@ -1,4 +1,4 @@
-import {getCategories, getRestaurant} from './fetchers/resourceFetcher'
+import {getCategories, getRestaurant, getRestaurants} from './fetchers/resourceFetcher'
 
 export const fetchCategoriesThenDispatch = dispatch => {
   getCategories()
@@ -8,6 +8,11 @@ export const fetchCategoriesThenDispatch = dispatch => {
 export const fetchRestaurantThenDispatch = (id, dispatch) => {
   getRestaurant(id)
     .then(data => dispatch({type: 'FETCH_RESTAURANT_SUCCESS', data}))
+}
+
+export const fetchRestaurantsThenDispatch = dispatch => {
+  getRestaurants()
+    .then(data => dispatch({type: 'FETCH_RESTAURANTS_SUCCESS', data}))
 }
 
 export const fetchNewRestaurantThenDispatch = (id, dispatch) => {

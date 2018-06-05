@@ -1,17 +1,23 @@
 import { connect } from 'react-redux'
 import NewRestaurant from './NewRestaurant'
 import { createRestaurant } from '../fetchers/resourceFetcher'
+import {fetchRestaurantsThenDispatch} from '../actions'
 
-export const mapStateToProps = (state, ownProps) => ({
-  newRestaurant: state.newRestaurant,
+const mapStateToProps = (state, ownProps) => ({
+  restaurants: state.restaurants,
   createNewRestaurant: () => {
     createRestaurant(state.newRestaurant)
       .then(idObject => ownProps.history.push(`/restaurants/${idObject.id}`))
   }
 })
 
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  fetchRestaurants: () => fetchRestaurantsThenDispatch(dispatch)
+})
+
 const NewRestaurantContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(NewRestaurant)
 
 export default NewRestaurantContainer
