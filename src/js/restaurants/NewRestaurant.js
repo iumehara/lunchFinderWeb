@@ -6,6 +6,7 @@ import RestaurantCardLink from './RestaurantCardLink'
 
 type Props = {
   fetchRestaurants: () => {},
+  resetNewRestaurant: () => {},
   restaurants: [RestaurantType],
   createNewRestaurant: () => {}
 }
@@ -13,6 +14,7 @@ type Props = {
 export default class NewRestaurant extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchRestaurants()
+    this.props.resetNewRestaurant()
   }
 
   render() {

@@ -15,9 +15,9 @@ describe('NewRestaurantContainer', () => {
 
     const newRestaurantContainer = mountContainer(NewRestaurantContainer)
 
-    newRestaurantContainer.find('.name input').simulate('change', {target: {value: 'Pintokona'}})
-    newRestaurantContainer.find('.name-jp input').simulate('change', {target: {value: 'ぴんとこな'}})
-    newRestaurantContainer.find('.website input').simulate('change', {target: {value: 'www.pintokona.example.com'}})
+    newRestaurantContainer.find('.name input').simulate('change', {target: {name: 'name', value: 'Pintokona'}})
+    newRestaurantContainer.find('.name-jp input').simulate('change', {target: {name: 'nameJp', value: 'ぴんとこな'}})
+    newRestaurantContainer.find('.website input').simulate('change', {target: {name: 'website', value: 'www.pintokona.example.com'}})
     newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '1'}})
     newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '2'}})
     newRestaurantContainer.find('.categories select').simulate('change', {target: {value: '3'}})

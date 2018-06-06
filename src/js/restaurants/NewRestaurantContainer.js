@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchRestaurants: () => fetchRestaurantsThenDispatch(dispatch)
+  fetchRestaurants: () => fetchRestaurantsThenDispatch(dispatch),
+  resetNewRestaurant: () => dispatch({type: 'RESET_NEW_RESTAURANT'})
 })
 
 const NewRestaurantContainer = connect(

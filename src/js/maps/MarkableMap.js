@@ -4,7 +4,7 @@ import {addGoogleClickListener, initCenteredGoogleMap, initGoogleMapsMarker} fro
 import {loadGoogleMaps} from '../fetchers/libraryLoader'
 
 type Props = {
-  geolocation?: {lat: number, long: number},
+  geolocation?: {lat?: number, long?: number},
   onMapChange: ({}) => {}
 }
 
@@ -20,9 +20,10 @@ export default class MarkableMap extends React.Component<Props, State> {
   loadMap() {
     loadGoogleMaps()
       .then(() => {
+        const geolocation = this.props.geolocation
         let position = {lat: 35.660480, lng: 139.729247}
-        if (this.props.geolocation) {
-          position = {lat: this.props.geolocation.lat, lng: this.props.geolocation.long}
+        if (geolocation && geolocation.lat && geolocation.long) {
+          position = {lat: geolocation.lat, lng: geolocation.long}
         }
 
         const map = initCenteredGoogleMap(position)

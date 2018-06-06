@@ -3,7 +3,7 @@ import EditRestaurantContainer from '../../src/js/restaurants/EditRestaurantCont
 import * as httpFetcher from '../../src/js/fetchers/httpFetcher'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 import * as windowWrapper from '../../src/js/wrappers/windowWrapper'
-import {mountContainer} from '../helper'
+import {mockPromise, mountContainer} from '../helper'
 
 describe('EditRestaurantContainer', () => {
   beforeEach(() => jest.restoreAllMocks())
@@ -61,15 +61,14 @@ describe('EditRestaurantContainer', () => {
         nameJp: 'ぴんとこな',
         categories: []
       }
-      jest.spyOn(resourceFetcher, 'getRestaurant').mockImplementation(() => {
-        return {then: callbackFunc => callbackFunc(mockRestaurant)}
-      })
+      jest.spyOn(resourceFetcher, 'getRestaurant')
+        .mockImplementation(() => mockPromise(mockRestaurant))
 
       const editRestaurantContainer = mountContainer(EditRestaurantContainer, {id: '25'})
 
 
-      editRestaurantContainer.find('.name input').simulate('change', {target: {value: 'Pintokona!'}})
-      editRestaurantContainer.find('.name-jp input').simulate('change', {target: {value: 'ぴんとこな!'}})
+      editRestaurantContainer.find('.name input').simulate('change', {target: {name: 'name', value: 'Pintokona!'}})
+      editRestaurantContainer.find('.name-jp input').simulate('change', {target: {name: 'nameJp', value: 'ぴんとこな!'}})
       editRestaurantContainer.find('button.save').simulate('click')
 
 
@@ -100,9 +99,9 @@ describe('EditRestaurantContainer', () => {
       const editRestaurantContainer = mountContainer(EditRestaurantContainer, {id: '25'})
 
 
-      editRestaurantContainer.find('.name input').simulate('change', {target: {value: 'Pintokona!'}})
-      editRestaurantContainer.find('.name-jp input').simulate('change', {target: {value: 'ぴんとこな!'}})
-      editRestaurantContainer.find('.website input').simulate('change', {target: {value: 'www.pintokona.example.com'}})
+      editRestaurantContainer.find('.name input').simulate('change', {target: {name: 'name', value: 'Pintokona!'}})
+      editRestaurantContainer.find('.name-jp input').simulate('change', {target: {name: 'nameJp', value: 'ぴんとこな!'}})
+      editRestaurantContainer.find('.website input').simulate('change', {target: {name: 'website', value: 'www.pintokona.example.com'}})
       editRestaurantContainer.find('.categories select').simulate('change', {target: {value: '2'}})
       editRestaurantContainer.find('button.save').simulate('click')
 

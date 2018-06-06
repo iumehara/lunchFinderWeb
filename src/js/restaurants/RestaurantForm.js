@@ -25,81 +25,83 @@ export default class RestaurantForm extends React.Component<Props> {
     this.props.resetForm()
   }
 
-  render() {
-    const categoryOptions = this.props.categories.map((category, i) => {
+  renderInput(name: string, value?: string) {
+    const onChange = e => this.props.onInputChange({[e.target.name]: e.target.value})
+    if(this.props.editMode) {
+      if (this.props.formDataLoaded) {
+        return <input name={name} onChange={onChange} defaultValue={value}/>
+      }
+    } else {
+      return <input name={name} onChange={onChange}/>
+    }
+  }
+
+  renderMarkableMap() {
+    if (this.props.editMode) {
+      if (this.props.formDataLoaded) {
+        return <MarkableMap geolocation={this.props.newRestaurant.geolocation} onMapChange={this.props.onGeolocationChange}/>
+      }
+    } else {
+      return <MarkableMap onMapChange={this.props.onGeolocationChange}/>
+    }
+  }
+
+  renderCategorySelect() {
+    const options = this.props.categories.map((category, i) => {
       return <option key={i + 1} value={category.id}>{category.name}</option>
     })
-    categoryOptions.unshift(<option key={0}>Select Category</option>)
+    options.unshift(<option key={0}>Select Category</option>)
 
-    const selectedCategories = this.props.newRestaurant.categoryIds.map(id => {
-      const categories = this.props.categories.filter(category => category.id === id)
-      let categoryName
-      if (categories.length > 0) {
-        categoryName = categories[0].name
-      }
+    return (
+      <select name="text" onChange={this.props.onCategoryChange}>
+        {options}
+      </select>
+    )
+  }
 
-      return (
-        <li key={id} className={`category${id}`}>
-          <button className='remove' value={id} onClick={this.props.onRemoveCategory}>x</button>
-          {categoryName}
-        </li>
-      )
-    })
+  renderSelectedCategories() {
+    // if (this.props.editMode || this.props.formDataLoaded) {
+      return this.props.newRestaurant.categoryIds.map(selectedId => {
+        const categories = this.props.categories.filter(category => category.id === selectedId)
+        const categoryName = categories.length > 0 ? categories[0].name : ''
 
-    const inputIfValueExists = (value, onChange) => {
-      if(this.props.editMode) {
-        if (this.props.formDataLoaded) {
-          return <input onChange={onChange} defaultValue={value}/>
-        }
-      } else {
-        return <input onChange={onChange}/>
-      }
-    }
+        return (
+          <li key={selectedId} className={`category${selectedId}`}>
+            <button className='remove' value={selectedId} onClick={this.props.onRemoveCategory}>x</button>
+            {categoryName}
+          </li>
+        )
+      })
+    // }
+  }
 
-    const onNameChange = e => this.props.onInputChange({name: e.target.value})
-    const onNameJpChange = e => this.props.onInputChange({nameJp: e.target.value})
-    const onWebsiteChange = e => this.props.onInputChange({website: e.target.value})
-    const onMapChange = geolocation => this.props.onGeolocationChange(geolocation)
-
-    const newRestaurant = this.props.newRestaurant
-
-    const map = () => {
-      let geolocation
-      if (this.props.editMode) {
-        if (newRestaurant.geolocation && newRestaurant.geolocation.lat && newRestaurant.geolocation.long) {
-          geolocation = {lat: newRestaurant.geolocation.lat, long: newRestaurant.geolocation.long}
-          return <MarkableMap geolocation={geolocation} onMapChange={onMapChange}/>
-        }
-      } else {
-        return <MarkableMap onMapChange={onMapChange}/>
-      }
-
-    }
-
+  render() {
     return (
       <div>
         <div className='name'>
           <label>Name (English)</label>
-          {inputIfValueExists(newRestaurant.name, onNameChange)}
+          {this.renderInput('name', this.props.newRestaurant.name)}
         </div>
         <div className='name-jp'>
           <label>店名 (日本語)</label>
-          {inputIfValueExists(newRestaurant.nameJp, onNameJpChange)}
+          {this.renderInput('nameJp', this.props.newRestaurant.nameJp)}
         </div>
         <div className='website'>
           <label>Website</label>
-          {inputIfValueExists(newRestaurant.website, onWebsiteChange)}
+          {this.renderInput('website', this.props.newRestaurant.website)}
         </div>
         <div className='categories'>
           <label>categories</label>
-          <select name="text" onChange={this.props.onCategoryChange}>{categoryOptions}</select>
+          {this.renderCategorySelect()}
           <ul>
-            {selectedCategories}
+            {this.renderSelectedCategories()}
           </ul>
         </div>
-        {map()}
+        {this.renderMarkableMap()}
 
-        <button className='action save' onClick={this.props.saveButtonWasClicked}>save</button>
+        <button className='action save' onClick={this.props.saveButtonWasClicked}>
+          save
+        </button>
       </div>
     )
   }
