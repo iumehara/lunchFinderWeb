@@ -1,19 +1,15 @@
 import React from 'react'
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
+import {HashRouter as Router, Link, Route, Switch} from 'react-router-dom'
 import NewCategoryContainer from './categories/NewCategoryContainer'
 import CategoryContainer from './categories/CategoryContainer'
 import EditCategoryContainer from './categories/EditCategoryContainer'
 import NewRestaurantContainer from './restaurants/NewRestaurantContainer'
 import RestaurantContainer from './restaurants/RestaurantContainer'
 import EditRestaurantContainer from './restaurants/EditRestaurantContainer'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
 import reducer from './reducer'
+import HeaderContainer from './header/HeaderContainer'
 
 export default function App() {
   const store = createStore(reducer)
@@ -23,14 +19,15 @@ export default function App() {
       <Router>
         <div className='app'>
           <ul>
-            <li><Link to="/categories">Categories</Link></li>
+            <HeaderContainer/>
+            <li><Link to="/categories/new">Add Category</Link></li>
             <li><Link to="/restaurants/new">Add Restaurant</Link></li>
           </ul>
 
           <hr/>
           <Switch>
             <Route exact path="/" component={NewCategoryContainer}/>
-            <Route exact path="/categories" component={NewCategoryContainer}/>
+            <Route exact path="/categories/new" component={NewCategoryContainer}/>
             <Route exact path="/categories/:id" component={CategoryContainer}/>
             <Route exact path="/categories/:id/edit" component={EditCategoryContainer}/>
             <Route exact path="/restaurants/new" component={NewRestaurantContainer}/>
