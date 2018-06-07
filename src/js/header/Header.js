@@ -19,10 +19,8 @@ class Header extends React.Component<Props> {
     })
 
     return (
-      <div>
-        <ul>
-          {categories}
-        </ul>
+      <div className='header'>
+        {categories}
       </div>
     )
   }
