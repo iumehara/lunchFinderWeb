@@ -8,6 +8,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCategories: () => fetchCategoriesThenDispatch(dispatch),
+
+  onSelectChange: (event, data) => {
+    if (event.target.value === 'popularity') {
+      dispatch({type: 'ORDER_BY_RESTAURANTS_COUNT', data})
+    } else {
+      dispatch({type: 'ORDER_BY_NAME', data})
+    }
+  }
 })
 
 const HeaderContainer = connect(

@@ -5,12 +5,17 @@ import CategoryLink from '../categories/CategoryLink'
 
 type Props = {
   categories: [CategoryType],
-  fetchCategories: () => {}
+  fetchCategories: () => {},
+  onSelectChange: (event: any, categories: [CategoryType]) => {}
 }
 
 class Header extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchCategories()
+  }
+
+  onChange(event: any) {
+    this.props.onSelectChange(event, this.props.categories)
   }
 
   render() {
@@ -20,7 +25,16 @@ class Header extends React.Component<Props> {
 
     return (
       <div className='header'>
-        {categories}
+        <div className='control'>
+          <div className='title'>Order by:</div>
+          <select onChange={this.onChange.bind(this)}>
+            <option value='name'>name</option>
+            <option value='popularity'>popularity</option>
+          </select>
+        </div>
+        <div className='list'>
+          {categories}
+        </div>
       </div>
     )
   }

@@ -26,6 +26,14 @@ export const categories = (
   switch (type) {
     case 'FETCH_CATEGORIES_SUCCESS':
       return data
+    case 'ORDER_BY_NAME':
+      return data
+                .slice()
+                .sort((a, b) => (a.name < b.name) ? -1 : 1)
+    case 'ORDER_BY_RESTAURANTS_COUNT':
+      return data
+                .slice()
+                .sort((a, b) => (a.restaurantCount > b.restaurantCount) ? -1 : 1)
     default:
       return state
   }

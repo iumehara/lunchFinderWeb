@@ -13,7 +13,7 @@ describe('HeaderContainer', () => {
 
     const headerContainer = mountContainer(HeaderContainer)
 
-    const categoriesList = headerContainer.find('Header').find('ul').text()
+    const categoriesList = headerContainer.find('Header').find('.list').text()
 
     expect(categoriesList).toContain('Sushi')
     expect(categoriesList).toContain('Pizza')
