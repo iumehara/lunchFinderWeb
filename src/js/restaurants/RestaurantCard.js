@@ -4,11 +4,18 @@ import type {BasicRestaurantType} from "./RestaurantTypes";
 
 type Props = {
   restaurant: BasicRestaurantType,
-  remove: () => {}
+  remove?: () => {}
 }
 
 const RestaurantCard = (props: Props) => {
   const categoryCount = props.restaurant.categoryIds ? props.restaurant.categoryIds.length : props.restaurant.categories.length
+
+  const removeButton = () => {
+    if (props.remove) {
+      return <button className='danger' onClick={props.remove}>Remove Restaurant</button>
+    }
+  }
+
   return (
     <div className='restaurant-card'>
       <div className='card-details'>
@@ -16,7 +23,7 @@ const RestaurantCard = (props: Props) => {
         <div className='categories'>
           <div>{categoryCount} categories</div>
         </div>
-        <button className='danger' onClick={props.remove}>Remove Restaurant</button>
+        {removeButton()}
       </div>
     </div>
   )
