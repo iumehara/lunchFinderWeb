@@ -1,10 +1,8 @@
 // @flow
 import React from 'react'
-import CategoryLink from './CategoryLink'
 import type {CategoryType} from './CategoryTypes'
 
 type Props = {
-  categories: [CategoryType],
   newCategory: CategoryType,
   fetchCategories: () => {},
   onNameChange: (event:  SyntheticEvent<HTMLButtonElement>) => {},
@@ -14,7 +12,6 @@ type Props = {
 
 class NewCategory extends React.Component<Props> {
   componentDidMount() {
-    this.props.fetchCategories()
     this.props.resetForm()
   }
 
@@ -36,16 +33,8 @@ class NewCategory extends React.Component<Props> {
   }
 
   render() {
-    const categories = this.props.categories.map((category, i) => {
-      return <CategoryLink key={i} category={category}/>
-    })
-
     return (
       <div>
-        <h1 className='title'>Categories</h1>
-        <ul>
-          {categories}
-        </ul>
         <div className='form'>
           <h1 className='title'>New Category</h1>
           {this.renderFormError()}
