@@ -12,7 +12,7 @@ type Props = {
   createNewCategory: (newCategory: CategoryType) => {}
 }
 
-class Categories extends React.Component<Props> {
+class NewCategory extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchCategories()
     this.props.resetForm()
@@ -60,4 +60,4 @@ class Categories extends React.Component<Props> {
   }
 }
 
-export default Categories
+export default NewCategory

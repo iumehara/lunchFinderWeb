@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import Categories from './Categories'
+import NewCategory from './NewCategory'
 import {fetchCategoriesThenDispatch, setDispatch} from '../actions'
 import {createCategory} from '../fetchers/resourceFetcher'
 
@@ -28,9 +28,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-const CategoriesContainer = connect(
+const NewCategoryContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Categories)
+)(NewCategory)
 
-export default CategoriesContainer
+export default NewCategoryContainer

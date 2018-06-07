@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import CategoriesContainer from './categories/CategoriesContainer'
+import NewCategoryContainer from './categories/NewCategoryContainer'
 import CategoryContainer from './categories/CategoryContainer'
 import EditCategoryContainer from './categories/EditCategoryContainer'
 import NewRestaurantContainer from './restaurants/NewRestaurantContainer'
@@ -29,8 +29,8 @@ export default function App() {
 
           <hr/>
           <Switch>
-            <Route exact path="/" component={CategoriesContainer}/>
-            <Route exact path="/categories" component={CategoriesContainer}/>
+            <Route exact path="/" component={NewCategoryContainer}/>
+            <Route exact path="/categories" component={NewCategoryContainer}/>
             <Route exact path="/categories/:id" component={CategoryContainer}/>
             <Route exact path="/categories/:id/edit" component={EditCategoryContainer}/>
             <Route exact path="/restaurants/new" component={NewRestaurantContainer}/>
