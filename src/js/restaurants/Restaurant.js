@@ -27,14 +27,19 @@ class Restaurant extends React.Component<Props> {
 
   render() {
     const restaurant = this.props.restaurant
-    const categories = restaurant.categories.map((category, i) => {
+    const category = this.props.category
+    const categoryLinks = restaurant.categories.map((category, i) => {
       return <CategoryLink key={i} category={category}/>
     })
 
     return (
       <div className='restaurant'>
         <div className='main'>
-          <RestaurantList category={this.props.category} restaurant={this.props.restaurant}/>
+          <RestaurantList
+            category={category}
+            restaurant={restaurant}
+            restaurants={category.restaurants}
+          />
           <div className='details'>
             <div className='title'>
               <h1>{restaurant.nameJp}</h1>
@@ -43,7 +48,7 @@ class Restaurant extends React.Component<Props> {
             </div>
             <SingleMarkerMap restaurant={restaurant}/>
             <ul>
-              {categories}
+              {categoryLinks}
             </ul>
             <Link to={`/restaurants/${restaurant.id}/edit`}>Edit Restaurant</Link>
           </div>

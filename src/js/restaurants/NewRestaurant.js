@@ -2,7 +2,7 @@
 import React from 'react'
 import RestaurantFormContainer from './RestaurantFormContainer'
 import type {BasicRestaurantType} from './RestaurantTypes'
-import RestaurantCard from './RestaurantCard'
+import RestaurantList from './RestaurantList'
 
 type Props = {
   fetchRestaurants: () => {},
@@ -18,19 +18,10 @@ export default class NewRestaurant extends React.Component<Props> {
   }
 
   render() {
-    const restaurants = this.props.restaurants.map((restaurant, i) => {
-      return <RestaurantCard key={i} restaurant={restaurant}/>
-    })
-
     return (
       <div className='restaurant'>
         <div className='main'>
-          <div className='restaurant-list'>
-            <div className='title'>
-              <h1>Existing Restaurants</h1>
-            </div>
-            <div>{restaurants}</div>
-          </div>
+          <RestaurantList restaurants={this.props.restaurants}/>
           <div className='details'>
             <h1 className='title'>New Restaurant</h1>
             <RestaurantFormContainer saveButtonWasClicked={this.props.createNewRestaurant}/>

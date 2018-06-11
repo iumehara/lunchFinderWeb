@@ -31,7 +31,10 @@ class Category extends React.Component<Props> {
     return (
       <div className='category'>
         <div className='main'>
-          <RestaurantList category={category}/>
+          <RestaurantList
+            category={category}
+            restaurants={category.restaurants}
+          />
           <div className='details'>
             <div className='title'>
               <h1>All {category.name} Restaurants</h1>
