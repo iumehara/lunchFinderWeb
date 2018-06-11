@@ -4,9 +4,8 @@ import CategoryLink from '../categories/CategoryLink'
 import {Link} from 'react-router-dom'
 import SingleMarkerMap from '../maps/SingleMarkerMap'
 import type {RestaurantType} from './RestaurantTypes'
-import {basicRestaurantBuilder} from './RestaurantTypes'
-import RestaurantCardLink from "./RestaurantCardLink";
 import type {CategoryType} from '../categories/CategoryTypes'
+import RestaurantList from './RestaurantList'
 
 type Props = {
   id: string,
@@ -27,21 +26,6 @@ class Restaurant extends React.Component<Props> {
   }
 
   render() {
-    let categoryLink
-    const category = this.props.category
-    let categoryRestaurants
-
-    if (category.restaurants.length > 0) {
-      categoryRestaurants = category.restaurants.map((restaurant, i) => {
-        const selected = restaurant.id === this.props.restaurant.id
-        return <RestaurantCardLink key={i} restaurant={restaurant} selected={selected}/>
-      })
-      categoryLink = <CategoryLink category={category}/>
-    } else {
-      const basicRestaurant = basicRestaurantBuilder(this.props.restaurant)
-      categoryRestaurants = <RestaurantCardLink restaurant={basicRestaurant} selected={true}/>
-    }
-
     const restaurant = this.props.restaurant
     const categories = restaurant.categories.map((category, i) => {
       return <CategoryLink key={i} category={category}/>
@@ -50,15 +34,7 @@ class Restaurant extends React.Component<Props> {
     return (
       <div className='restaurant'>
         <div className='main'>
-          <div className='restaurant-list'>
-            <div className='title'>
-              {categoryLink}
-              <h1>Restaurants</h1>
-            </div>
-            <div>
-              {categoryRestaurants}
-            </div>
-          </div>
+          <RestaurantList category={this.props.category} restaurant={this.props.restaurant}/>
           <div className='details'>
             <div className='title'>
               <h1>{restaurant.nameJp}</h1>
@@ -69,7 +45,7 @@ class Restaurant extends React.Component<Props> {
             <ul>
               {categories}
             </ul>
-            <Link to={`/restaurants/${restaurant.id}/edit`}>Edit</Link>
+            <Link to={`/restaurants/${restaurant.id}/edit`}>Edit Restaurant</Link>
           </div>
         </div>
       </div>
