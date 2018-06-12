@@ -1,6 +1,6 @@
 import React from 'react'
 import CategoryContainer from '../../src/js/categories/CategoryContainer'
-import {mountContainer} from '../helper'
+import {mockPromise, mountContainer} from '../helper'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 
 describe('CategoryContainer', () => {
@@ -12,9 +12,14 @@ describe('CategoryContainer', () => {
       name: 'Pizza',
       restaurants: [{id: 1, name: 'Pizzakaya', categoryIds: [1, 2]}]
     }
-    jest.spyOn(resourceFetcher, 'getCategory').mockImplementation(() => {
-      return {then: callbackFunc => callbackFunc(mockCategory)}
-    })
+    jest.spyOn(resourceFetcher, 'getCategory')
+      .mockImplementation(() => mockPromise(mockCategory))
+
+    const mockRestaurants = [
+      {id: 1, name: 'Pizzakaya', categories: [{id: 1, name: 'Spicy'}, {id: 2, name: 'Pizza'}]}
+    ]
+    jest.spyOn(resourceFetcher, 'getCategoryRestaurants')
+      .mockImplementation(() => mockPromise(mockRestaurants))
   })
 
   describe('restaurant list', () => {

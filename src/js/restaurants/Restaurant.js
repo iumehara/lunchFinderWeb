@@ -11,6 +11,7 @@ type Props = {
   id: string,
   category: CategoryType,
   restaurant: RestaurantType,
+  restaurants: Array<RestaurantType>,
   fetchRestaurant: () => {}
 }
 
@@ -38,7 +39,7 @@ class Restaurant extends React.Component<Props> {
           <RestaurantList
             category={category}
             restaurant={restaurant}
-            restaurants={category.restaurants}
+            restaurants={this.props.restaurants}
           />
           <div className='details'>
             <div className='title'>

@@ -3,26 +3,30 @@ import React from 'react'
 import type {CategoryType} from './CategoryTypes'
 import MultipleMarkerMap from '../maps/MultipleMarkerMap'
 import RestaurantList from '../restaurants/RestaurantList'
+import type {RestaurantType} from '../restaurants/RestaurantTypes'
 
 type Props = {
-  match: {params: {id: string}},
+  id: string,
   category: CategoryType,
-  fetchCategory: (id: string) => {}
+  restaurants: Array<RestaurantType>,
+  fetchCategory: (id: string) => {},
+  fetchCategoryRestaurants: (id: string) => {}
 }
 
 class Category extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.match.params.id !== this.props.match.params.id) {
-      this.fetchData(nextProps.match.params.id)
+    if (nextProps.id !== this.props.id) {
+      this.fetchData(nextProps.id)
     }
   }
 
   componentDidMount() {
-    this.fetchData(this.props.match.params.id)
+    this.fetchData(this.props.id)
   }
 
   fetchData(id: string) {
     this.props.fetchCategory(id)
+    this.props.fetchCategoryRestaurants(id)
   }
 
   render() {
@@ -33,13 +37,13 @@ class Category extends React.Component<Props> {
         <div className='main'>
           <RestaurantList
             category={category}
-            restaurants={category.restaurants}
+            restaurants={this.props.restaurants}
           />
           <div className='details'>
             <div className='title'>
               <h1>All {category.name} Restaurants</h1>
             </div>
-            <MultipleMarkerMap id={category.id} restaurants={category.restaurants}/>
+            <MultipleMarkerMap id={category.id} restaurants={this.props.category.restaurants}/>
           </div>
         </div>
       </div>

@@ -12,6 +12,11 @@ export const getCategory = id => {
   return httpGet(url)
 }
 
+export const getCategoryRestaurants = id => {
+  const url = `${SERVER_URL}categories/${id}/restaurants/full`
+  return httpGet(url)
+}
+
 export const createCategory = newCategory => {
   const url = `${SERVER_URL}categories/`
   return httpPost(url, newCategory)
@@ -23,7 +28,7 @@ export const destroyCategory = id => {
 }
 
 export const getRestaurants = () => {
-  const url = `${SERVER_URL}restaurants`
+  const url = `${SERVER_URL}restaurants/full`
   return httpGet(url)
 }
 

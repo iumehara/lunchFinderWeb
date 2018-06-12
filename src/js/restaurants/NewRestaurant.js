@@ -1,13 +1,13 @@
 // @flow
 import React from 'react'
 import RestaurantFormContainer from './RestaurantFormContainer'
-import type {BasicRestaurantType} from './RestaurantTypes'
+import type {RestaurantType} from './RestaurantTypes'
 import RestaurantList from './RestaurantList'
 
 type Props = {
   fetchRestaurants: () => {},
   resetNewRestaurant: () => {},
-  restaurants: [BasicRestaurantType],
+  restaurants: Array<RestaurantType>,
   createNewRestaurant: () => {}
 }
 

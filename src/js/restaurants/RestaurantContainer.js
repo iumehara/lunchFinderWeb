@@ -1,14 +1,15 @@
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import Restaurant from './Restaurant'
-import { fetchRestaurantThenDispatch } from '../actions'
+import {fetchRestaurantThenDispatch} from '../actions'
 
-export const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => ({
   id: ownProps.match.params.id,
   category: state.category,
-  restaurant: state.restaurant
+  restaurant: state.restaurant,
+  restaurants: state.restaurants
 })
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchRestaurant: () => fetchRestaurantThenDispatch(ownProps.match.params.id, dispatch)
 })
 
