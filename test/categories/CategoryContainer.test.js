@@ -36,7 +36,7 @@ describe('CategoryContainer', () => {
 
 
       expect(categoryContainer.find('.restaurant-list').text()).toContain('Pizzakaya')
-      expect(categoryContainer.find('.restaurant-list').text()).toContain('2 categories')
+      expect(categoryContainer.find('.restaurant-list').text()).toContain('Spicy | Pizza')
     })
   })
 

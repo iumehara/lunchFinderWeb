@@ -2,7 +2,6 @@
 import React from 'react'
 import CategoryLink from '../categories/CategoryLink'
 import type {RestaurantType} from './RestaurantTypes'
-import {basicRestaurantBuilder} from './RestaurantTypes'
 import RestaurantCardLink from "./RestaurantCardLink";
 import type {CategoryType} from '../categories/CategoryTypes'
 import {Link} from 'react-router-dom'
@@ -30,8 +29,7 @@ class RestaurantList extends React.Component<Props> {
         return <RestaurantCardLink key={i} restaurant={restaurant} selected={selected}/>
       })
     } else if (this.props.restaurant) {
-      const basicRestaurant = basicRestaurantBuilder(this.props.restaurant)
-      restaurantList = <RestaurantCardLink restaurant={basicRestaurant} selected={true}/>
+      restaurantList = <RestaurantCardLink restaurant={this.props.restaurant} selected={true}/>
     }
 
     return (

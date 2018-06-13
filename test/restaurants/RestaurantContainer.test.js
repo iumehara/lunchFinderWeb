@@ -38,7 +38,7 @@ describe('RestaurantContainer', () => {
 
       expect(restaurantContainer.find('.restaurant-list').text()).toContain('Pintokona')
       expect(restaurantContainer.find('.restaurant-list').text()).toContain('ぴんとこな')
-      expect(restaurantContainer.find('.restaurant-list').text()).toContain('1 categories')
+      expect(restaurantContainer.find('.restaurant-list').text()).toContain('Sushi')
     })
   })
 
