@@ -28,8 +28,8 @@ class Header extends React.Component<Props> {
         <div className='control'>
           <div className='title'>Order by:</div>
           <select onChange={this.onChange.bind(this)}>
-            <option value='name'>name</option>
             <option value='popularity'>popularity</option>
+            <option value='name'>name</option>
           </select>
         </div>
         <div className='list'>

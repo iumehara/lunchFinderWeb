@@ -3,6 +3,7 @@
   .title {
     display: flex;
     width: 80px;
+    height: 30px;
     flex-direction: column;
     justify-content: center;
 
@@ -10,7 +11,7 @@
   .control {
     display: flex;
     select {
-      height: 50px;
+      height: 30px;
     }
   }
   .list {
