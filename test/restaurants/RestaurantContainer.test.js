@@ -1,7 +1,7 @@
 import React from 'react'
+import {mountContainer} from '../helper'
 import RestaurantContainer from '../../src/js/restaurants/RestaurantContainer'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
-import {mountContainer} from '../helper'
 
 describe('RestaurantContainer', () => {
   beforeEach(() => {
@@ -25,38 +25,43 @@ describe('RestaurantContainer', () => {
   })
 
   describe('restaurant list', () => {
+    let restaurantListSection
+    beforeEach(() => {
+      const restaurantContainer = mountContainer(RestaurantContainer, {id: '25'}).find('.restaurant-list')
+      restaurantListSection = restaurantContainer.find('.restaurant-list')
+    })
+
     it('displays title', () => {
-      const restaurantContainer = mountContainer(RestaurantContainer, {id: '25'})
-
-
-      expect(restaurantContainer.find('.restaurant-list').text()).toContain('Restaurants')
+      expect(restaurantListSection.text()).toContain('Restaurants')
     })
 
     it('displays restaurant', () => {
-      const restaurantContainer = mountContainer(RestaurantContainer, {id: '25'})
-
-
-      expect(restaurantContainer.find('.restaurant-list').text()).toContain('Pintokona')
-      expect(restaurantContainer.find('.restaurant-list').text()).toContain('ぴんとこな')
-      expect(restaurantContainer.find('.restaurant-list').text()).toContain('Sushi')
+      expect(restaurantListSection.text()).toContain('Pintokona')
+      expect(restaurantListSection.text()).toContain('ぴんとこな')
+      expect(restaurantListSection.text()).toContain('Sushi')
     })
   })
 
-  describe('map', () => {
-    it('displays title', () => {
+  describe('details section', () => {
+    let detailsSection
+    beforeEach(() => {
       const restaurantContainer = mountContainer(RestaurantContainer, {id: '25'})
-
-
-      expect(restaurantContainer.find('.details').text()).toContain('Pintokona')
-      expect(restaurantContainer.find('.restaurant-list').text()).toContain('ぴんとこな')
+      detailsSection = restaurantContainer.find('.details')
     })
 
-    it('renders map with correct props', () => {
-      const restaurantContainer = mountContainer(RestaurantContainer, {id: '25'})
+    it('displays name', () => {
+      expect(detailsSection.text()).toContain('Pintokona')
+      expect(detailsSection.text()).toContain('ぴんとこな')
+    })
 
+    it('displays website', () => {
+      expect(detailsSection.find('a.website').text()).toContain('www.default.example.com')
+      expect(detailsSection.find('a.website').props().href).toContain('www.default.example.com')
+    })
 
-      expect(restaurantContainer.find('.details').find('SingleMarkerMap').length).toEqual(1)
-      expect(restaurantContainer.find('.details').find('SingleMarkerMap').props().restaurant)
+    it('displays map with correct props', () => {
+      expect(detailsSection.find('SingleMarkerMap').length).toEqual(1)
+      expect(detailsSection.find('SingleMarkerMap').props().restaurant)
         .toEqual(
           {
             id: 25,
@@ -70,6 +75,17 @@ describe('RestaurantContainer', () => {
             categories: [{id: 1, name: 'Sushi'}]
           }
         )
+    })
+
+    it('displays category links', () => {
+      expect(detailsSection.find('a.category-link').length).toBe(1)
+      expect(detailsSection.find('a.category-link').at(0).text()).toBe('Sushi')
+      expect(detailsSection.find('a.category-link').at(0).props().href).toBe('#/categories/1')
+    })
+
+    it('displays edit link', () => {
+      expect(detailsSection.find('a.edit-restaurant').text()).toBe('Edit Restaurant')
+      expect(detailsSection.find('a.edit-restaurant').props().href).toBe('#/restaurants/25/edit')
     })
   })
 })

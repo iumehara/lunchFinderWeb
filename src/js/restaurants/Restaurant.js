@@ -46,13 +46,13 @@ class Restaurant extends React.Component<Props> {
             <div className='title'>
               <h1>{restaurant.nameJp}</h1>
               <div>{restaurant.name}</div>
-              <a href={displayUrl(restaurant.website)} target='_blank'>{restaurant.website}</a>
+              <a className='website' href={displayUrl(restaurant.website)} target='_blank'>{restaurant.website}</a>
             </div>
             <SingleMarkerMap restaurant={restaurant}/>
             <ul>
               {categoryLinks}
             </ul>
-            <Link to={`/restaurants/${restaurant.id}/edit`}>Edit Restaurant</Link>
+            <Link className='edit-restaurant' to={`/restaurants/${restaurant.id}/edit`}>Edit Restaurant</Link>
           </div>
         </div>
       </div>
