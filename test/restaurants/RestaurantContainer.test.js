@@ -1,5 +1,5 @@
 import React from 'react'
-import {mountContainer} from '../helper'
+import {mockPromise, mountContainer} from '../helper'
 import RestaurantContainer from '../../src/js/restaurants/RestaurantContainer'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 
@@ -19,15 +19,14 @@ describe('RestaurantContainer', () => {
       categories: [{id: 1, name: 'Sushi'}]
     }
 
-    jest.spyOn(resourceFetcher, 'getRestaurant').mockImplementation(() => {
-      return {then: callbackFunc => callbackFunc(mockRestaurant)}
-    })
+    jest.spyOn(resourceFetcher, 'getRestaurant')
+      .mockImplementation(() => mockPromise(mockRestaurant))
   })
 
   describe('restaurant list', () => {
     let restaurantListSection
     beforeEach(() => {
-      const restaurantContainer = mountContainer(RestaurantContainer, {id: '25'}).find('.restaurant-list')
+      const restaurantContainer = mountContainer(RestaurantContainer, {id: '25'})
       restaurantListSection = restaurantContainer.find('.restaurant-list')
     })
 

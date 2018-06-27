@@ -1,6 +1,6 @@
 import React from 'react'
-import CategoryContainer from '../../src/js/categories/CategoryContainer'
 import {mockPromise, mountContainer} from '../helper'
+import CategoryContainer from '../../src/js/categories/CategoryContainer'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
 
 describe('CategoryContainer', () => {
@@ -23,31 +23,38 @@ describe('CategoryContainer', () => {
   })
 
   describe('restaurant list', () => {
-    it('displays title', () => {
+    let restaurantListSection
+    beforeEach(() => {
       const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
+      restaurantListSection = categoryContainer.find('.restaurant-list')
+    })
 
-
-      expect(categoryContainer.find('.restaurant-list').text()).toContain('Pizza')
-      expect(categoryContainer.find('.restaurant-list').text()).toContain('Restaurants')
+    it('displays title', () => {
+      expect(restaurantListSection.text()).toContain('Pizza')
+      expect(restaurantListSection.text()).toContain('Restaurants')
     })
 
     it('displays restaurants', () => {
-      const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
-
-
-      expect(categoryContainer.find('.restaurant-list').text()).toContain('Pizzakaya')
-      expect(categoryContainer.find('.restaurant-list').text()).toContain('Spicy | Pizza')
+      expect(restaurantListSection.text()).toContain('Pizzakaya')
+      expect(restaurantListSection.text()).toContain('Spicy | Pizza')
     })
   })
 
-  describe('map', () => {
-    it('renders map with correct props', () => {
+  describe('details section', () => {
+    let detailsSection
+    beforeEach(() => {
       const categoryContainer = mountContainer(CategoryContainer, {id: '3'})
+      detailsSection = categoryContainer.find('.details')
+    })
 
+    it('displays title', () => {
+      expect(detailsSection.text()).toContain('All Pizza Restaurants')
+    })
 
-      expect(categoryContainer.find('MultipleMarkerMap').length).toEqual(1)
-      expect(categoryContainer.find('MultipleMarkerMap').props().id).toEqual(3)
-      expect(categoryContainer.find('MultipleMarkerMap').props().restaurants)
+    it('renders map with correct props', () => {
+      expect(detailsSection.find('MultipleMarkerMap').length).toEqual(1)
+      expect(detailsSection.find('MultipleMarkerMap').props().id).toEqual(3)
+      expect(detailsSection.find('MultipleMarkerMap').props().restaurants)
         .toEqual([{id: 1, name: 'Pizzakaya', categoryIds: [1, 2]}])
     })
   })
