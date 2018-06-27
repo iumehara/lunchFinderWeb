@@ -3,14 +3,6 @@
   .main {
     height: 100%;
     display: flex;
-    .restaurant-list {
-      border-right: 1px solid gray;
-      width: 600px;
-      .title {
-        display: flex;
-        align-items: center;
-      }
-    }
     .details {
       width: 100%;
     }

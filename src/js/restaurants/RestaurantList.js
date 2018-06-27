@@ -37,7 +37,7 @@ class RestaurantList extends React.Component<Props> {
         <div className='title'>
           {categoryLink}<h1>Restaurants</h1>
         </div>
-        <div>
+        <div className='list'>
           {restaurantList}
         </div>
         <br/>
