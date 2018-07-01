@@ -1,4 +1,4 @@
-----
--applications:
--- name: lunch-finder
--  path: ./dist
+---
+applications:
+- name: lunch-finder
+  path: ./dist
