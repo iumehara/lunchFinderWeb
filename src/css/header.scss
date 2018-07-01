@@ -6,6 +6,11 @@
   justify-content: space-between;
   .title {
     font-size: 40px;
+    a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+    }
   }
   .settings {
     a {

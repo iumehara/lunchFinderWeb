@@ -6,7 +6,7 @@ export default class TopHeader extends React.Component {
     return (
       <div className='top-header'>
         <div className='title'>
-          LunchFinder
+          <Link to='/'>LunchFinder</Link>
         </div>
         <div className='settings'>
           <Link to="/categories/new">Add Category</Link>
