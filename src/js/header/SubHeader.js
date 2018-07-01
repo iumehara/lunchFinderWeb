@@ -24,7 +24,7 @@ class SubHeader extends React.Component<Props> {
     })
 
     return (
-      <div className='header'>
+      <div className='sub-header'>
         <div className='control'>
           <div className='title'>Order by:</div>
           <select onChange={this.onChange.bind(this)}>

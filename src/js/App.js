@@ -10,6 +10,7 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducer from './reducer'
 import SubHeaderContainer from './header/SubHeaderContainer'
+import TopHeader from './header/TopHeader'
 
 export default function App() {
   const store = createStore(reducer)
@@ -18,13 +19,9 @@ export default function App() {
     <Provider store={store}>
       <Router>
         <div className='app'>
-          <ul>
-            <SubHeaderContainer/>
-            <li><Link to="/categories/new">Add Category</Link></li>
-            <li><Link to="/restaurants/new">Add Restaurant</Link></li>
-          </ul>
+          <TopHeader/>
+          <SubHeaderContainer/>
 
-          <hr/>
           <Switch>
             <Route exact path="/" component={NewCategoryContainer}/>
             <Route exact path="/categories/new" component={NewCategoryContainer}/>
