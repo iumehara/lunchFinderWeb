@@ -3,7 +3,8 @@ import {fetchCategoriesThenDispatch} from '../actions'
 import SubHeader from './SubHeader'
 
 const mapStateToProps = (state) => ({
-  categories: state.categories
+  categories: state.categories,
+  category: state.category
 })
 
 const mapDispatchToProps = (dispatch) => ({

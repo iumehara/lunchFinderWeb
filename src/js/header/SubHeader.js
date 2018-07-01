@@ -5,6 +5,7 @@ import CategoryLink from '../categories/CategoryLink'
 
 type Props = {
   categories: [CategoryType],
+  category: CategoryType,
   fetchCategories: () => {},
   onSelectChange: (event: any, categories: [CategoryType]) => {}
 }
@@ -20,7 +21,8 @@ class SubHeader extends React.Component<Props> {
 
   render() {
     const categories = this.props.categories.map((category, i) => {
-      return <CategoryLink key={i} category={category}/>
+      const active = (category.id === this.props.category.id)
+      return <CategoryLink key={i} category={category} active={active}/>
     })
 
     return (

@@ -29,11 +29,6 @@ describe('CategoryContainer', () => {
       restaurantListSection = categoryContainer.find('.restaurant-list')
     })
 
-    it('displays title', () => {
-      expect(restaurantListSection.text()).toContain('Pizza')
-      expect(restaurantListSection.text()).toContain('Restaurants')
-    })
-
     it('displays restaurants', () => {
       expect(restaurantListSection.text()).toContain('Pizzakaya')
       expect(restaurantListSection.text()).toContain('Spicy | Pizza')

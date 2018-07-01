@@ -1,6 +1,5 @@
 // @flow
 import React from 'react'
-import CategoryLink from '../categories/CategoryLink'
 import type {RestaurantType} from './RestaurantTypes'
 import RestaurantCardLink from "./RestaurantCardLink";
 import type {CategoryType} from '../categories/CategoryTypes'
@@ -15,11 +14,9 @@ type Props = {
 class RestaurantList extends React.Component<Props> {
   render() {
     const category = this.props.category
-    let categoryLink
     let editCategoryLink
     if (category && category.id) {
       editCategoryLink = <Link to={`/categories/${category.id}/edit`}>Edit Category</Link>
-      categoryLink = <CategoryLink category={category}/>
     }
 
     let restaurantList
@@ -34,9 +31,6 @@ class RestaurantList extends React.Component<Props> {
 
     return (
       <div className='restaurant-list'>
-        <div className='title'>
-          {categoryLink}<h1>Restaurants</h1>
-        </div>
         <div className='list'>
           {restaurantList}
         </div>

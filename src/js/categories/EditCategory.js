@@ -3,7 +3,6 @@ import React from 'react'
 import type {CategoryType} from './CategoryTypes'
 import type {RestaurantType} from '../restaurants/RestaurantTypes'
 import MultipleMarkerMap from '../maps/MultipleMarkerMap'
-import CategoryLink from './CategoryLink'
 import {Link} from 'react-router-dom'
 import RestaurantCard from '../restaurants/RestaurantCard'
 
@@ -65,10 +64,6 @@ class EditCategory extends React.Component<Props> {
       <div className='category'>
         <div className='main'>
           <div className='restaurant-list'>
-            <div className='title'>
-              <CategoryLink category={category}/>
-              <h1>Restaurants</h1>
-            </div>
             <div>
               {categoryRestaurants}
             </div>

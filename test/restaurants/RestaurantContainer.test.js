@@ -30,10 +30,6 @@ describe('RestaurantContainer', () => {
       restaurantListSection = restaurantContainer.find('.restaurant-list')
     })
 
-    it('displays title', () => {
-      expect(restaurantListSection.text()).toContain('Restaurants')
-    })
-
     it('displays restaurant', () => {
       expect(restaurantListSection.text()).toContain('Pintokona')
       expect(restaurantListSection.text()).toContain('ぴんとこな')

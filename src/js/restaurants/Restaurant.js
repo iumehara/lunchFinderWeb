@@ -31,7 +31,8 @@ class Restaurant extends React.Component<Props> {
     const restaurant = this.props.restaurant
     const category = this.props.category
     const categoryLinks = restaurant.categories.map((category, i) => {
-      return <CategoryLink key={i} category={category}/>
+      const active = category.id === this.props.category.id
+      return <CategoryLink key={i} category={category} active={active}/>
     })
 
     return (

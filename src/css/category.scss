@@ -14,6 +14,18 @@ a.category-link {
   margin: 0 5px;
   height: 30px;
   border-radius: 5px;
+  color: black;
+  padding: 5px;
+  background-color: antiquewhite;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+a.category-link.active {
+  border: 1px solid red;
+  margin: 0 5px;
+  height: 30px;
+  border-radius: 5px;
   color: white;
   padding: 5px;
   background-color: orange;
