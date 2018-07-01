@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchRestaurants: () => fetchRestaurantsThenDispatch(dispatch)
+  fetchRestaurants: () => fetchRestaurantsThenDispatch(dispatch),
+  clearCategory: () => dispatch({type: 'CLEAR_CATEGORY'})
 })
 
 const RestaurantsContainer = connect(

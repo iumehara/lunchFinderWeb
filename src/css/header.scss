@@ -25,6 +25,10 @@
   color: white;
   display: flex;
   padding: 10px;
+  .all-categories {
+    display: flex;
+    min-width: 120px;
+  }
   .title {
     display: flex;
     width: 80px;

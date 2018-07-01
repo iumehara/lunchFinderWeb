@@ -5,6 +5,7 @@ import MultipleMarkerMap from '../maps/MultipleMarkerMap'
 export default class Restaurants extends React.Component {
   componentDidMount() {
     this.props.fetchRestaurants()
+    this.props.clearCategory()
   }
 
   render() {

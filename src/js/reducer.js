@@ -47,6 +47,8 @@ export const category = (
   switch (type) {
     case 'FETCH_CATEGORY_SUCCESS':
       return Object.assign({}, state, data)
+    case 'CLEAR_CATEGORY':
+      return defaultCategory
     default:
       return state
   }

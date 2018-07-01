@@ -4,7 +4,8 @@ import SubHeader from './SubHeader'
 
 const mapStateToProps = (state) => ({
   categories: state.categories,
-  category: state.category
+  category: state.category,
+  restaurants: state.restaurants
 })
 
 const mapDispatchToProps = (dispatch) => ({
