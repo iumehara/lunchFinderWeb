@@ -9,7 +9,7 @@ type Props = {
   onSelectChange: (event: any, categories: [CategoryType]) => {}
 }
 
-class Header extends React.Component<Props> {
+class SubHeader extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchCategories()
   }
@@ -40,4 +40,4 @@ class Header extends React.Component<Props> {
   }
 }
 
-export default Header
+export default SubHeader

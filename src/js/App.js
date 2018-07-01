@@ -9,7 +9,7 @@ import EditRestaurantContainer from './restaurants/EditRestaurantContainer'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducer from './reducer'
-import HeaderContainer from './header/HeaderContainer'
+import SubHeaderContainer from './header/SubHeaderContainer'
 
 export default function App() {
   const store = createStore(reducer)
@@ -19,7 +19,7 @@ export default function App() {
       <Router>
         <div className='app'>
           <ul>
-            <HeaderContainer/>
+            <SubHeaderContainer/>
             <li><Link to="/categories/new">Add Category</Link></li>
             <li><Link to="/restaurants/new">Add Restaurant</Link></li>
           </ul>

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {fetchCategoriesThenDispatch} from '../actions'
-import Header from './Header'
+import SubHeader from './SubHeader'
 
 const mapStateToProps = (state) => ({
   categories: state.categories
@@ -18,9 +18,9 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const HeaderContainer = connect(
+const SubHeaderContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header)
+)(SubHeader)
 
-export default HeaderContainer
+export default SubHeaderContainer
