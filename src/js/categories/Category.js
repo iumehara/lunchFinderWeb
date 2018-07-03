@@ -33,18 +33,16 @@ class Category extends React.Component<Props> {
     const category = this.props.category
 
     return (
-      <div className='category'>
-        <div className='main'>
-          <RestaurantList
-            category={category}
-            restaurants={this.props.restaurants}
-          />
-          <div className='details'>
-            <div className='title'>
-              <h1>All {category.name} Restaurants</h1>
-            </div>
-            <MultipleMarkerMap id={category.id} restaurants={this.props.category.restaurants}/>
+      <div className='main'>
+        <RestaurantList
+          category={category}
+          restaurants={this.props.restaurants}
+        />
+        <div className='details'>
+          <div className='title'>
+            <h1>All {category.name} Restaurants</h1>
           </div>
+          <MultipleMarkerMap id={category.id} restaurants={this.props.category.restaurants}/>
         </div>
       </div>
     )

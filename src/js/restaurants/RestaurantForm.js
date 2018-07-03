@@ -60,24 +60,22 @@ export default class RestaurantForm extends React.Component<Props> {
   }
 
   renderSelectedCategories() {
-    // if (this.props.editMode || this.props.formDataLoaded) {
-      return this.props.newRestaurant.categoryIds.map(selectedId => {
-        const categories = this.props.categories.filter(category => category.id === selectedId)
-        const categoryName = categories.length > 0 ? categories[0].name : ''
+    return this.props.newRestaurant.categoryIds.map(selectedId => {
+      const categories = this.props.categories.filter(category => category.id === selectedId)
+      const categoryName = categories.length > 0 ? categories[0].name : ''
 
-        return (
-          <li key={selectedId} className={`category${selectedId}`}>
-            <button className='remove' value={selectedId} onClick={this.props.onRemoveCategory}>x</button>
-            {categoryName}
-          </li>
-        )
-      })
-    // }
+      return (
+        <li key={selectedId} className={`category${selectedId}`}>
+          <button className='remove' value={selectedId} onClick={this.props.onRemoveCategory}>x</button>
+          {categoryName}
+        </li>
+      )
+    })
   }
 
   render() {
     return (
-      <div>
+      <div className='restaurant-form'>
         <div className='name'>
           <label>Name (English)</label>
           {this.renderInput('name', this.props.newRestaurant.name)}
@@ -99,9 +97,11 @@ export default class RestaurantForm extends React.Component<Props> {
         </div>
         {this.renderMarkableMap()}
 
-        <button className='action save' onClick={this.props.saveButtonWasClicked}>
-          save
-        </button>
+        <div className='actions'>
+          <button className='action save' onClick={this.props.saveButtonWasClicked}>
+            save
+          </button>
+        </div>
       </div>
     )
   }

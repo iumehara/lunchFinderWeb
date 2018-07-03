@@ -1,25 +1,7 @@
-.restaurant {
-  height: 100%;
-  .main {
-    height: 100%;
-    display: flex;
-    .details {
-      width: 100%;
-    }
-  }
-}
-
 .restaurant-list {
   border-right: 1px solid gray;
-  width: 600px;
-  .title {
-    display: flex;
-    align-items: center;
-  }
-  .list {
-    overflow-y: scroll;
-    max-height: 700px;
-  }
+  overflow-y: scroll;
+  width: 800px;
 }
 
 .restaurant-card {
@@ -44,5 +26,20 @@
 a.restaurant-card .card-details {
   &:hover {
     background-color: #C4C4C4;
+  }
+}
+
+.restaurant-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .markable-map {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+  .actions {
+    margin-bottom: 20px;
   }
 }

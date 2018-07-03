@@ -61,27 +61,25 @@ class EditCategory extends React.Component<Props> {
     restaurantOptions.unshift(<option key={0} value={0}>Select Restaurant</option>)
 
     return (
-      <div className='category'>
-        <div className='main'>
-          <div className='restaurant-list'>
-            <div>
-              {categoryRestaurants}
-            </div>
-            <select className='restaurants' name="text" value={this.props.restaurant.id} onChange={this.props.setRestaurantId}>
-              {restaurantOptions}
-            </select>
-            <button className='add-category action' onClick={this.addCategory.bind(this)}>Add</button>
-            <br/>
-            {this.renderDeleteCategoryButton()}
-            <br/>
-            <Link to={`/categories/${this.props.match.params.id}/`}>Back</Link>
+      <div className='main'>
+        <div className='restaurant-list'>
+          <div>
+            {categoryRestaurants}
           </div>
-          <div className='details'>
-            <div className='title'>
-              <h1>All {category.name} Restaurants</h1>
-            </div>
-            <MultipleMarkerMap id={this.props.category.id} restaurants={this.props.category.restaurants}/>
+          <select className='restaurants' name="text" value={this.props.restaurant.id} onChange={this.props.setRestaurantId}>
+            {restaurantOptions}
+          </select>
+          <button className='add-category action' onClick={this.addCategory.bind(this)}>Add</button>
+          <br/>
+          {this.renderDeleteCategoryButton()}
+          <br/>
+          <Link to={`/categories/${this.props.match.params.id}/`}>Back</Link>
+        </div>
+        <div className='details'>
+          <div className='title'>
+            <h1>All {category.name} Restaurants</h1>
           </div>
+          <MultipleMarkerMap id={this.props.category.id} restaurants={this.props.category.restaurants}/>
         </div>
       </div>
     )

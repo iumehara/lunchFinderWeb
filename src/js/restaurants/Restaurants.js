@@ -10,15 +10,13 @@ export default class Restaurants extends React.Component {
 
   render() {
     return (
-      <div className='restaurant'>
-        <div className='main'>
-          <RestaurantList restaurants={this.props.restaurants}/>
-          <div className='details'>
-            <div className='title'>
-              <h1>All Restaurants</h1>
-            </div>
-            <MultipleMarkerMap restaurants={this.props.restaurants}/>
+      <div className='main'>
+        <RestaurantList restaurants={this.props.restaurants}/>
+        <div className='details'>
+          <div className='title'>
+            <h1>All Restaurants</h1>
           </div>
+          <MultipleMarkerMap restaurants={this.props.restaurants}/>
         </div>
       </div>
     )

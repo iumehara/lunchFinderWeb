@@ -36,25 +36,23 @@ class Restaurant extends React.Component<Props> {
     })
 
     return (
-      <div className='restaurant'>
-        <div className='main'>
-          <RestaurantList
-            category={category}
-            restaurant={restaurant}
-            restaurants={this.props.restaurants}
-          />
-          <div className='details'>
-            <div className='title'>
-              <h1>{restaurant.nameJp}</h1>
-              <div>{restaurant.name}</div>
-              <a className='website' href={displayUrl(restaurant.website)} target='_blank'>{restaurant.website}</a>
-            </div>
-            <SingleMarkerMap restaurant={restaurant}/>
-            <ul>
-              {categoryLinks}
-            </ul>
-            <Link className='edit-restaurant' to={`/restaurants/${restaurant.id}/edit`}>Edit Restaurant</Link>
+      <div className='main'>
+        <RestaurantList
+          category={category}
+          restaurant={restaurant}
+          restaurants={this.props.restaurants}
+        />
+        <div className='details'>
+          <div className='title'>
+            <h1>{restaurant.nameJp}</h1>
+            <div>{restaurant.name}</div>
+            <a className='website' href={displayUrl(restaurant.website)} target='_blank'>{restaurant.website}</a>
           </div>
+          <SingleMarkerMap restaurant={restaurant}/>
+          <ul>
+            {categoryLinks}
+          </ul>
+          <Link className='edit-restaurant' to={`/restaurants/${restaurant.id}/edit`}>Edit Restaurant</Link>
         </div>
       </div>
     )

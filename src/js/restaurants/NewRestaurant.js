@@ -19,13 +19,11 @@ export default class NewRestaurant extends React.Component<Props> {
 
   render() {
     return (
-      <div className='restaurant'>
-        <div className='main'>
-          <RestaurantList restaurants={this.props.restaurants}/>
-          <div className='details'>
-            <h1 className='title'>New Restaurant</h1>
-            <RestaurantFormContainer saveButtonWasClicked={this.props.createNewRestaurant}/>
-          </div>
+      <div className='main'>
+        <RestaurantList restaurants={this.props.restaurants}/>
+        <div className='details'>
+          <h1 className='title'>New Restaurant</h1>
+          <RestaurantFormContainer saveButtonWasClicked={this.props.createNewRestaurant}/>
         </div>
       </div>
     )
