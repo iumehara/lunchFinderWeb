@@ -2,6 +2,7 @@ import React from 'react'
 import {mockPromise, mountContainer} from '../helper'
 import CategoryContainer from '../../src/js/categories/CategoryContainer'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
+import MultipleMarkerMap from '../../src/js/maps/MultipleMarkerMap'
 
 describe('CategoryContainer', () => {
   beforeEach(() => {
@@ -42,14 +43,10 @@ describe('CategoryContainer', () => {
       detailsSection = categoryContainer.find('.details')
     })
 
-    it('displays title', () => {
-      expect(detailsSection.text()).toContain('All Pizza Restaurants')
-    })
-
     it('renders map with correct props', () => {
-      expect(detailsSection.find('MultipleMarkerMap').length).toEqual(1)
-      expect(detailsSection.find('MultipleMarkerMap').props().id).toEqual(3)
-      expect(detailsSection.find('MultipleMarkerMap').props().restaurants)
+      expect(detailsSection.find(MultipleMarkerMap).length).toEqual(1)
+      expect(detailsSection.find(MultipleMarkerMap).props().id).toEqual(3)
+      expect(detailsSection.find(MultipleMarkerMap).props().restaurants)
         .toEqual([{id: 1, name: 'Pizzakaya', categoryIds: [1, 2]}])
     })
   })

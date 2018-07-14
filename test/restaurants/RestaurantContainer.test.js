@@ -2,6 +2,7 @@ import React from 'react'
 import {mockPromise, mountContainer} from '../helper'
 import RestaurantContainer from '../../src/js/restaurants/RestaurantContainer'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
+import MultipleMarkerMap from '../../src/js/maps/MultipleMarkerMap'
 
 describe('RestaurantContainer', () => {
   beforeEach(() => {
@@ -55,8 +56,8 @@ describe('RestaurantContainer', () => {
     })
 
     it('displays map with correct props', () => {
-      expect(detailsSection.find('SingleMarkerMap').length).toEqual(1)
-      expect(detailsSection.find('SingleMarkerMap').props().restaurant)
+      expect(detailsSection.find(MultipleMarkerMap).length).toEqual(1)
+      expect(detailsSection.find(MultipleMarkerMap).props().restaurant)
         .toEqual(
           {
             id: 25,

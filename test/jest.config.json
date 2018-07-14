@@ -1,3 +1,6 @@
 {
-  "setupTestFrameworkScriptFile": "./setup.js"
+  "setupTestFrameworkScriptFile": "./setup.js",
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif)$": "<rootDir>/mocks/fileMock.js"
+  }
 }

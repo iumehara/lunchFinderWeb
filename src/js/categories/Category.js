@@ -39,9 +39,6 @@ class Category extends React.Component<Props> {
           restaurants={this.props.restaurants}
         />
         <div className='details'>
-          <div className='title'>
-            <h1>All {category.name} Restaurants</h1>
-          </div>
           <MultipleMarkerMap id={category.id} restaurants={this.props.category.restaurants}/>
         </div>
       </div>

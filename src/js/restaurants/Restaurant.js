@@ -2,11 +2,11 @@
 import React from 'react'
 import CategoryLink from '../categories/CategoryLink'
 import {Link} from 'react-router-dom'
-import SingleMarkerMap from '../maps/SingleMarkerMap'
 import type {RestaurantType} from './RestaurantTypes'
 import type {CategoryType} from '../categories/CategoryTypes'
 import RestaurantList from './RestaurantList'
 import {displayUrl} from '../helpers'
+import MultipleMarkerMap from '../maps/MultipleMarkerMap'
 
 type Props = {
   id: string,
@@ -35,6 +35,9 @@ class Restaurant extends React.Component<Props> {
       return <CategoryLink key={i} category={category} active={active}/>
     })
 
+    const restaurants = category.restaurants.length > 0 ? category.restaurants : [restaurant]
+
+
     return (
       <div className='main'>
         <RestaurantList
@@ -43,12 +46,12 @@ class Restaurant extends React.Component<Props> {
           restaurants={this.props.restaurants}
         />
         <div className='details'>
+          <MultipleMarkerMap id={restaurant.id} restaurant={restaurant} restaurants={restaurants}/>
           <div className='title'>
             <h1>{restaurant.nameJp}</h1>
             <div>{restaurant.name}</div>
             <a className='website' href={displayUrl(restaurant.website)} target='_blank'>{restaurant.website}</a>
           </div>
-          <SingleMarkerMap restaurant={restaurant}/>
           <ul>
             {categoryLinks}
           </ul>
