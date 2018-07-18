@@ -19,3 +19,5 @@ export const initGoogleMapsBounds = () => {
 export const addGoogleClickListener = (map, callback) => {
   return google.maps.event.addListener(map, 'click', callback)
 }
+
+export const getGoogle = () => { return google }

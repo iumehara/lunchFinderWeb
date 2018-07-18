@@ -9,16 +9,17 @@ describe('MultipleMarkerMap', () => {
   beforeEach(() => {
     jest.restoreAllMocks()
     jest.spyOn(libraryLoader, 'loadGoogleMaps').mockImplementation(() => {return {then: callbackFunc => callbackFunc()}})
+    jest.spyOn(googleMapsWrapper, 'getGoogle').mockImplementation(() => {})
     jest.spyOn(googleMapsWrapper, 'initGoogleMap').mockImplementation(() => mockMap)
     jest.spyOn(googleMapsWrapper, 'initGoogleMapsBounds').mockImplementation(() => {return {extend: () => {}}})
   })
 
   it('sets starting point marker', () => {
-    const initGoogleMapsMarkerSpy = jest.spyOn(googleMapsWrapper, 'initGoogleMapsMarker').mockImplementation(options => options)
+    const initGoogleMapsMarkerSpy = jest.spyOn(googleMapsWrapper, 'initGoogleMapsMarker')
+      .mockImplementation(options => options)
 
 
-    const multipleMarkerMap = shallow(<MultipleMarkerMapComponent restaurants={[]} history={{history: {push: []}}}/>)
-    multipleMarkerMap.setProps({id: 1, restaurants: []})
+    shallow(<MultipleMarkerMapComponent restaurants={[]}/>)
 
 
     expect(initGoogleMapsMarkerSpy.mock.calls.length).toBe(1)
@@ -26,80 +27,39 @@ describe('MultipleMarkerMap', () => {
       .toEqual({ position: { lat: 35.66048, lng: 139.729247 }, map: mockMap, label: { text: 'Roppongi Hills' } })
   })
 
-  it('sets current restaurant markers', () => {
-    const clickListenerSpy = jest.fn()
+  it('sets restaurant markers', () => {
+    const addListenerSpy = jest.fn()
+    const setIconSpy = jest.fn()
     const initGoogleMapsMarkerSpy = jest.spyOn(googleMapsWrapper, 'initGoogleMapsMarker')
       .mockImplementation(options => {
-        options.addListener = clickListenerSpy
+        options.addListener = addListenerSpy
+        options.setIcon = setIconSpy
         return options
       })
 
-
-    const multipleMarkerMap = shallow(<MultipleMarkerMapComponent restaurants={[]} history={{history: {push: []}}}/>)
     const id = 1
-    const currentRestaurant = {id: 1, name: 'Pintokona', geolocation: {lat: 33, long: 111}}
-    const restaurants = [currentRestaurant]
-    multipleMarkerMap.setProps({id, restaurants, restaurant: currentRestaurant})
+    const currentRestaurant = {id: 1, name: 'AAAAA', geolocation: {lat: 33, long: 111}}
+    const restaurants = [currentRestaurant, {id: 2, name: 'BBBBB', geolocation: {lat: 33, long: 222}}]
 
 
-    expect(clickListenerSpy.mock.calls.length).toBe(0)
+    shallow(<MultipleMarkerMapComponent id={id} restaurant={currentRestaurant} restaurants={restaurants}/>)
 
-    expect(initGoogleMapsMarkerSpy.mock.calls.length).toBe(2)
-    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].position).toEqual({lat: 33, lng: 111 })
+
+    expect(addListenerSpy.mock.calls.length).toBe(1)
+
+    expect(setIconSpy.mock.calls.length).toBe(2)
+
+    expect(initGoogleMapsMarkerSpy.mock.calls.length).toBe(3)
+    expect(initGoogleMapsMarkerSpy.mock.calls[0][0].position).toEqual({lat: 33, lng: 111 })
+    expect(initGoogleMapsMarkerSpy.mock.calls[0][0].map).toEqual(mockMap)
+    expect(initGoogleMapsMarkerSpy.mock.calls[0][0].label).toEqual({text: 'AAAAA'})
+
+    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].position).toEqual({lat: 33, lng: 222 })
     expect(initGoogleMapsMarkerSpy.mock.calls[1][0].map).toEqual(mockMap)
-    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].label).toEqual({text: 'Pintokona'})
-    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].icon).toEqual('test-file-stub')
-  })
+    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].label).toEqual({text: 'BBBBB'})
 
-  it('sets additional restaurant markers', () => {
-    const clickListenerSpy = jest.fn()
-    const initGoogleMapsMarkerSpy = jest.spyOn(googleMapsWrapper, 'initGoogleMapsMarker')
-      .mockImplementation(options => {
-        options.addListener = clickListenerSpy
-        return options
-      })
-
-
-    const multipleMarkerMap = shallow(<MultipleMarkerMapComponent restaurants={[]} history={{history: {push: []}}}/>)
-    multipleMarkerMap.setProps({id: 1, restaurants: [{id: 1, name: 'Pintokona', geolocation: {lat: 33, long: 111}}]})
-
-
-    expect(clickListenerSpy.mock.calls.length).toBe(1)
-
-    expect(initGoogleMapsMarkerSpy.mock.calls.length).toBe(2)
-    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].position).toEqual({lat: 33, lng: 111 })
-    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].map).toEqual(mockMap)
-    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].label).toEqual({text: 'Pintokona'})
-    expect(initGoogleMapsMarkerSpy.mock.calls[1][0].icon).toEqual('test-file-stub')
-  })
-
-  it('sets correct bounds', () => {
-    const mapBouds = []
-    jest.spyOn(googleMapsWrapper, 'initGoogleMapsBounds')
-      .mockImplementation(() => {return {extend: bounds => mapBouds.push(bounds)}})
-
-    const clickListenerSpy = jest.fn()
-    jest.spyOn(googleMapsWrapper, 'initGoogleMapsMarker')
-      .mockImplementation(options => {
-        options.addListener = clickListenerSpy
-        return options
-      })
-
-
-    const multipleMarkerMap = shallow(<MultipleMarkerMapComponent restaurants={[]} history={{history: {push: []}}}/>)
-    multipleMarkerMap.setProps({id: 1, restaurants: [{id: 1, name: 'Pintokona', geolocation: {lat: 33, long: 111}}]})
-
-
-    expect(mapBouds).toEqual([{ lat: 35.66048, lng: 139.729247 }, { lat: 33, lng: 111 }])
-  })
-
-  it('does not load google map if props are not updated', () => {
-    const loadGoogleMapsSpy = jest.spyOn(libraryLoader, 'loadGoogleMaps')
-
-
-    shallow(<MultipleMarkerMapComponent history={{history: {push: []}}}/>)
-
-
-    expect(loadGoogleMapsSpy).not.toHaveBeenCalled()
+    expect(initGoogleMapsMarkerSpy.mock.calls[2][0].position).toEqual({lat: 35.66048, lng: 139.729247 })
+    expect(initGoogleMapsMarkerSpy.mock.calls[2][0].map).toEqual(mockMap)
+    expect(initGoogleMapsMarkerSpy.mock.calls[2][0].label).toEqual({text: 'Roppongi Hills'})
   })
 })
