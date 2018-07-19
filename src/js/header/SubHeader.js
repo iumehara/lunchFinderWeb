@@ -3,23 +3,16 @@ import React from 'react'
 import type {CategoryType} from '../categories/CategoryTypes'
 import CategoryLink from '../categories/CategoryLink'
 import {Link} from 'react-router-dom'
-import type {RestaurantType} from '../restaurants/RestaurantTypes'
 
 type Props = {
   categories: [CategoryType],
   category: CategoryType,
-  restaurants: [RestaurantType],
-  fetchCategories: () => {},
-  onSelectChange: (event: any, categories: [CategoryType]) => {}
+  fetchCategories: () => {}
 }
 
 class SubHeader extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchCategories()
-  }
-
-  onChange(event: any) {
-    this.props.onSelectChange(event, this.props.categories)
   }
 
   render() {
@@ -28,27 +21,14 @@ class SubHeader extends React.Component<Props> {
       return <CategoryLink key={i} category={category} active={active}/>
     })
 
-    const allCategoriesStatus = () => {
-      if (this.props.category.id === '' && this.props.restaurants.length > 0) {
-        return 'active'
-      } else {
-        return ''
-      }
-    }
+    const allCategoriesStatus = this.props.category.id === '' ? 'active' : ''
 
     return (
       <div className='sub-header'>
         <div className='all-categories'>
-          <Link className={`category-link ${allCategoriesStatus()}`} to={`/restaurants`}>
-            All Categories
+          <Link className={`category-link ${allCategoriesStatus}`} to={`/restaurants`}>
+            All
           </Link>
-        </div>
-        <div className='control'>
-          <div className='title'>Order by:</div>
-          <select onChange={this.onChange.bind(this)}>
-            <option value='popularity'>popularity</option>
-            <option value='name'>name</option>
-          </select>
         </div>
         <div className='list'>
           {categories}
