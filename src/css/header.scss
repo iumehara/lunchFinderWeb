@@ -18,6 +18,13 @@
       color: white;
       margin: 10px;
     }
+    .add-category {
+      color: gray;
+      cursor: pointer;
+      &:hover {
+        color: white;
+      }
+    }
   }
 }
 

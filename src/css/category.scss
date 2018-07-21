@@ -16,3 +16,66 @@ a.category-link {
     background-color: orange;
   }
 }
+
+.form.category {
+  box-shadow: 2px 2px 2px gray, -2px -2px 2px gray;
+  position: fixed;
+  top: 20rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  border: 1px solid gray;
+  background-color: white;
+  width: 30rem;
+  border-radius: 0.5rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  .title-bar {
+    display: flex;
+    background-color: black;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .close {
+      color: gray;
+      font-size: 24px;
+      cursor: pointer;
+      font-weight: bold;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  .content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    .name {
+      margin-bottom: 1rem;
+      input {
+        height: 2rem;
+        width: 20rem;
+        font-size: 16px;
+        border-radius: 3px;
+        padding: 3px;
+      }
+    }
+  }
+}
+
+button.save {
+  width: 5rem;
+  height: 3rem;
+  background-color: dodgerblue;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 16px;
+}

@@ -3,12 +3,13 @@ import NewCategory from './NewCategory'
 import {setDispatch} from '../actions'
 import {createCategory} from '../fetchers/resourceFetcher'
 
-export const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
   newCategory: state.newCategory,
-  formError: state.formError
+  formError: state.formError,
+  currentMode: state.currentMode
 })
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   onNameChange: e => setDispatch(e.target.value, 'SET_NEW_CATEGORY_NAME', dispatch),
 
   resetForm: () => dispatch({type: 'CREATE_CATEGORY_FAILURE', data: ''}),
@@ -22,7 +23,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
           dispatch({type: 'CREATE_CATEGORY_FAILURE', data: response.error})
         }
       })
-  }
+  },
+
+  toggleNewCategoryMode: () => dispatch({type: 'TOGGLE_NEW_CATEGORY_MODE'})
 })
 
 const NewCategoryContainer = connect(

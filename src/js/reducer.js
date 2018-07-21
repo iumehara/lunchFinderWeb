@@ -134,6 +134,20 @@ export const formDataLoaded = (state: boolean=false, action: Object) => {
   }
 }
 
+const currentMode = (state: string='VIEW_MODE', action: Object) => {
+  const {type} = action
+  switch (type) {
+    case 'TOGGLE_NEW_CATEGORY_MODE':
+      if (state === 'VIEW_MODE') {
+        return 'NEW_CATEGORY_MODE'
+      } else {
+        return 'VIEW_MODE'
+      }
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   formError,
   categories,
@@ -142,5 +156,6 @@ export default combineReducers({
   restaurants,
   restaurant,
   newRestaurant,
-  formDataLoaded
+  formDataLoaded,
+  currentMode
 })

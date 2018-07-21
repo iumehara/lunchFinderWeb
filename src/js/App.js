@@ -3,7 +3,7 @@ import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducer from './reducer'
-import TopHeader from './header/TopHeader'
+import TopHeaderContainer from './header/TopHeaderContainer'
 import SubHeaderContainer from './header/SubHeaderContainer'
 
 import NewCategoryContainer from './categories/NewCategoryContainer'
@@ -22,7 +22,7 @@ export default function App() {
     <Provider store={store}>
       <Router>
         <div className='app'>
-          <TopHeader/>
+          <TopHeaderContainer/>
           <SubHeaderContainer/>
 
           <Switch>

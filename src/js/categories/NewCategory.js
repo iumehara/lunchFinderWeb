@@ -7,7 +7,8 @@ type Props = {
   fetchCategories: () => {},
   onNameChange: (event:  SyntheticEvent<HTMLButtonElement>) => {},
   resetForm: () => {},
-  createNewCategory: (newCategory: CategoryType) => {}
+  createNewCategory: (newCategory: CategoryType) => {},
+  toggleNewCategoryMode: () => {}
 }
 
 class NewCategory extends React.Component<Props> {
@@ -34,13 +35,15 @@ class NewCategory extends React.Component<Props> {
 
   render() {
     return (
-      <div>
-        <div className='form'>
-          <h1 className='title'>New Category</h1>
+      <div className='form category'>
+        <div className='title-bar'>
+          <div className='title'>New Category</div>
+          <div className='close' onClick={this.props.toggleNewCategoryMode}>☓</div>
+        </div>
+        <div className='content'>
           {this.renderFormError()}
           <div className='name'>
-            <label>name</label>
-            <input onChange={this.onInputChange.bind(this)}/>
+            <input onChange={this.onInputChange.bind(this)} placeholder='name'/>
           </div>
           <button className='save' onClick={this.onButtonClick.bind(this)}>create</button>
         </div>
