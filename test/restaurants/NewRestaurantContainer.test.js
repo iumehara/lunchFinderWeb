@@ -2,7 +2,7 @@ import React from 'react'
 import NewRestaurantContainer from '../../src/js/restaurants/NewRestaurantContainer'
 import * as httpFetcher from '../../src/js/fetchers/httpFetcher'
 import * as resourceFetcher from '../../src/js/fetchers/resourceFetcher'
-import {mockPromise, mountContainer, mountedContainerHistory} from '../helper'
+import {mockPromise, mountContainer} from '../helper'
 
 describe('NewRestaurantContainer', () => {
   it('displays newRestaurant list from request', () => {
@@ -34,7 +34,5 @@ describe('NewRestaurantContainer', () => {
         categoryIds: [1, 3]
       }
     )
-
-    expect(mountedContainerHistory(newRestaurantContainer)).toContain('/restaurants/25')
   })
 })

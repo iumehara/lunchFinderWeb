@@ -2,23 +2,33 @@ import {connect} from 'react-redux'
 import NewRestaurant from './NewRestaurant'
 import {createRestaurant} from '../fetchers/resourceFetcher'
 import {fetchRestaurantsThenDispatch} from '../actions'
+import {withRouter} from 'react-router-dom'
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   restaurants: state.restaurants,
-  createNewRestaurant: () => {
-    createRestaurant(state.newRestaurant)
-      .then(idObject => ownProps.history.push(`/restaurants/${idObject.id}`))
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  fetchRestaurants: () => fetchRestaurantsThenDispatch(dispatch),
+
+  resetNewRestaurant: () => dispatch({type: 'RESET_NEW_RESTAURANT'}),
+
+  toggleNewRestaurantMode: () => dispatch({type: 'TOGGLE_NEW_RESTAURANT_MODE'}),
+
+  createNewRestaurant: (restaurant) => {
+    createRestaurant(restaurant)
+      .then(idObject => {
+        dispatch({type: 'TOGGLE_NEW_RESTAURANT_MODE'})
+        ownProps.history.push(`/restaurants/${idObject.id}`)
+      })
   }
 })
 
-const mapDispatchToProps = dispatch => ({
-  fetchRestaurants: () => fetchRestaurantsThenDispatch(dispatch),
-  resetNewRestaurant: () => dispatch({type: 'RESET_NEW_RESTAURANT'})
-})
-
-const NewRestaurantContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NewRestaurant)
+const NewRestaurantContainer = withRouter(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(NewRestaurant)
+)
 
 export default NewRestaurantContainer

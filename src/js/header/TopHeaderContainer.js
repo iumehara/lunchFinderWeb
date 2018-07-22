@@ -6,9 +6,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleNewCategoryMode: () => {
-    dispatch({type: 'TOGGLE_NEW_CATEGORY_MODE'})
-  }
+  toggleNewCategoryMode: () => dispatch({type: 'TOGGLE_NEW_CATEGORY_MODE'}),
+  toggleNewRestaurantMode: () => dispatch({type: 'TOGGLE_NEW_RESTAURANT_MODE'})
 })
 
 const TopHeaderContainer = connect(

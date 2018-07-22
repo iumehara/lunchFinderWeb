@@ -5,8 +5,6 @@ import {createStore} from 'redux'
 import reducer from './reducer'
 import TopHeaderContainer from './header/TopHeaderContainer'
 import SubHeaderContainer from './header/SubHeaderContainer'
-
-import NewCategoryContainer from './categories/NewCategoryContainer'
 import CategoryContainer from './categories/CategoryContainer'
 import EditCategoryContainer from './categories/EditCategoryContainer'
 
@@ -27,7 +25,6 @@ export default function App() {
 
           <Switch>
             <Route exact path="/" component={RestaurantsContainer}/>
-            <Route exact path="/categories/new" component={NewCategoryContainer}/>
             <Route exact path="/categories/:id" component={CategoryContainer}/>
             <Route exact path="/categories/:id/edit" component={EditCategoryContainer}/>
             <Route exact path="/restaurants" component={RestaurantsContainer}/>

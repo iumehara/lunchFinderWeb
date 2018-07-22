@@ -12,7 +12,7 @@ type Props = {
   onInputChange: (fieldObject: Object) => {},/**/
   onGeolocationChange: (geolocation: Object) => {},
   onCategoryChange: () => {},
-  saveButtonWasClicked: () => {},
+  saveButtonWasClicked: (restaurant: Object) => {},
   resetForm: () => {}
 }
 
@@ -73,32 +73,41 @@ export default class RestaurantForm extends React.Component<Props> {
     })
   }
 
+  saveButtonWasClicked() {
+    this.props.saveButtonWasClicked(this.props.newRestaurant)
+  }
+
   render() {
     return (
-      <div className='restaurant-form'>
-        <div className='name'>
-          <label>Name (English)</label>
-          {this.renderInput('name', this.props.newRestaurant.name)}
+      <div className='restaurant form'>
+        <div className='content'>
+          <div className='fields'>
+            <div className='name'>
+              <label>Name (English)</label>
+              {this.renderInput('name', this.props.newRestaurant.name)}
+            </div>
+            <div className='name-jp'>
+              <label>店名 (日本語)</label>
+              {this.renderInput('nameJp', this.props.newRestaurant.nameJp)}
+            </div>
+            <div className='website'>
+              <label>Website</label>
+              {this.renderInput('website', this.props.newRestaurant.website)}
+            </div>
+            <div className='categories'>
+              <label>categories</label>
+              {this.renderCategorySelect()}
+              <ul>
+                {this.renderSelectedCategories()}
+              </ul>
+            </div>
+          </div>
+          <div className='map-container'>
+            {this.renderMarkableMap()}
+          </div>
         </div>
-        <div className='name-jp'>
-          <label>店名 (日本語)</label>
-          {this.renderInput('nameJp', this.props.newRestaurant.nameJp)}
-        </div>
-        <div className='website'>
-          <label>Website</label>
-          {this.renderInput('website', this.props.newRestaurant.website)}
-        </div>
-        <div className='categories'>
-          <label>categories</label>
-          {this.renderCategorySelect()}
-          <ul>
-            {this.renderSelectedCategories()}
-          </ul>
-        </div>
-        {this.renderMarkableMap()}
-
         <div className='actions'>
-          <button className='action save' onClick={this.props.saveButtonWasClicked}>
+          <button className='action save' onClick={this.saveButtonWasClicked.bind(this)}>
             save
           </button>
         </div>

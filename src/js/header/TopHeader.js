@@ -1,16 +1,23 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import NewCategoryContainer from '../categories/NewCategoryContainer'
+import NewRestaurantContainer from '../restaurants/NewRestaurantContainer'
 
 export default class TopHeader extends React.Component {
-  displayNewCategory() {
+  displayModal() {
     if (this.props.currentMode === 'NEW_CATEGORY_MODE') {
       return <NewCategoryContainer/>
+    } else if (this.props.currentMode === 'NEW_RESTAURANT_MODE') {
+      return <NewRestaurantContainer/>
     }
   }
 
   newCategoryLinkWasClicked() {
     this.props.toggleNewCategoryMode()
+  }
+
+  newRestaurantLinkWasClicked() {
+    this.props.toggleNewRestaurantMode()
   }
 
   render() {
@@ -21,10 +28,10 @@ export default class TopHeader extends React.Component {
         </div>
         <div className='settings'>
           <div className='add-category' onClick={this.newCategoryLinkWasClicked.bind(this)}>Add Category</div>
-          <Link to="/restaurants/new">Add Restaurant</Link>
+          <div className='add-restaurant' onClick={this.newRestaurantLinkWasClicked.bind(this)}>Add Restaurant</div>
         </div>
 
-        {this.displayNewCategory()}
+        {this.displayModal()}
       </div>
     )
   }

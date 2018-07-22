@@ -35,12 +35,12 @@ class NewCategory extends React.Component<Props> {
 
   render() {
     return (
-      <div className='form category'>
+      <div className='modal category'>
         <div className='title-bar'>
           <div className='title'>New Category</div>
           <div className='close' onClick={this.props.toggleNewCategoryMode}>☓</div>
         </div>
-        <div className='content'>
+        <div className='form'>
           {this.renderFormError()}
           <div className='name'>
             <input onChange={this.onInputChange.bind(this)} placeholder='name'/>

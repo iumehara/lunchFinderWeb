@@ -26,20 +26,16 @@ export default class EditRestaurant extends React.Component<Props> {
 
   render() {
     return (
-      <div className='main'>
-        <div className='details'>
+      <div className='modal restaurant'>
+        <div className='title-bar'>
           <h1 className='title'>Edit Restaurant</h1>
+          <Link className='close' to={`/restaurants/${this.props.id}`}>☓</Link>
+        </div>
+        <div>
           <RestaurantFormContainer saveButtonWasClicked={this.props.updateNewRestaurant} editMode={true}/>
-          <br/>
-          <Link to={`/restaurants/${this.props.id}`}>Cancel</Link>
-          <br/>
-          <br/>
-          <br/>
-          <div>
-            <button className='danger delete' onClick={this.destroyIfConfirmed.bind(this)}>Delete</button>
-          </div>
+          <button className='danger delete' onClick={this.destroyIfConfirmed.bind(this)}>Delete</button>
         </div>
-        </div>
+      </div>
     )
   }
 }

@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import NewCategory from './NewCategory'
 import {setDispatch} from '../actions'
 import {createCategory} from '../fetchers/resourceFetcher'
+import {withRouter} from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
   newCategory: state.newCategory,
@@ -18,6 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     createCategory(newCategory)
       .then(response => {
         if (response.id) {
+          dispatch({type: 'TOGGLE_NEW_CATEGORY_MODE'})
           ownProps.history.push(`/categories/${response.id}`)
         } else if (response.error) {
           dispatch({type: 'CREATE_CATEGORY_FAILURE', data: response.error})
@@ -28,9 +30,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   toggleNewCategoryMode: () => dispatch({type: 'TOGGLE_NEW_CATEGORY_MODE'})
 })
 
-const NewCategoryContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NewCategory)
+const NewCategoryContainer = withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(NewCategory)
+)
 
 export default NewCategoryContainer

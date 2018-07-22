@@ -2,13 +2,13 @@
 import React from 'react'
 import RestaurantFormContainer from './RestaurantFormContainer'
 import type {RestaurantType} from './RestaurantTypes'
-import RestaurantList from './RestaurantList'
 
 type Props = {
   fetchRestaurants: () => {},
   resetNewRestaurant: () => {},
   restaurants: Array<RestaurantType>,
-  createNewRestaurant: () => {}
+  createNewRestaurant: () => {},
+  toggleNewRestaurantMode: () => {}
 }
 
 export default class NewRestaurant extends React.Component<Props> {
@@ -19,12 +19,12 @@ export default class NewRestaurant extends React.Component<Props> {
 
   render() {
     return (
-      <div className='main'>
-        <RestaurantList restaurants={this.props.restaurants}/>
-        <div className='details'>
-          <h1 className='title'>New Restaurant</h1>
-          <RestaurantFormContainer saveButtonWasClicked={this.props.createNewRestaurant}/>
+      <div className='modal restaurant'>
+        <div className='title-bar'>
+          <div className='title'>New Restaurant</div>
+          <div className='close' onClick={this.props.toggleNewRestaurantMode}>☓</div>
         </div>
+        <RestaurantFormContainer saveButtonWasClicked={this.props.createNewRestaurant}/>
       </div>
     )
   }

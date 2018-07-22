@@ -138,11 +138,19 @@ const currentMode = (state: string='VIEW_MODE', action: Object) => {
   const {type} = action
   switch (type) {
     case 'TOGGLE_NEW_CATEGORY_MODE':
-      if (state === 'VIEW_MODE') {
+      if (state !== 'NEW_CATEGORY_MODE') {
         return 'NEW_CATEGORY_MODE'
       } else {
         return 'VIEW_MODE'
       }
+    case 'TOGGLE_NEW_RESTAURANT_MODE':
+      if (state !== 'NEW_RESTAURANT_MODE') {
+        return 'NEW_RESTAURANT_MODE'
+      } else {
+        return 'VIEW_MODE'
+      }
+    case 'CREATE_CATEGORY_SUCCESS':
+      return 'VIEW_MODE'
     default:
       return state
   }
