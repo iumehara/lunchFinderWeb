@@ -8,12 +8,10 @@ describe('NewRestaurantContainer', () => {
   it('displays newRestaurant list from request', () => {
     const mockCategories = [{id: 1, name: 'Sushi'}, {id: 2, name: 'Pizza'}, {id: 3, name: 'Spicy'}]
     jest.spyOn(resourceFetcher, 'getCategories').mockImplementation(() => mockPromise(mockCategories))
-
-    const httpPostSpy = jest.spyOn(httpFetcher, 'httpPost').mockImplementation(() => mockPromise({id: 25}))
-
     jest.spyOn(resourceFetcher, 'getRestaurants').mockImplementation(() => mockPromise([]))
-
+    const httpPostSpy = jest.spyOn(httpFetcher, 'httpPost').mockImplementation(() => mockPromise({id: 25}))
     const newRestaurantContainer = mountContainer(NewRestaurantContainer)
+
 
     newRestaurantContainer.find('.name input').simulate('change', {target: {name: 'name', value: 'Pintokona'}})
     newRestaurantContainer.find('.name-jp input').simulate('change', {target: {name: 'nameJp', value: 'ぴんとこな'}})
